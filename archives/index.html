@@ -2,20 +2,23 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
+  <title>花落阁</title>
   <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <meta name="description" content="花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="CMake 语法CMake 简介什么是 CMakeCMake 是一个跨平台的安装（编译）工具，可以用简单的语句来描述所有平台的安装（编译过程）。他能够输出各种各样的makefile 或者 project 文件，CMake 的配置文件取名为 CMakeLists.txt。也就是在 CMakeLists.txt 这个文件中写 cmake 代码。 一句话：cmake 就是将多个 cpp、hpp 文件组合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://hualog.dns.navy/2024/03/22/hello-world/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:title" content="CMake语法">
+<meta property="og:url" content="https://hualog.dns.navy/2024/03/28/CMake%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="花落阁">
+<meta property="og:description" content="CMake 语法CMake 简介什么是 CMakeCMake 是一个跨平台的安装（编译）工具，可以用简单的语句来描述所有平台的安装（编译过程）。他能够输出各种各样的makefile 或者 project 文件，CMake 的配置文件取名为 CMakeLists.txt。也就是在 CMakeLists.txt 这个文件中写 cmake 代码。 一句话：cmake 就是将多个 cpp、hpp 文件组合">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-22T07:47:27.354Z">
-<meta property="article:modified_time" content="2024-03-21T13:51:57.785Z">
+<meta property="article:published_time" content="2024-03-28T09:01:34.000Z">
+<meta property="article:modified_time" content="2024-03-28T09:59:21.502Z">
 <meta property="article:author" content="花落阁">
+<meta property="article:tag" content="cmake">
+<meta property="article:tag" content="make">
+<meta property="article:tag" content="程序构建">
 <meta name="twitter:card" content="summary">
 
 
@@ -153,10 +156,131 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(1)</small>
+                <small>(4)</small>
             
         </div>
     </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;tools">
+            
+            tools
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="随笔">
+            <i class="fold iconfont icon-right"></i>
+            随笔
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="随笔&lt;---&gt;2024">
+            <i class="fold iconfont icon-right"></i>
+            2024
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="随笔&lt;---&gt;2024&lt;---&gt;3">
+            
+            3
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
     
 </ul>
 <div class="left-bottom">
@@ -178,8 +302,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="1">
-<input type="hidden" id="yelog_site_word_count" value="75">
+<input type="hidden" id="yelog_site_posts_number" value="4">
+<input type="hidden" id="yelog_site_word_count" value="20.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -224,6 +348,38 @@
     <input id="tag-search" />
     <div class="tag-wrapper">
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>2024</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编程语言</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>程序构建</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cmake</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>make</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>md</a>
+            </li>
+        
     </div>
 
 </div>
@@ -236,12 +392,39 @@
     <nav id="title-list-nav">
         
         
-        <a  class="全部文章 "
-           href="/2024/03/22/hello-world/"
-           data-tag=""
+        <a  class="全部文章 工具 tools "
+           href="/2024/03/28/CMake%E8%AF%AD%E6%B3%95/"
+           data-tag="cmake,make,程序构建"
            data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-03-22 15:47:27">2024/03/22</span>
+            <span class="post-title" title="CMake语法">CMake语法</span>
+            <span class="post-date" title="2024-03-28 17:01:34">2024/03/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 随笔 2024 3 "
+           href="/2024/03/25/2024-03-25/"
+           data-tag="2024"
+           data-author="" >
+            <span class="post-title" title="2024.03.25">2024.03.25</span>
+            <span class="post-date" title="2024-03-25 22:17:59">2024/03/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 C++ "
+           href="/2024/03/23/C-%E5%85%AB%E8%82%A1%E6%96%87/"
+           data-tag="编程语言,C++"
+           data-author="" >
+            <span class="post-title" title="C++八股文">C++八股文</span>
+            <span class="post-date" title="2024-03-23 17:48:51">2024/03/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2024/03/22/Markdown%E8%AF%AD%E6%B3%95/"
+           data-tag="markdown,md"
+           data-author="" >
+            <span class="post-title" title="Markdown语法">Markdown语法</span>
+            <span class="post-date" title="2024-03-22 11:24:12">2024/03/22</span>
         </a>
         
         <div id="no-item-tips">
@@ -288,27 +471,22 @@
     .catch(error => console.error('Error fetching data:', error));
 </script>
 
-<h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+<h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>著名的艾宾浩斯曲线表明，遗忘是有规律性的，不是呈现直线下降，而是最初阶段遗忘的速度很快，而到了一段时间后几乎就不再遗忘了。<br>所以学习的知识在一天后遗忘的速度是最快的，而随着时间的推移，在不断复习的情况下，遗忘的速度减慢，最终可以将学习知识牢固地储存在大脑中，形成稳定的知识存储。</p>
+<p>但是学海无涯，知识太多太杂。我们不一定会经常使用到这些知识，更没办法每天都去强行复习和记忆。所以，有一个能记录自己的学习历程的站点，将会大大降低我们的二次学习成本。</p>
+<p>与君共勉</p>
 <blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+<p>学习是磨练意志的最好途径。</p>
 </blockquote>
 <blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+<p>知识是思想的明灯，而行动则是心灵的翅膀。</p>
 </blockquote>
 <blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+<p>自律是提升自我的第一步，坚持不懈是通往成功的必由之路。</p>
 </blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
 <h2 id="关于花落阁"><a href="#关于花落阁" class="headerlink" title="关于花落阁"></a>关于花落阁</h2><p><strong>花落阁</strong> 是阁主（赵泽华）的个人站。</p>
 <p>到目前为止已经写了 <code class="article_number"></code>篇文章， 共 <code class="site_word_count"></code>字。</p>
 <p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
 <h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在github，主题为 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> ，原作者已经在github上开源，我在此基础上进行修改，感谢<a target="_blank" rel="noopener" href="http://yelog.org/">叶落阁主</a>。</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad&#x2F;手机等移动端适配</li>
-</ul>
 
         </article>
         
@@ -451,6 +629,24 @@
     
 
     /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
     
 
     /* 背景图样式 */
