@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>花落阁</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="花落阁">
+  <title>&#39;MySQL&#39; | 花落阁</title>
+  <meta name="keywords" content=" 编程语言 ">
+  <meta name="description" content="&#39;MySQL&#39; | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="我遇到过的疑难杂症单片机上跑的udp程序突然崩溃同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。一开始工作正常，但是一段时间后他的程序崩溃。经排查，是因为他没有写recv()函数，且一直复用的同一个socket。数据到达后，没处理，堆积在缓冲区导致错误。">
 <meta property="og:type" content="article">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -451,12 +451,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-MySQL" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8A%B1%E8%90%BD%E9%98%81"><span class="toc-text">花落阁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%8F%E6%97%A5%E4%B8%80%E8%A8%80"><span class="toc-text">每日一言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%8A%B1%E8%90%BD%E9%98%81"><span class="toc-text">关于花落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">&#39;MySQL&#39;</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;通用">通用</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">编程语言</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-04-15 09:18:42'>2024-04-13 23:58</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:139</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%85%B3%E7%B3%BB%E5%9E%8B%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-text">1.关系型和非关系型数据库的区别你了解多少？</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -469,36 +530,46 @@
     }
 </style>
 </div>
-            <h1 id="花落阁"><a href="#花落阁" class="headerlink" title="花落阁"></a><u>花落阁</u></h1><h2 id="每日一言"><a href="#每日一言" class="headerlink" title="每日一言"></a>每日一言</h2><div id='dynamic-content'></div>
-<script>
-  fetch('https://v1.hitokoto.cn')
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('dynamic-content').innerHTML = '🔊 ' + data.hitokoto + '<br><br><span style="float: right;">——【' + data.from + '】</span>';
-    })
-    .catch(error => console.error('Error fetching data:', error));
-</script>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="1-关系型和非关系型数据库的区别你了解多少？"><a href="#1-关系型和非关系型数据库的区别你了解多少？" class="headerlink" title="1.关系型和非关系型数据库的区别你了解多少？"></a>1.关系型和非关系型数据库的区别你了解多少？</h2><ul>
+<li>关系型数据库的优点<ul>
+<li>容易理解。因为它采用了关系模型来组织数据。</li>
+<li>可以保持数据的一致性。</li>
+<li>数据更新的开销比较小。</li>
+<li>支持复杂查询（带where子句的查询）</li>
+</ul>
+</li>
+<li>非关系型数据库的优点<ul>
+<li>不需要经过SQL层的解析，读写效率高。</li>
+<li>基于键值对，数据的扩展性很好。</li>
+<li>可以支持多种类型数据的存储，如图片，文档等等。</li>
+</ul>
+</li>
+</ul>
 
-<h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>著名的艾宾浩斯曲线表明，遗忘是有规律性的，不是呈现直线下降，而是最初阶段遗忘的速度很快，而到了一段时间后几乎就不再遗忘了。<br>所以学习的知识在一天后遗忘的速度是最快的，而随着时间的推移，在不断复习的情况下，遗忘的速度减慢，最终可以将学习知识牢固地储存在大脑中，形成稳定的知识存储。</p>
-<p>但是学海无涯，知识太多太杂。我们不一定会经常使用到这些知识，更没办法每天都去强行复习和记忆。所以，有一个能记录自己的学习历程的站点，将会大大降低我们的二次学习成本。</p>
-<p>与君共勉</p>
-<blockquote>
-<p>学习是磨练意志的最好途径。</p>
-</blockquote>
-<blockquote>
-<p>知识是思想的明灯，而行动则是心灵的翅膀。</p>
-</blockquote>
-<blockquote>
-<p>自律是提升自我的第一步，坚持不懈是通往成功的必由之路。</p>
-</blockquote>
-<h2 id="关于花落阁"><a href="#关于花落阁" class="headerlink" title="关于花落阁"></a>关于花落阁</h2><p><strong>花落阁</strong> 是阁主（赵泽华）的个人站。</p>
-<p>到目前为止已经写了 <code class="article_number"></code>篇文章， 共 <code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在github，主题为 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> ，原作者已经在github上开源，我在此基础上进行修改，感谢<a target="_blank" rel="noopener" href="http://yelog.org/">叶落阁主</a>。</p>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
+    </div>
+</article>
 
-        </article>
-        
-        
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>&#39;MySQL&#39;</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">139</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
+    <p><span class="copy-title">发布时间:</span>2024-04-13, 23:58:34</p>
+    <p><span class="copy-title">最后更新:</span>2024-04-15, 09:18:42</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/04/13/MySQL/" title="&#39;MySQL&#39;">https://hualog.dns.navy/2024/04/13/MySQL/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -520,6 +591,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -528,11 +606,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>

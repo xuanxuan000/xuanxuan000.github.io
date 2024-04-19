@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>花落阁</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="花落阁">
+  <title>&#39;Git使用说明&#39; | 花落阁</title>
+  <meta name="keywords" content=" git ">
+  <meta name="description" content="&#39;Git使用说明&#39; | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="我遇到过的疑难杂症单片机上跑的udp程序突然崩溃同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。一开始工作正常，但是一段时间后他的程序崩溃。经排查，是因为他没有写recv()函数，且一直复用的同一个socket。数据到达后，没处理，堆积在缓冲区导致错误。">
 <meta property="og:type" content="article">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -451,12 +451,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-Git使用说明" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8A%B1%E8%90%BD%E9%98%81"><span class="toc-text">花落阁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%8F%E6%97%A5%E4%B8%80%E8%A8%80"><span class="toc-text">每日一言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%8A%B1%E8%90%BD%E9%98%81"><span class="toc-text">关于花落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">&#39;Git使用说明&#39;</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工具">工具</a> > 
+            
+            <a  data-rel="工具&lt;---&gt;tools">tools</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">git</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-04-16 14:22:49'>2024-04-14 14:57</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:1.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-text">Git使用说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-%E9%85%8D%E7%BD%AE"><span class="toc-text">Git 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">文本编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%AE%E5%BC%82%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="toc-text">差异分析工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="toc-text">查看配置信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4"><span class="toc-text">创建仓库命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="toc-text">提交与修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%97%A5%E5%BF%97"><span class="toc-text">提交日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C"><span class="toc-text">远程操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%8C%87%E4%BB%A4"><span class="toc-text">其他指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E6%A0%87%E7%AD%BE"><span class="toc-text">打标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E5%88%86%E6%94%AF%E5%B9%B6%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">创建新分支并推送到远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%8A%E6%B8%B8%E5%88%86%E6%94%AF"><span class="toc-text">设置上游分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%8F%90%E4%BA%A4%E6%97%A5%E5%BF%97"><span class="toc-text">查找提交日志</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -469,36 +530,237 @@
     }
 </style>
 </div>
-            <h1 id="花落阁"><a href="#花落阁" class="headerlink" title="花落阁"></a><u>花落阁</u></h1><h2 id="每日一言"><a href="#每日一言" class="headerlink" title="每日一言"></a>每日一言</h2><div id='dynamic-content'></div>
-<script>
-  fetch('https://v1.hitokoto.cn')
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('dynamic-content').innerHTML = '🔊 ' + data.hitokoto + '<br><br><span style="float: right;">——【' + data.from + '】</span>';
-    })
-    .catch(error => console.error('Error fetching data:', error));
-</script>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Git使用说明"><a href="#Git使用说明" class="headerlink" title="Git使用说明"></a>Git使用说明</h1><h2 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h2><p>Git 提供了一个叫做<code>git config</code>的工具，专门用来配置或读取相应的工作环境变量。</p>
+<p>这些环境变量，决定了 Git 在各个环节的具体工作方式和行为。这些变量可以存放在以下三个不同的地方：</p>
+<ul>
+<li><code>/etc/gitconfig</code> 文件：系统中对所有用户都普遍适用的配置。若使用 git config 时用 –system 选项，读写的就是这个文件。</li>
+<li><code>~/.gitconfig</code> 文件：用户目录下的配置文件只适用于该用户。若使用 git config 时用 –global 选项，读写的就是这个文件。</li>
+<li>当前项目的 Git 目录中的配置文件（也就是工作目录中的 .git&#x2F;config 文件）：这里的配置仅仅针对当前项目有效。每一个级别的配置都会覆盖上层的相同配置，所以 .git&#x2F;config 里的配置会覆盖 &#x2F;etc&#x2F;gitconfig 中的同名变量。</li>
+</ul>
+<p>在 Windows 系统上，Git 会找寻用户主目录下的 <code>.gitconfig</code>文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings$USER。</p>
+<p>此外，Git 还会尝试找寻 &#x2F;etc&#x2F;gitconfig 文件，只不过看当初 Git 装在什么目录，就以此作为根目录来定位。</p>
+<h3 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h3><p>配置个人的用户名称和电子邮件地址：</p>
+<pre><code class="bash">git config --global user.name &quot;huahua&quot;
+git config --global user.email test@huahua.com
+</code></pre>
+<p>如果用了<code>--global</code>选项，那么更改的配置文件就是位于你用户主目录下的那个，以后你所有的项目都会默认使用这里配置的用户信息。</p>
+<p>如果要在某个特定的项目中使用其他名字或者电邮，只要去掉 –global 选项重新配置即可，新的设定保存在当前项目的 .git&#x2F;config 文件里。</p>
+<h3 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h3><p>设置Git默认使用的文本编辑器, 一般可能会是 Vi 或者 Vim。如果你有其他偏好，比如 Emacs 的话，可以重新设置：:</p>
+<pre><code class="bash">git config --global core.editor emacs
+</code></pre>
+<h3 id="差异分析工具"><a href="#差异分析工具" class="headerlink" title="差异分析工具"></a>差异分析工具</h3><p>还有一个比较常用的是，在解决合并冲突时使用哪种差异分析工具。比如要改用 vimdiff 的话：</p>
+<pre><code class="bash">git config --global merge.tool vimdiff
+</code></pre>
+<p>Git 可以理解 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff 等合并工具的输出信息。</p>
+<h3 id="查看配置信息"><a href="#查看配置信息" class="headerlink" title="查看配置信息"></a>查看配置信息</h3><p>要检查已有的配置信息，可以使用<code>git config --list</code>命令：</p>
+<pre><code class="bash">git config --list
 
-<h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>著名的艾宾浩斯曲线表明，遗忘是有规律性的，不是呈现直线下降，而是最初阶段遗忘的速度很快，而到了一段时间后几乎就不再遗忘了。<br>所以学习的知识在一天后遗忘的速度是最快的，而随着时间的推移，在不断复习的情况下，遗忘的速度减慢，最终可以将学习知识牢固地储存在大脑中，形成稳定的知识存储。</p>
-<p>但是学海无涯，知识太多太杂。我们不一定会经常使用到这些知识，更没办法每天都去强行复习和记忆。所以，有一个能记录自己的学习历程的站点，将会大大降低我们的二次学习成本。</p>
-<p>与君共勉</p>
-<blockquote>
-<p>学习是磨练意志的最好途径。</p>
-</blockquote>
-<blockquote>
-<p>知识是思想的明灯，而行动则是心灵的翅膀。</p>
-</blockquote>
-<blockquote>
-<p>自律是提升自我的第一步，坚持不懈是通往成功的必由之路。</p>
-</blockquote>
-<h2 id="关于花落阁"><a href="#关于花落阁" class="headerlink" title="关于花落阁"></a>关于花落阁</h2><p><strong>花落阁</strong> 是阁主（赵泽华）的个人站。</p>
-<p>到目前为止已经写了 <code class="article_number"></code>篇文章， 共 <code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在github，主题为 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> ，原作者已经在github上开源，我在此基础上进行修改，感谢<a target="_blank" rel="noopener" href="http://yelog.org/">叶落阁主</a>。</p>
+http.postbuffer=2M
+user.name=huahua
+user.email=test@huahua.com
+</code></pre>
+<p>有时候会看到重复的变量名，那就说明它们来自不同的配置文件（比如 &#x2F;etc&#x2F;gitconfig 和 ~&#x2F;.gitconfig），不过最终 Git 实际采用的是最后一个。</p>
+<p>这些配置我们也可以在 ~&#x2F;.gitconfig 或 &#x2F;etc&#x2F;gitconfig 看到，如下所示：</p>
+<pre><code>vim ~/.gitconfig 
+</code></pre>
+<p>显示内容如下所示：</p>
+<pre><code>[http]
+    postBuffer = 2M
+[user]
+    name = runoob
+    email = test@runoob.com
+</code></pre>
+<p>也可以直接查阅某个环境变量的设定，只要把特定的名字跟在后面即可，像这样：</p>
+<pre><code>$ git config user.name
+huahua
+</code></pre>
+<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="创建仓库命令"><a href="#创建仓库命令" class="headerlink" title="创建仓库命令"></a>创建仓库命令</h3><p>下表列出了 git 创建仓库的命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git init</td>
+<td>初始化仓库</td>
+</tr>
+<tr>
+<td>git clone</td>
+<td>拷贝一份远程仓库，也就是下载一个项目。</td>
+</tr>
+</tbody></table>
+<h3 id="提交与修改"><a href="#提交与修改" class="headerlink" title="提交与修改"></a>提交与修改</h3><p>Git 的工作就是创建和保存你的项目的快照及与之后的快照进行对比。</p>
+<p>下表列出了有关创建与提交你的项目的快照的命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git add</td>
+<td>添加文件到暂存区</td>
+</tr>
+<tr>
+<td>git status</td>
+<td>查看仓库当前的状态，显示有变更的文件。</td>
+</tr>
+<tr>
+<td>git diff</td>
+<td>比较文件的不同，即暂存区和工作区的差异。</td>
+</tr>
+<tr>
+<td>git commit</td>
+<td>提交暂存区到本地仓库。</td>
+</tr>
+<tr>
+<td>git reset</td>
+<td>回退版本。</td>
+</tr>
+<tr>
+<td>git rm</td>
+<td>将文件从暂存区和工作区中删除。</td>
+</tr>
+<tr>
+<td>git mv</td>
+<td>移动或重命名工作区文件。</td>
+</tr>
+<tr>
+<td>git checkout</td>
+<td>分支切换。</td>
+</tr>
+<tr>
+<td>git switch （Git 2.23 版本引入）</td>
+<td>更清晰地切换分支。</td>
+</tr>
+<tr>
+<td>git restore （Git 2.23 版本引入）</td>
+<td>恢复或撤销文件的更改。</td>
+</tr>
+</tbody></table>
+<h3 id="提交日志"><a href="#提交日志" class="headerlink" title="提交日志"></a>提交日志</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git log</td>
+<td>查看历史提交记录</td>
+</tr>
+<tr>
+<td>git blame <file></td>
+<td>以列表形式查看指定文件的历史修改记录</td>
+</tr>
+</tbody></table>
+<h3 id="远程操作"><a href="#远程操作" class="headerlink" title="远程操作"></a>远程操作</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git remote</td>
+<td>远程仓库操作</td>
+</tr>
+<tr>
+<td>git fetch</td>
+<td>从远程获取代码库</td>
+</tr>
+<tr>
+<td>git pull</td>
+<td>下载远程代码并合并</td>
+</tr>
+<tr>
+<td>git push</td>
+<td>上传远程代码并合并</td>
+</tr>
+</tbody></table>
+<h2 id="其他指令"><a href="#其他指令" class="headerlink" title="其他指令"></a>其他指令</h2><h3 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h3><ol>
+<li>查看标签</li>
+</ol>
+<pre><code class="bash">git tag
+</code></pre>
+<ol start="2">
+<li>打标签</li>
+</ol>
+<pre><code class="bash">git tag -a &lt;tagname&gt; -m &quot;tag desc&quot;
+</code></pre>
+<h3 id="创建新分支并推送到远程仓库"><a href="#创建新分支并推送到远程仓库" class="headerlink" title="创建新分支并推送到远程仓库"></a>创建新分支并推送到远程仓库</h3><ol>
+<li><p>创建新分支：</p>
+<p> 首先，使用 Git 命令创建新的分支。假设要创建一个名为 new-feature 的新分支，可以使用以下命令：</p>
+<pre><code class="bash">git checkout -b new-feature
+</code></pre>
+<p> 这将创建一个名为 new-feature 的新分支，并将当前分支切换到该分支。</p>
+</li>
+<li><p>在新分支上进行工作：</p>
+<p> 在新分支上进行修改、添加新文件等工作，完成新功能的开发或修改。</p>
+</li>
+<li><p>将新分支推送到远程仓库：</p>
+<p> 使用 git push 命令将新创建的分支推送到远程仓库。如果远程仓库中还不存在该分支，可以使用 -u 选项将本地分支与远程分支关联起来。假设远程仓库名为 origin，可以使用以下命令：</p>
+<pre><code class="bash">git push -u origin new-feature
+</code></pre>
+<p> 这将把名为 new-feature 的新分支推送到远程仓库，并与远程仓库的同名分支关联起来。</p>
+</li>
+</ol>
+<h3 id="设置上游分支"><a href="#设置上游分支" class="headerlink" title="设置上游分支"></a>设置上游分支</h3><ol>
+<li><p>首先，打开命令行或终端窗口，进入你想要设置上游分支的本地仓库目录。</p>
+</li>
+<li><p>使用以下命令将远程仓库添加为上游分支：</p>
+</li>
+</ol>
+<pre><code class="bash">git remote add upstream &lt;远程仓库URL&gt;
+</code></pre>
+<ol start="3">
+<li>使用以下命令来验证上游分支是否设置成功：</li>
+</ol>
+<pre><code class="bash">git remote -v
+</code></pre>
+<p>这个命令会列出所有与本地仓库相关联的远程仓库，包括上游分支。</p>
+<ol start="4">
+<li>如果你希望从上游分支获取更新，可以使用以下命令：</li>
+</ol>
+<pre><code class="bash">git fetch upstream
+</code></pre>
+<p>这个命令会从上游分支获取最新的提交。</p>
+<ol start="5">
+<li>如果你想要将上游分支合并到你的本地分支中，可以使用以下命令：</li>
+</ol>
+<pre><code class="bash">git merge upstream/&lt;分支名&gt;
+</code></pre>
+<p>这里的&lt;分支名&gt;是指上游分支的具体名称，例如main、master等。</p>
+<h3 id="查找提交日志"><a href="#查找提交日志" class="headerlink" title="查找提交日志"></a>查找提交日志</h3><pre><code class="bash">git log --grep=&#39;xxx&#39;
+</code></pre>
 
-        </article>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>&#39;Git使用说明&#39;</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">1.6k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
+    <p><span class="copy-title">发布时间:</span>2024-04-14, 14:57:56</p>
+    <p><span class="copy-title">最后更新:</span>2024-04-16, 14:22:49</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/04/14/Git%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="&#39;Git使用说明&#39;">https://hualog.dns.navy/2024/04/14/Git%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -520,6 +782,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -528,11 +797,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>

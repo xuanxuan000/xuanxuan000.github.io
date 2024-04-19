@@ -6,19 +6,16 @@
   <meta name="keywords" content=" markdown , md ">
   <meta name="description" content="Markdown语法 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="CMake 语法CMake 简介什么是 CMakeCMake 是一个跨平台的安装（编译）工具，可以用简单的语句来描述所有平台的安装（编译过程）。他能够输出各种各样的makefile 或者 project 文件，CMake 的配置文件取名为 CMakeLists.txt。也就是在 CMakeLists.txt 这个文件中写 cmake 代码。 一句话：cmake 就是将多个 cpp、hpp 文件组合">
+<meta name="description" content="我遇到过的疑难杂症单片机上跑的udp程序突然崩溃同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。一开始工作正常，但是一段时间后他的程序崩溃。经排查，是因为他没有写recv()函数，且一直复用的同一个socket。数据到达后，没处理，堆积在缓冲区导致错误。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CMake语法">
-<meta property="og:url" content="https://hualog.dns.navy/2024/03/28/CMake%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:title" content="我遇到过的疑难杂症">
+<meta property="og:url" content="https://hualog.dns.navy/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/index.html">
 <meta property="og:site_name" content="花落阁">
-<meta property="og:description" content="CMake 语法CMake 简介什么是 CMakeCMake 是一个跨平台的安装（编译）工具，可以用简单的语句来描述所有平台的安装（编译过程）。他能够输出各种各样的makefile 或者 project 文件，CMake 的配置文件取名为 CMakeLists.txt。也就是在 CMakeLists.txt 这个文件中写 cmake 代码。 一句话：cmake 就是将多个 cpp、hpp 文件组合">
+<meta property="og:description" content="我遇到过的疑难杂症单片机上跑的udp程序突然崩溃同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。一开始工作正常，但是一段时间后他的程序崩溃。经排查，是因为他没有写recv()函数，且一直复用的同一个socket。数据到达后，没处理，堆积在缓冲区导致错误。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-28T09:01:34.000Z">
-<meta property="article:modified_time" content="2024-03-28T09:59:21.502Z">
+<meta property="article:published_time" content="2024-04-17T10:00:55.000Z">
+<meta property="article:modified_time" content="2024-04-17T10:29:44.005Z">
 <meta property="article:author" content="花落阁">
-<meta property="article:tag" content="cmake">
-<meta property="article:tag" content="make">
-<meta property="article:tag" content="程序构建">
 <meta name="twitter:card" content="summary">
 
 
@@ -156,7 +153,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(4)</small>
+                <small>(9)</small>
             
         </div>
     </li>
@@ -168,7 +165,7 @@
         <div data-rel="工具">
             <i class="fold iconfont icon-right"></i>
             工具
-            <small>(2)</small>
+            <small>(5)</small>
         </div>
         
             <ul class="sub hide">
@@ -178,7 +175,7 @@
         <div data-rel="工具&lt;---&gt;tools">
             
             tools
-            <small>(2)</small>
+            <small>(4)</small>
         </div>
         
     </li>
@@ -198,10 +195,21 @@
         <div data-rel="编程语言">
             <i class="fold iconfont icon-right"></i>
             编程语言
-            <small>(1)</small>
+            <small>(4)</small>
         </div>
         
             <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;通用">
+            
+            通用
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
                 
                     
     <li>
@@ -218,55 +226,6 @@
         
     </li>
 
-            
-        
-    
-        
-            
-                
-    <li>
-        <div data-rel="随笔">
-            <i class="fold iconfont icon-right"></i>
-            随笔
-            <small>(1)</small>
-        </div>
-        
-            <ul class="sub hide">
-                
-                    
-    <li>
-        <div data-rel="随笔&lt;---&gt;2024">
-            <i class="fold iconfont icon-right"></i>
-            2024
-            <small>(1)</small>
-        </div>
-        
-            <ul class="sub hide">
-                
-                    
-    <li>
-        <div data-rel="随笔&lt;---&gt;2024&lt;---&gt;3">
-            
-            3
-            <small>(1)</small>
-        </div>
-        
-    </li>
-
-                
-            </ul>
-        
-    </li>
-
-                
-            </ul>
-        
-    </li>
-
-            
-        
-    
-        
             
         
     
@@ -302,8 +261,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="4">
-<input type="hidden" id="yelog_site_word_count" value="32.6k">
+<input type="hidden" id="yelog_site_posts_number" value="9">
+<input type="hidden" id="yelog_site_word_count" value="70.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -349,10 +308,6 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>2024</a>
-            </li>
-        
-            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>编程语言</a>
             </li>
         
@@ -366,6 +321,14 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>cmake</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ffmpeg</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -392,21 +355,66 @@
     <nav id="title-list-nav">
         
         
+        <a  class="全部文章 工具 "
+           href="/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="我遇到过的疑难杂症">我遇到过的疑难杂症</span>
+            <span class="post-date" title="2024-04-17 18:00:55">2024/04/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2024/04/14/FFmpeg%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="ffmpeg"
+           data-author="" >
+            <span class="post-title" title="&#39;FFmpeg使用说明&#39;">&#39;FFmpeg使用说明&#39;</span>
+            <span class="post-date" title="2024-04-14 15:28:34">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2024/04/14/Git%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="&#39;Git使用说明&#39;">&#39;Git使用说明&#39;</span>
+            <span class="post-date" title="2024-04-14 14:57:56">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 通用 "
+           href="/2024/04/13/MySQL/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="&#39;MySQL&#39;">&#39;MySQL&#39;</span>
+            <span class="post-date" title="2024-04-13 23:58:34">2024/04/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 通用 "
+           href="/2024/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="&#39;计算机网络&#39;">&#39;计算机网络&#39;</span>
+            <span class="post-date" title="2024-04-13 17:27:49">2024/04/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 通用 "
+           href="/2024/04/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="操作系统">操作系统</span>
+            <span class="post-date" title="2024-04-12 10:54:34">2024/04/12</span>
+        </a>
+        
+        
         <a  class="全部文章 工具 tools "
            href="/2024/03/28/CMake%E8%AF%AD%E6%B3%95/"
            data-tag="cmake,make,程序构建"
            data-author="" >
             <span class="post-title" title="CMake语法">CMake语法</span>
             <span class="post-date" title="2024-03-28 17:01:34">2024/03/28</span>
-        </a>
-        
-        
-        <a  class="全部文章 随笔 2024 3 "
-           href="/2024/03/25/2024-03-25/"
-           data-tag="2024"
-           data-author="" >
-            <span class="post-title" title="2024.03.25">2024.03.25</span>
-            <span class="post-date" title="2024-03-25 22:17:59">2024/03/25</span>
         </a>
         
         
