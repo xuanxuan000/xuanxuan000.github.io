@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>计算机网络 | 花落阁</title>
+  <meta name="keywords" content=" 编程语言 ">
+  <meta name="description" content="计算机网络 | 花落阁">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="我遇到过的疑难杂症单片机上跑的udp程序突然崩溃同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。一开始工作正常，但是一段时间后他的程序崩溃。经排查，是因为他没有写recv()函数，且一直复用的同一个socket。数据到达后，没处理，堆积在缓冲区导致错误。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我遇到过的疑难杂症">
+<meta property="og:url" content="https://hualog.dns.navy/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/index.html">
+<meta property="og:site_name" content="花落阁">
+<meta property="og:description" content="我遇到过的疑难杂症单片机上跑的udp程序突然崩溃同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。一开始工作正常，但是一段时间后他的程序崩溃。经排查，是因为他没有写recv()函数，且一直复用的同一个socket。数据到达后，没处理，堆积在缓冲区导致错误。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-17T10:00:55.000Z">
+<meta property="article:modified_time" content="2024-04-17T10:29:44.005Z">
+<meta property="article:author" content="花落阁">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>花落阁</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/xuanxuan000"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:aze0917@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1430797759&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(13)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;tools">
+            
+            tools
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;八股">
+            
+            八股
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="音视频">
+            
+            音视频
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="13">
+<input type="hidden" id="yelog_site_word_count" value="78k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编程语言</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>程序构建</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>传输协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cmake</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ffmpeg</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>make</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>md</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 工具 "
+           href="/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="我遇到过的疑难杂症">我遇到过的疑难杂症</span>
+            <span class="post-date" title="2024-04-17 18:00:55">2024/04/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2023/12/25/WebRTC/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="WebRTC">WebRTC</span>
+            <span class="post-date" title="2023-12-25 11:28:29">2023/12/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2023/11/26/GB28181/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="GB28181">GB28181</span>
+            <span class="post-date" title="2023-11-26 11:19:05">2023/11/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2023/11/26/%E6%8A%93%E5%8C%85/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="抓包">抓包</span>
+            <span class="post-date" title="2023-11-26 10:20:36">2023/11/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2023/11/20/%E9%9F%B3%E8%A7%86%E9%A2%91%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="音视频传输协议">音视频传输协议</span>
+            <span class="post-date" title="2023-11-20 10:53:43">2023/11/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2023/10/14/FFmpeg%E5%9F%BA%E7%A1%80/"
+           data-tag="ffmpeg"
+           data-author="" >
+            <span class="post-title" title="FFmpeg基础">FFmpeg基础</span>
+            <span class="post-date" title="2023-10-14 15:28:34">2023/10/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2023/04/14/Git%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="Git使用说明">Git使用说明</span>
+            <span class="post-date" title="2023-04-14 14:57:56">2023/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 八股 "
+           href="/2023/04/13/MySQL/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="MySQL">MySQL</span>
+            <span class="post-date" title="2023-04-13 23:58:34">2023/04/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2023/02/28/CMake%E8%AF%AD%E6%B3%95/"
+           data-tag="cmake,make,程序构建"
+           data-author="" >
+            <span class="post-title" title="CMake语法">CMake语法</span>
+            <span class="post-date" title="2023-02-28 17:01:34">2023/02/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 八股 "
+           href="/2023/02/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="计算机网络">计算机网络</span>
+            <span class="post-date" title="2023-02-13 17:27:49">2023/02/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 八股 "
+           href="/2023/02/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="操作系统">操作系统</span>
+            <span class="post-date" title="2023-02-12 10:54:34">2023/02/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 八股 "
+           href="/2023/01/23/C++%E5%85%AB%E8%82%A1%E6%96%87/"
+           data-tag="编程语言,C++"
+           data-author="" >
+            <span class="post-title" title="C++八股文">C++八股文</span>
+            <span class="post-date" title="2023-01-23 17:48:51">2023/01/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2022/08/22/Markdown%E8%AF%AD%E6%B3%95/"
+           data-tag="markdown,md"
+           data-author="" >
+            <span class="post-title" title="Markdown语法">Markdown语法</span>
+            <span class="post-date" title="2022-08-22 11:24:12">2022/08/22</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-计算机网络" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">计算机网络</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;八股">八股</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">编程语言</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-04-26 14:52:35'>2023-02-13 17:27</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:14.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-text">计算机网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-HTTPS%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E7%9A%84%E5%AE%89%E5%85%A8%EF%BC%8C%E6%95%B4%E4%BD%93%E7%9A%84%E6%B5%81%E7%A8%8B%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%EF%BC%88SSL%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%89"><span class="toc-text">1.HTTPS是如何保证数据传输的安全，整体的流程是什么？（SSL是怎么工作保证安全的）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%85%AC%E9%92%A5%E4%B8%8D%E8%A2%AB%E7%AF%A1%E6%94%B9%EF%BC%9F"><span class="toc-text">2.如何保证公钥不被篡改？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Cookie%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3.Cookie是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Session%E7%9F%A5%E8%AF%86%E5%A4%A7%E6%80%BB%E7%BB%93"><span class="toc-text">4.Session知识大总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Cookie%E4%B8%8ESession%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">5.Cookie与Session的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="toc-text">6.SQL注入攻击了解吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%BD%91%E7%BB%9C%E7%9A%84%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%90%84%E8%87%AA%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-text">7.网络的七层模型与各自的功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E4%BB%80%E4%B9%88%E6%98%AFDHCP%EF%BC%9F%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-text">8.什么是DHCP？工作原理？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-DNS%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">9.DNS查询方式有哪些？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-HTTP%E4%B8%AD%E7%BC%93%E5%AD%98%E7%9A%84%E7%A7%81%E6%9C%89%E5%92%8C%E5%85%B1%E6%9C%89%E5%AD%97%E6%AE%B5%EF%BC%9F%E7%9F%A5%E9%81%93%E5%90%97%EF%BC%9F"><span class="toc-text">10.HTTP中缓存的私有和共有字段？知道吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-GET-%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E5%86%99%E6%B3%95%E6%98%AF%E5%9B%BA%E5%AE%9A%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-text">11.GET 方法参数写法是固定的吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-GET-%E6%96%B9%E6%B3%95%E7%9A%84%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B%EF%BC%9F"><span class="toc-text">12.GET 方法的长度限制是怎么回事？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-DDoS-%E6%94%BB%E5%87%BB"><span class="toc-text">13.DDoS 攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-MTU%E5%92%8CMSS%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">14.MTU和MSS分别是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-TCP%E5%A4%B4%E9%83%A8%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BF%A1%E6%81%AF%EF%BC%9F"><span class="toc-text">15.TCP头部中有哪些信息？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E5%B8%B8%E8%A7%81TCP%E7%9A%84%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">16.常见TCP的连接状态有哪些？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E5%BA%94%E7%94%A8%E5%B1%82%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE%E7%9F%A5%E9%81%93%E5%A4%9A%E5%B0%91%EF%BC%9F%E4%BA%86%E8%A7%A3%E5%87%A0%E4%B8%AA%EF%BC%9F"><span class="toc-text">17.应用层常见协议知道多少？了解几个？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%A8%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BB%BA%E7%AB%8B%E4%BA%86%E4%B8%80%E4%B8%AA-TCP-%E8%BF%9E%E6%8E%A5%E5%90%8E%E6%98%AF%E5%90%A6%E4%BC%9A%E5%9C%A8%E4%B8%80%E4%B8%AA-HTTP-%E8%AF%B7%E6%B1%82%E5%AE%8C%E6%88%90%E5%90%8E%E6%96%AD%E5%BC%80%EF%BC%9F%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%96%AD%E5%BC%80%EF%BC%9F"><span class="toc-text">18.浏览器在与服务器建立了一个 TCP 连接后是否会在一个 HTTP 请求完成后断开？什么情况下会断开？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-text">19.三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%8A%E8%BF%9E%E6%8E%A5%E9%98%9F%E5%88%97%EF%BC%9F"><span class="toc-text">20.什么是半连接队列？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-ISN-Initial-Sequence-Number-%E6%98%AF%E5%9B%BA%E5%AE%9A%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-text">21. ISN(Initial Sequence Number)是固定的吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%AF%E4%BB%A5%E6%90%BA%E5%B8%A6%E6%95%B0%E6%8D%AE%E5%90%97%EF%BC%9F"><span class="toc-text">22.三次握手过程中可以携带数据吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-SYN%E6%94%BB%E5%87%BB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">23.SYN攻击是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9"><span class="toc-text">24.四次挥手相关内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E5%AF%B9%E4%BA%8EFIN-WAIT-2%EF%BC%8CCLOSE-WAIT%E7%8A%B6%E6%80%81%E5%92%8CTIME-WAIT%E7%8A%B6%E6%80%81%EF%BC%9F%E4%BD%A0%E7%9F%A5%E9%81%93%E5%A4%9A%E5%B0%91"><span class="toc-text">25.对于FIN_WAIT_2，CLOSE_WAIT状态和TIME_WAIT状态？你知道多少?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8C%A5%E6%89%8B%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1"><span class="toc-text">26.为什么挥手需要四次</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-2MSL%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81"><span class="toc-text">27.2MSL等待状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-%E4%B8%BA%E4%BB%80%E4%B9%88TIME-WAIT%E7%8A%B6%E6%80%81%E9%9C%80%E8%A6%81%E7%BB%8F%E8%BF%872MSL%E6%89%8D%E8%83%BD%E8%BF%94%E5%9B%9E%E5%88%B0CLOSE%E7%8A%B6%E6%80%81%EF%BC%9F"><span class="toc-text">28.为什么TIME_WAIT状态需要经过2MSL才能返回到CLOSE状态？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-TCP%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E4%BC%9A%E5%A6%82%E4%BD%95%E5%8E%BB%E8%A7%A3%E5%86%B3%E5%AE%83%EF%BC%9F"><span class="toc-text">29.TCP粘包问题是什么？你会如何去解决它？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#30-HTTPS%E9%87%87%E7%94%A8%E7%9A%84%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E6%98%AF%E5%AF%B9%E7%A7%B0%E8%BF%98%E6%98%AF%E9%9D%9E%E5%AF%B9%E7%A7%B0%EF%BC%9F"><span class="toc-text">30.HTTPS采用的加密方式有哪些？是对称还是非对称？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#31-%E7%BD%91%E7%BB%9C%E5%B1%82%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE%EF%BC%9F%E5%8F%AF%E4%BB%A5%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%90%97%EF%BC%9F"><span class="toc-text">31.网络层常见协议？可以说一下吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32-TCP%E5%9B%9B%E5%A4%A7%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-text">32.TCP四大拥塞控制算法总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#33-%E4%B8%BA%E4%BD%95%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%E6%98%AF%E9%80%89%E6%8B%A93%E6%AC%A1ACK%EF%BC%9F"><span class="toc-text">33.为何快速重传是选择3次ACK？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#34-TCP-%E5%8D%8F%E8%AE%AE%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%EF%BC%9F"><span class="toc-text">34.TCP 协议如何保证可靠传输？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#35-TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">35.TCP和UDP的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#36-%E5%B0%81%E5%8C%85%E5%92%8C%E6%8B%86%E5%8C%85%E4%BD%A0%E5%90%AC%E8%AF%B4%E8%BF%87%E5%90%97%EF%BC%9F%E5%AE%83%E6%98%AF%E5%9F%BA%E4%BA%8ETCP%E8%BF%98%E6%98%AFUDP%E7%9A%84%EF%BC%9F"><span class="toc-text">36.封包和拆包你听说过吗？它是基于TCP还是UDP的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#37-%E5%8D%8F%E8%AE%AE%E7%9B%B8%E5%85%B3"><span class="toc-text">37.协议相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#38-TCP-%E5%88%A9%E7%94%A8%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%AE%9E%E7%8E%B0%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E7%9A%84%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-text">38.TCP 利用滑动窗口实现流量控制的机制？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#39-%E5%8F%AF%E4%BB%A5%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8BRTO%EF%BC%8CRTT%E5%92%8C%E8%B6%85%E6%97%B6%E9%87%8D%E4%BC%A0%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E5%90%97%EF%BC%9F"><span class="toc-text">39.可以解释一下RTO，RTT和超时重传分别是什么吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#40-CSRF%E6%94%BB%E5%87%BB"><span class="toc-text">40.CSRF攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#41-%E5%A6%82%E4%BD%95%E9%98%B2%E8%8C%83%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="toc-text">41.如何防范文件上传漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#42-%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E5%92%8C%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%EF%BC%9F"><span class="toc-text">42.如何区分流量控制和拥塞控制？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#43-%E5%B8%B8%E8%A7%81%E7%9A%84HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">43.常见的HTTP状态码有哪些？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#44-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Fclose-wait%E7%9A%84%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-text">44.服务器出现大量close_wait的连接的原因是什么？有什么解决方法？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#45-%E4%B8%80%E5%8F%B0%E6%9C%BA%E5%99%A8%E8%83%BD%E5%A4%9F%E4%BD%BF%E7%94%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7%E4%B8%8A%E9%99%90%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%8C%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%EF%BC%9F%E5%A6%82%E6%9E%9C%E6%83%B3%E8%A6%81%E7%94%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%B6%85%E8%BF%87%E8%BF%99%E4%B8%AA%E9%99%90%E5%88%B6%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-text">45.一台机器能够使用的端口号上限是多少，是否可以修改？如果想要用的端口超过这个限制怎么办？</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><h2 id="1-HTTPS是如何保证数据传输的安全，整体的流程是什么？（SSL是怎么工作保证安全的）"><a href="#1-HTTPS是如何保证数据传输的安全，整体的流程是什么？（SSL是怎么工作保证安全的）" class="headerlink" title="1.HTTPS是如何保证数据传输的安全，整体的流程是什么？（SSL是怎么工作保证安全的）"></a>1.HTTPS是如何保证数据传输的安全，整体的流程是什么？（SSL是怎么工作保证安全的）</h2><ol>
+<li><p>客户端Hello: 客户端向服务器发送一个消息，其中包含SSL版本、加密算法等信息。</p>
+</li>
+<li><p>服务器Hello: 服务器接收到客户端的消息后，选择加密算法，并向客户端发送确认信息，也包含了服务器的SSL证书。</p>
+</li>
+<li><p>证书验证: 客户端收到服务器发送的SSL证书后，验证其有效性。这包括检查证书是否由受信任的证书颁发机构（CA）签发，以及检查证书是否已过期或被撤销。</p>
+</li>
+<li><p>生成共享密钥: 客户端生成一个随机的对称密钥，用于加密通信。该密钥将使用服务器的公钥加密，并发送给服务器。</p>
+</li>
+<li><p>密钥交换: 服务器使用其私钥解密客户端发送的共享密钥。</p>
+</li>
+<li><p>握手完成: 至此，SSL握手完成。双方现在都具有了用于加密和解密通信的共享密钥，可以开始安全地进行数据传输。</p>
+</li>
+</ol>
+<p>因为数字签名、摘要是证书防伪非常关键的武器。 “摘要”就是对传输的内容，通过hash算法计算出一段固定长度的串。然后，通过发送方的私钥对这段摘要进行加密，加密后得到的结果就是“数字签名”</p>
+<p>SSL&#x2F;TLS协议的基本思路是采用公钥加密法，也就是说，客户端先向服务器端索要公钥，然后用公钥加密信息，服务器收到密文后，用自己的私钥解密。</p>
+<blockquote>
+<p>补充：SSL&#x2F;TLS的四次握手，目前网上的主流答案都在重复阮一峰老师的博客，属于TLS 1.0版本的答案，使用RSA密钥交换算法。但是现在TLS 1.2已经成为主流，使用<code>ECDHE算法</code>，如果面试可以说出这个版本的答案，应该会更好。</p>
+</blockquote>
+<h2 id="2-如何保证公钥不被篡改？"><a href="#2-如何保证公钥不被篡改？" class="headerlink" title="2.如何保证公钥不被篡改？"></a>2.如何保证公钥不被篡改？</h2><p>将公钥放在数字证书中。只要证书是可信的，公钥就是可信的。</p>
+<h2 id="3-Cookie是什么？"><a href="#3-Cookie是什么？" class="headerlink" title="3.Cookie是什么？"></a>3.Cookie是什么？</h2><p>HTTP 协议是无状态的，主要是为了让 HTTP 协议尽可能简单，使得它能够处理大量事务，HTTP&#x2F;1.1 引入 Cookie 来保存状态信息。</p>
+<p>Cookie 是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器之后向同一服务器再次发起请求时被携带上，用于告知服务端两个请求是否来自同一浏览器。由于之后每次请求都会需要携带 Cookie 数据，因此会带来额外的性能开销（尤其是在移动环境下）。</p>
+<p>Cookie 曾一度用于客户端数据的存储，因为当时并没有其它合适的存储办法而作为唯一的存储手段，但现在随着现代浏览器开始支持各种各样的存储方式，Cookie 渐渐被淘汰。</p>
+<p>新的浏览器 API 已经允许开发者直接将数据存储到本地，如使用 Web storage API（本地存储和会话存储）或 IndexedDB。</p>
+<p>cookie 的出现是因为 HTTP 是无状态的一种协议，换句话说，服务器记不住你，可能你每刷新一次网页，就要重新输入一次账号密码进行登录。这显然是让人无法接受的，cookie 的作用就好比服务器给你贴个标签，然后你每次向服务器再发请求时，服务器就能够 cookie 认出你。</p>
+<h2 id="4-Session知识大总结"><a href="#4-Session知识大总结" class="headerlink" title="4.Session知识大总结"></a>4.Session知识大总结</h2><p>除了可以将用户信息通过 Cookie 存储在用户浏览器中，也可以利用 Session 存储在服务器端，存储在服务器端的信息更加安全。</p>
+<p>Session 可以存储在服务器上的文件、数据库或者内存中。也可以将 Session 存储在 Redis 这种内存型数据库中，效率会更高。</p>
+<p>使用 Session 维护用户登录状态的过程如下：</p>
+<ol>
+<li>用户进行登录时，用户提交包含用户名和密码的表单，放入 HTTP 请求报文中；</li>
+<li>服务器验证该用户名和密码，如果正确则把用户信息存储到 Redis 中，它在 Redis 中的 Key 称为 Session ID；</li>
+<li>服务器返回的响应报文的 Set-Cookie 首部字段包含了这个 Session ID，客户端收到响应报文之后将该 Cookie 值存入浏览器中；</li>
+<li>客户端之后对同一个服务器进行请求时会包含该 Cookie 值，服务器收到之后提取出 Session ID，从 Redis 中取出用户信息，继续之前的业务操作。<blockquote>
+<p>注意：Session ID 的安全性问题，不能让它被恶意攻击者轻易获取，那么就不能产生一个容易被猜到的 Session ID 值。此外，还需要经常重新生成 Session ID。在对安全性要求极高的场景下，例如转账等操作，除了使用 Session 管理用户状态之外，还需要对用户进行重新验证，比如重新输入密码，或者使用短信验证码等方式。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="5-Cookie与Session的对比"><a href="#5-Cookie与Session的对比" class="headerlink" title="5.Cookie与Session的对比"></a>5.Cookie与Session的对比</h2><p>HTTP作为无状态协议，必然需要在某种方式保持连接状态。这里简要介绍一下Cookie和Session。</p>
+<ul>
+<li><p><strong>Cookie</strong><br>  Cookie是客户端保持状态的方法。  </p>
+<p>  Cookie简单的理解就是存储由服务器发至客户端并由客户端保存的一段字符串。为了保持会话，服务器可以在响应客户端请求时将Cookie字符串放在Set-Cookie下，客户机收到Cookie之后保存这段字符串，之后再请求时候带上Cookie就可以被识别。</p>
+<p>  除了上面提到的这些，Cookie在客户端的保存形式可以有两种，一种是会话Cookie一种是持久Cookie，会话Cookie就是将服务器返回的Cookie字符串保持在内存中，关闭浏览器之后自动销毁，持久Cookie则是存储在客户端磁盘上，其有效时间在服务器响应头中被指定，在有效期内，客户端再次请求服务器时都可以直接从本地取出。需要说明的是，存储在磁盘中的Cookie是可以被多个浏览器代理所共享的。</p>
+</li>
+<li><p><strong>Session</strong>  </p>
+<p>  Session是服务器保持状态的方法。</p>
+<p>  首先需要明确的是，Session保存在服务器上，可以保存在数据库、文件或内存中，每个用户有独立的Session用户在客户端上记录用户的操作。我们可以理解为每个用户有一个独一无二的Session ID作为Session文件的Hash键，通过这个值可以锁定具体的Session结构的数据，这个Session结构中存储了用户操作行为。</p>
+</li>
+</ul>
+<p>当服务器需要识别客户端时就需要结合Cookie了。每次HTTP请求的时候，客户端都会发送相应的Cookie信息到服务端。实际上大多数的应用都是用Cookie来实现Session跟踪的，第一次创建Session的时候，服务端会在HTTP协议中告诉客户端，需要在Cookie里面记录一个Session ID，以后每次请求把这个会话ID发送到服务器，我就知道你是谁了。如果客户端的浏览器禁用了Cookie，会使用一种叫做URL重写的技术来进行会话跟踪，即每次HTTP交互，URL后面都会被附加上一个诸如sid&#x3D;xxxxx这样的参数，服务端据此来识别用户，这样就可以帮用户完成诸如用户名等信息自动填入的操作了。</p>
+<h2 id="6-SQL注入攻击了解吗？"><a href="#6-SQL注入攻击了解吗？" class="headerlink" title="6.SQL注入攻击了解吗？"></a>6.SQL注入攻击了解吗？</h2><p>攻击者在HTTP请求中注入恶意的SQL代码，服务器使用参数构建数据库SQL命令时，恶意SQL被一起构造，并在数据库中执行。 用户登录，输入用户名 lianggzone，密码 ‘ or ‘1’&#x3D;’1 ，如果此时使用参数构造的方式，就会出现 select * from user where name &#x3D; ‘lianggzone’ and password &#x3D; ‘’ or ‘1’&#x3D;‘1’ 不管用户名和密码是什么内容，使查询出来的用户列表不为空。如何防范SQL注入攻击使用预编译的PrepareStatement是必须的，但是一般我们会从两个方面同时入手。 </p>
+<ol>
+<li>Web端 <ul>
+<li>有效性检验。</li>
+<li>限制字符串输入的长度。</li>
+</ul>
+</li>
+<li>服务端 <ul>
+<li>不用拼接SQL字符串。</li>
+<li>使用预编译的PrepareStatement。 </li>
+<li>有效性检验。(为什么服务端还要做有效性检验？第一准则，外部都是不可信的，防止攻击者绕过Web端请求) </li>
+<li>过滤SQL需要的参数中的特殊字符。比如单引号、双引号。</li>
+</ul>
+</li>
+</ol>
+<h2 id="7-网络的七层模型与各自的功能"><a href="#7-网络的七层模型与各自的功能" class="headerlink" title="7.网络的七层模型与各自的功能"></a>7.网络的七层模型与各自的功能</h2><p><img src="/2023/02/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/OSI1.png"><br><img src="/2023/02/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/OSI2.png"></p>
+<h2 id="8-什么是DHCP？工作原理？"><a href="#8-什么是DHCP？工作原理？" class="headerlink" title="8.什么是DHCP？工作原理？"></a>8.什么是DHCP？工作原理？</h2><p>DHCP（Dynamic Host Configuration Protocol）是一种网络协议，用于动态分配IP地址以及其他网络配置信息给计算机、网络设备和其他客户端设备。DHCP的主要作用是简化网络管理，提供灵活的IP地址分配方案，并降低了网络配置的复杂性。</p>
+<p>以下是DHCP的基本工作原理：</p>
+<ol>
+<li><p>客户端请求：当一个设备加入网络或者需要更新网络配置时，它会向网络中的DHCP服务器发送一个 DHCP 请求。</p>
+</li>
+<li><p>DHCP Discover（发现）：客户端发送一个广播消息到网络上的所有DHCP服务器，请求IP地址分配和其他配置信息。这个消息称为 DHCP Discover 报文。</p>
+</li>
+<li><p>DHCP Offer（提供）：DHCP服务器收到客户端的 DHCP Discover 请求后，会回复一个 DHCP Offer 报文，其中包含了可用的IP地址以及其他配置信息，如子网掩码、默认网关、DNS服务器等。通常情况下，网络中可能有多个DHCP服务器，但是客户端只会选择其中一个DHCP Offer。</p>
+</li>
+<li><p>DHCP Request（请求）：客户端选择一个DHCP Offer，并向提供这个 Offer 的DHCP服务器发送一个 DHCP Request 报文，确认并请求分配相应的IP地址和配置信息。</p>
+</li>
+<li><p>DHCP Acknowledgment（确认）：DHCP服务器收到客户端的 DHCP Request 后，会向客户端发送一个 DHCP Acknowledgment 报文，确认分配给客户端的IP地址和配置信息。同时，DHCP服务器会在自己的地址租用表中记录下客户端的分配情况，以便将来的续约和管理。</p>
+</li>
+<li><p>IP地址租用：客户端在收到 DHCP Acknowledgment 后，会配置自己的网络接口，使用分配到的IP地址和其他配置信息进行通信。分配给客户端的IP地址是有限期的，称为租用期，一般在一段时间后过期。在IP地址租用期内，客户端可以使用这个IP地址。当租用期快要到期时，客户端可以向DHCP服务器发送续约请求，以延长租用期。</p>
+</li>
+</ol>
+<p>通过DHCP，网络管理员可以集中管理IP地址和其他网络配置信息，动态地为网络中的设备分配IP地址，从而提高了网络的灵活性和可管理性。</p>
+<h2 id="9-DNS查询方式有哪些？"><a href="#9-DNS查询方式有哪些？" class="headerlink" title="9.DNS查询方式有哪些？"></a>9.DNS查询方式有哪些？</h2><ul>
+<li><p>递归解析<br>当局部DNS服务器自己不能回答客户机的DNS查询时，它就需要向其他DNS服务器进行查询。此时有两种方式。局部DNS服务器自己负责向其他DNS服务器进行查询，一般是先向该域名的根域服务器查询，再由根域名服务器一级级向下查询。最后得到的查询结果返回给局部DNS服务器，再由局部DNS服务器返回给客户端。</p>
+</li>
+<li><p>迭代解析<br>当局部DNS服务器自己不能回答客户机的DNS查询时，也可以通过迭代查询的方式进行解析。局部DNS服务器不是自己向其他DNS服务器进行查询，而是把能解析该域名的其他DNS服务器的IP地址返回给客户端DNS程序，客户端DNS程序再继续向这些DNS服务器进行查询，直到得到查询结果为止。也就是说，迭代解析只是帮你找到相关的服务器而已，而不会帮你去查。比如说：baidu.com的服务器ip地址在192.168.4.5这里，你自己去查吧，本人比较忙，只能帮你到这里了。</p>
+</li>
+</ul>
+<h2 id="10-HTTP中缓存的私有和共有字段？知道吗？"><a href="#10-HTTP中缓存的私有和共有字段？知道吗？" class="headerlink" title="10.HTTP中缓存的私有和共有字段？知道吗？"></a>10.HTTP中缓存的私有和共有字段？知道吗？</h2><ul>
+<li>private 指令规定了将资源作为私有缓存，只能被单独用户使用，一般存储在用户浏览器中。</li>
+</ul>
+<pre><code>Cache-Control: private
+</code></pre>
+<ul>
+<li>public 指令规定了将资源作为公共缓存，可以被多个用户使用，一般存储在代理服务器中。</li>
+</ul>
+<pre><code>Cache-Control: public
+</code></pre>
+<h2 id="11-GET-方法参数写法是固定的吗？"><a href="#11-GET-方法参数写法是固定的吗？" class="headerlink" title="11.GET 方法参数写法是固定的吗？"></a>11.GET 方法参数写法是固定的吗？</h2><p>在约定中，我们的参数是写在 ? 后面，用 &amp; 分割。</p>
+<p>我们知道，解析报文的过程是通过获取 TCP 数据，用正则等工具从数据中获取 Header 和 Body，从而提取参数。</p>
+<p>比如header请求头中添加token，来验证用户是否登录等权限问题。</p>
+<p>也就是说，我们可以自己约定参数的写法，只要服务端能够解释出来就行，万变不离其宗。</p>
+<h2 id="12-GET-方法的长度限制是怎么回事？"><a href="#12-GET-方法的长度限制是怎么回事？" class="headerlink" title="12.GET 方法的长度限制是怎么回事？"></a>12.GET 方法的长度限制是怎么回事？</h2><p>网络上都会提到浏览器地址栏输入的参数是有限的。</p>
+<p>首先说明一点，HTTP 协议没有 Body 和 URL 的长度限制，对 URL 限制的大多是浏览器和服务器的原因。</p>
+<p>浏览器原因就不说了，服务器是因为处理长 URL 要消耗比较多的资源，为了性能和安全（防止恶意构造长 URL 来攻击）考虑，会给 URL 长度加限制。</p>
+<h2 id="13-DDoS-攻击"><a href="#13-DDoS-攻击" class="headerlink" title="13.DDoS 攻击"></a>13.DDoS 攻击</h2><blockquote>
+<p>DoS（Denial of Service）与DDoS（Distributed Denial of Service）区别，DOS是单一源，DDOS是分布式。</p>
+</blockquote>
+<p>DDoS（Distributed Denial of Service）攻击是一种网络攻击，旨在使目标系统无法提供正常的服务。在 DDoS 攻击中，攻击者利用大量的计算机或设备，通过同时向目标系统发送大量的请求或数据流量，耗尽目标系统的网络带宽、计算资源或其他系统资源，从而使其无法正常工作或提供服务。</p>
+<p>以下是 DDoS 攻击的一般工作原理和特点：</p>
+<ol>
+<li><p>分布式攻击：DDoS 攻击通常利用大量分布在不同地理位置的计算机或设备，通过这些分布式的攻击节点向目标系统发起攻击。这些攻击节点被攻击者控制，组成了一个庞大的攻击网络。</p>
+</li>
+<li><p>洪水式攻击：DDoS 攻击通常采用洪水式（Flood）攻击方法，向目标系统发送大量的无效请求或数据包，以耗尽目标系统的网络带宽和资源。这些请求可能是 HTTP 请求、UDP 数据包、TCP SYN 数据包等。</p>
+</li>
+<li><p>层次化攻击：DDoS 攻击可以针对目标系统的不同层次进行攻击，包括网络层、传输层和应用层。例如，网络层攻击可以是对网络带宽的洪水攻击，传输层攻击可以是对 TCP 连接的 SYN 攻击，应用层攻击可以是对 Web 服务器的 HTTP 请求洪水攻击。</p>
+</li>
+<li><p>伪装和欺骗：攻击者可能会伪装攻击流量的源地址，使得目标系统难以识别和过滤攻击流量。此外，攻击者可能会利用反射攻击或放大攻击来增加攻击流量的规模。</p>
+</li>
+<li><p>目标多样性：DDoS 攻击的目标可以是任何连接到互联网的系统，包括网站、服务器、网络设备、云服务等。攻击目标通常是具有重要性或影响力的系统，以实现攻击者的目的。</p>
+</li>
+</ol>
+<p>为了应对 DDoS 攻击，组织和个人可以采取各种防御措施，包括网络流量过滤、入侵检测和防御系统（IDS&#x2F;IPS）、使用 CDN（内容分发网络）、增强系统的容错性和弹性等。</p>
+<h2 id="14-MTU和MSS分别是什么？"><a href="#14-MTU和MSS分别是什么？" class="headerlink" title="14.MTU和MSS分别是什么？"></a>14.MTU和MSS分别是什么？</h2><ul>
+<li><p>MTU（Maximum Transmission Unit）是指在计算机网络中，数据链路层或网络层可以传输的最大数据包大小。简单来说，它表示在某个网络上一次能够传输的最大数据量，以字节为单位。MTU 的大小取决于网络技术和设备的规范，不同类型的网络通常具有不同的 MTU 值。</p>
+</li>
+<li><p>MSS（Maximum Segment Size）是指在 TCP 协议中，TCP 数据包中的 TCP 数据段的最大允许大小。由于在 TCP 通信中，数据通常被分割成多个 TCP 数据段进行传输，而每个 TCP 数据段的大小受限于 MTU 大小，因此 MSS 通常是 <code>MTU 减去 TCP 头部和 IP 头部的大小</code>。MSS 可以通过 TCP 握手阶段进行协商，并在后续的 TCP 通信中被使用。</p>
+</li>
+</ul>
+<p>总的来说，MTU 表示网络传输中数据包的最大大小，而 MSS 表示 TCP 数据包中 TCP 数据段的最大大小。MTU 和 MSS 在网络通信中扮演着重要的角色，特别是在处理分段和分包的过程中。</p>
+<h2 id="15-TCP头部中有哪些信息？"><a href="#15-TCP头部中有哪些信息？" class="headerlink" title="15.TCP头部中有哪些信息？"></a>15.TCP头部中有哪些信息？</h2><ol>
+<li><p>源端口（Source Port）：占 16 位，用于标识发送方的端口号。</p>
+</li>
+<li><p>目标端口（Destination Port）：占 16 位，用于标识接收方的端口号。</p>
+</li>
+<li><p>序列号（Sequence Number）：占 32 位，用于标识 TCP 报文段中第一个数据字节的序号。序列号用于 TCP 的可靠传输机制，用于对报文段进行排序和重组。</p>
+</li>
+<li><p>确认号（Acknowledgment Number）：占 32 位，用于指示期望接收的下一个序列号。确认号用于 TCP 的可靠传输机制，用于确认接收到的报文段。</p>
+</li>
+<li><p>数据偏移（Data Offset）：占 4 位，表示 TCP 头部的长度，以 4 字节为单位。由于 TCP 头部长度可变，因此需要该字段来指示 TCP 头部的结束位置。</p>
+</li>
+<li><p>保留（Reserved）：占 6 位，保留用于将来的扩展。</p>
+</li>
+<li><p>控制标志（Flags）：包括以下控制标志，每个标志占 1 位：<br> URG：紧急指针（Urgent Pointer）有效。<br> ACK：确认序号有效。<br> PSH：推送数据。<br> RST：重置连接。<br> SYN：发起连接。<br> FIN：结束连接。  </p>
+</li>
+<li><p>窗口大小（Window Size）：占 16 位，用于指示发送方的接收窗口大小。接收窗口大小用于流量控制，用于指示发送方可以发送多少数据而不会导致接收方溢出。</p>
+</li>
+<li><p>校验和（Checksum）：占 16 位，用于检测 TCP 报文段是否在传输过程中发生了错误。</p>
+</li>
+<li><p>紧急指针（Urgent Pointer）：占 16 位，仅当 URG 标志被设置时有效。用于指示紧急数据的结束位置。</p>
+</li>
+<li><p>选项（Options）：可选字段，用于在 TCP 报文段中包含一些可选的信息，如最大报文段大小（MSS）、窗口扩大因子等。</p>
+</li>
+</ol>
+<p>这些信息字段中的大多数都是 TCP 协议用于控制连接的传输过程和维护连接状态的。通过这些信息字段，TCP 协议能够提供可靠的、有序的、全双工的数据传输服务。</p>
+<h2 id="16-常见TCP的连接状态有哪些？"><a href="#16-常见TCP的连接状态有哪些？" class="headerlink" title="16.常见TCP的连接状态有哪些？"></a>16.常见TCP的连接状态有哪些？</h2><ol>
+<li><p>CLOSED（关闭）：初始状态，表示连接未被建立或已经终止。</p>
+</li>
+<li><p>LISTEN（监听）：服务器进入此状态，等待客户端连接请求。</p>
+</li>
+<li><p>SYN_SENT（同步已发送）：客户端发送SYN报文段以启动连接请求，并等待服务器的确认。</p>
+</li>
+<li><p>SYN_RECEIVED（同步已接收）：服务器收到客户端的SYN报文段，并发送自己的SYN和ACK报文段，以确认连接请求。</p>
+</li>
+<li><p>ESTABLISHED（已建立）：连接已经建立，双方可以进行数据传输。</p>
+</li>
+<li><p>FIN_WAIT_1（终止等待1）：客户端发送FIN报文段以关闭连接，等待服务器的确认。</p>
+</li>
+<li><p>FIN_WAIT_2（终止等待2）：客户端已经收到了服务器的确认，等待服务器发送自己的FIN报文段。</p>
+</li>
+<li><p>CLOSE_WAIT（关闭等待）：服务器收到客户端的FIN报文段，并发送自己的确认，等待客户端关闭连接。</p>
+</li>
+<li><p>CLOSING（关闭中）：双方同时发送了FIN报文段，等待对方的确认。</p>
+</li>
+<li><p>LAST_ACK（最后确认）：服务器发送FIN报文段，等待客户端的确认。</p>
+</li>
+<li><p>TIME_WAIT（时间等待）：连接已经关闭，等待可能延迟的数据报文段在网络中消失。这是为了防止出现重复的数据包，通常会在一段时间后自动释放。</p>
+</li>
+<li><p>CLOSE（关闭）：最终状态，连接已经完全关闭。</p>
+</li>
+</ol>
+<p>这些状态描述了TCP连接在建立、数据传输和终止过程中的各种状态转换。不同的状态之间的转换是通过发送特定的TCP报文段来实现的。</p>
+<h2 id="17-应用层常见协议知道多少？了解几个？"><a href="#17-应用层常见协议知道多少？了解几个？" class="headerlink" title="17.应用层常见协议知道多少？了解几个？"></a>17.应用层常见协议知道多少？了解几个？</h2><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>名称</th>
+<th>默认端口</th>
+<th>底层协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTP</td>
+<td>超文本传输协议</td>
+<td>80</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>HTTPS</td>
+<td>超文本传输安全协议</td>
+<td>443</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>Telnet</td>
+<td>远程登录服务的标准协议</td>
+<td>23</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>FTP</td>
+<td>文件传输协议</td>
+<td>20传输和21连接</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>TFTP</td>
+<td>简单文件传输协议</td>
+<td>69</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>SMTP</td>
+<td>简单邮件传输协议（发送用）</td>
+<td>25</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>POP</td>
+<td>邮局协议（接收用）</td>
+<td>110</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>域名解析服务</td>
+<td>53</td>
+<td>服务器间进行域传输的时候用TCP 客户端查询DNS服务器时用 UDP</td>
+</tr>
+</tbody></table>
+<h2 id="18-浏览器在与服务器建立了一个-TCP-连接后是否会在一个-HTTP-请求完成后断开？什么情况下会断开？"><a href="#18-浏览器在与服务器建立了一个-TCP-连接后是否会在一个-HTTP-请求完成后断开？什么情况下会断开？" class="headerlink" title="18.浏览器在与服务器建立了一个 TCP 连接后是否会在一个 HTTP 请求完成后断开？什么情况下会断开？"></a>18.浏览器在与服务器建立了一个 TCP 连接后是否会在一个 HTTP 请求完成后断开？什么情况下会断开？</h2><p>在 HTTP&#x2F;1.0 中，一个服务器在发送完一个 HTTP 响应后，会断开 TCP 链接。但是这样每次请求都会重新建立和断开 TCP 连接，代价过大。所以虽然标准中没有设定，某些服务器对 Connection: keep-alive 的 Header 进行了支持。意思是说，完成这个 HTTP 请求之后，不要断开 HTTP 请求使用的 TCP 连接。这样的好处是连接可以被重新使用，之后发送 HTTP 请求的时候不需要重新建立 TCP 连接，以及如果维持连接，那么 SSL 的开销也可以避免。</p>
+<p>持久连接：既然维持 TCP 连接好处这么多，HTTP&#x2F;1.1 就把 Connection 头写进标准，并且默认开启持久连接，除非请求中写明 Connection: close，那么浏览器和服务器之间是会维持一段时间的 TCP 连接，不会一个请求结束就断掉。</p>
+<p>默认情况下建立 TCP 连接不会断开，只有在请求报头中声明 Connection: close 才会在请求完成后关闭连接。</p>
+<h2 id="19-三次握手"><a href="#19-三次握手" class="headerlink" title="19.三次握手"></a>19.三次握手</h2><p><img src="/2023/02/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/handshake.png"></p>
+<p>刚开始客户端处于 Closed 的状态，服务端处于 Listen 状态，进行三次握手：</p>
+<ul>
+<li><p>第一次握手：客户端给服务端发一个 SYN 报文，并指明客户端的初始化序列号 ISN(c)。此时客户端处于 <code>SYN_SEND</code> 状态。</p>
+<p>  首部的同步位SYN&#x3D;1，初始序号seq&#x3D;x，SYN&#x3D;1的报文段不能携带数据，但要消耗掉一个序号。</p>
+</li>
+<li><p>第二次握手：服务器收到客户端的 SYN 报文之后，会以自己的 SYN 报文作为应答，并且也是指定了自己的初始化序列号 ISN(s)。同时会把客户端的 ISN + 1 作为ACK 的值，表示自己已经收到了客户端的 SYN，此时服务器处于 <code>SYN_RCVD</code> 的状态。</p>
+<p>  在确认报文段中SYN&#x3D;1，ACK&#x3D;1，确认号ack&#x3D;x+1，初始序号seq&#x3D;y。</p>
+</li>
+<li><p>第三次握手：客户端收到 SYN 报文之后，会发送一个 ACK 报文，当然，也是一样把服务器的 ISN + 1 作为 ACK 的值，表示已经收到了服务端的 SYN 报文，此时客户端处于 <code>ESTABLISHED</code> 状态。服务器收到 ACK 报文之后，也处于 <code>ESTABLISHED</code> 状态，此时，双方已建立起了连接。</p>
+<p>  确认报文段ACK&#x3D;1，确认号ack&#x3D;y+1，序号seq&#x3D;x+1（初始为seq&#x3D;x，第二个报文段所以要+1），ACK报文段可以携带数据，不携带数据则不消耗序号。</p>
+</li>
+</ul>
+<p>发送第一个SYN的一端将执行主动打开（active open），接收这个SYN并发回下一个SYN的另一端执行被动打开（passive open）。</p>
+<p>在socket编程中，客户端执行connect()时，将触发三次握手。</p>
+<h2 id="20-什么是半连接队列？"><a href="#20-什么是半连接队列？" class="headerlink" title="20.什么是半连接队列？"></a>20.什么是半连接队列？</h2><p>半连接队列（Half-open connection queue），也称为半连接队列或半打开连接队列，是指TCP协议中用于存放未完成三次握手过程的连接请求的队列。在TCP的三次握手握手过程中，当客户端向服务器发送SYN报文段（同步序列号），服务器收到后会回复一个SYN+ACK报文段（同步序列号+确认序号），此时连接处于半开（Half-open）状态。在正常情况下，服务器会等待客户端发送最后的ACK报文段以完成握手，建立完全的TCP连接。</p>
+<p><code>半连接队列</code>的作用是临时存放未完成的连接请求，等待服务器进程处理。当服务器的连接请求队列已满或者服务器进程无法及时处理连接请求时，新的连接请求将会被放置在半连接队列中，暂时保持半开状态。一旦服务器进程准备好处理连接请求，它会从半连接队列中取出连接请求，完成后续的握手过程，建立完整的TCP连接。</p>
+<p>半连接队列的大小是有限制的，通常由操作系统的配置参数决定。如果半连接队列已满而新的连接请求到达，则服务器会拒绝这些连接请求，导致客户端收到连接超时或拒绝连接的错误。因此，合理调整半连接队列的大小对于保障服务器的稳定运行至关重要。</p>
+<h2 id="21-ISN-Initial-Sequence-Number-是固定的吗？"><a href="#21-ISN-Initial-Sequence-Number-是固定的吗？" class="headerlink" title="21. ISN(Initial Sequence Number)是固定的吗？"></a>21. ISN(Initial Sequence Number)是固定的吗？</h2><p>不，ISN（Initial Sequence Number）并不是固定的，它是在建立TCP连接时动态生成的一个随机值。ISN的目的是确保每个TCP连接都有一个唯一的起始序号，以防止重放攻击等安全问题。</p>
+<blockquote>
+<p>重放攻击是一种常见的网络攻击方式，攻击者通过截获和重新发送先前成功的通信数据包，以达到非法获取信息、欺骗系统或者拒绝服务的目的。</p>
+</blockquote>
+<p>在TCP连接的建立过程中，客户端和服务器各自选择一个ISN值。通常情况下，ISN是基于当前的时间戳和一些其他随机因素生成的，这样可以尽可能地避免ISN的重复和可预测性。</p>
+<p>通过随机生成ISN，可以增加攻击者猜测ISN的难度，提高TCP连接的安全性。如果ISN是固定的或者可预测的，攻击者可能会利用这个信息来实施攻击，例如重放攻击、序列号猜测攻击等。因此，生成随机的ISN对于TCP连接的安全性至关重要。</p>
+<h2 id="22-三次握手过程中可以携带数据吗？"><a href="#22-三次握手过程中可以携带数据吗？" class="headerlink" title="22.三次握手过程中可以携带数据吗？"></a>22.三次握手过程中可以携带数据吗？</h2><p>在TCP的三次握手过程中，通常不会携带数据。三次握手的主要目的是建立起客户端和服务器之间的连接，并协商一些连接参数，例如序列号等。</p>
+<p>虽然报文段中会携带一些连接参数，但通常不会携带实际的数据。这是因为在三次握手过程中，客户端和服务器还没有建立起完全的TCP连接，因此还不能进行数据传输。只有在三次握手完成后，建立了完整的TCP连接之后，客户端和服务器才能开始进行数据传输。</p>
+<p>并且，假如第一次握手可以携带数据的话，如果有人要恶意攻击服务器，那他每次都在第一次握手中的 SYN 报文中放入大量的数据。因为攻击者根本就不理服务器的接收、发送能力是否正常，然后疯狂着重复发 SYN 报文的话，这会让服务器花费很多时间、内存空间来接收这些报文。</p>
+<p>然而，在某些情况下，TCP协议的实现可能允许在三次握手的过程中携带少量的数据，这通常被称为<code>零窗口探测</code>。零窗口探测是为了解决一些特殊情况下的问题，例如当客户端和服务器都处于空闲状态，但服务器需要客户端发送一些数据来更新连接状态。在这种情况下，服务器可能会允许在SYN和SYN+ACK报文段中携带少量的数据。</p>
+<h2 id="23-SYN攻击是什么？"><a href="#23-SYN攻击是什么？" class="headerlink" title="23.SYN攻击是什么？"></a>23.SYN攻击是什么？</h2><p>服务器端的资源分配是在二次握手时分配的，而客户端的资源是在完成三次握手时分配的，所以服务器容易受到SYN洪泛攻击。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server则回复确认包，并等待Client确认，由于源地址不存在，因此Server需要不断重发直至超时，这些伪造的SYN包将长时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络拥塞甚至系统瘫痪。SYN 攻击是一种典型的 <code>DoS/DDoS</code> 攻击。</p>
+<p>检测 SYN 攻击非常的方便，当你在服务器上看到大量的半连接状态时，特别是源IP地址是随机的，基本上可以断定这是一次SYN攻击。在 Linux&#x2F;Unix 上可以使用系统自带的 netstats 命令来检测 SYN 攻击。</p>
+<pre><code class="bash">netstat -n -p TCP | grep SYN_RECV
+</code></pre>
+<p>常见的防御 SYN 攻击的方法有如下几种：</p>
+<ul>
+<li>缩短超时（SYN Timeout）时间  </li>
+<li>增加最大半连接数  </li>
+<li>过滤网关防护  </li>
+<li>SYN cookies技术</li>
+</ul>
+<h2 id="24-四次挥手相关内容"><a href="#24-四次挥手相关内容" class="headerlink" title="24.四次挥手相关内容"></a>24.四次挥手相关内容</h2><p><img src="/2023/02/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/wave.png"><br>建立一个连接需要三次握手，而终止一个连接要经过四次挥手（也有将四次挥手叫做四次握手的）。这由TCP的半关闭（half-close）造成的。所谓的<code>半关闭</code>，其实就是TCP提供了连接的一端在结束它的发送后还能接收来自另一端数据的能力。</p>
+<p>TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way handshake)，客户端或服务器均可主动发起挥手动作。</p>
+<ol>
+<li><p>第一次挥手（FIN1）：发送方（一般是客户端）向接收方（一般是服务器）发送一个FIN（Finish）报文段，表示发送方已经完成数据的发送，但仍然可以接收数据。</p>
+</li>
+<li><p>第二次挥手（ACK1）：接收方收到第一次挥手的FIN报文段后，会发送一个ACK（Acknowledgment）报文段作为确认，表示已经收到了发送方的关闭请求，并且同意关闭连接。</p>
+</li>
+<li><p>第三次挥手（FIN2）：接收方也可以在发送第二次挥手的ACK报文段之后，向发送方发送一个FIN报文段，表示接收方也已经完成数据的发送，但仍然可以接收数据。</p>
+</li>
+<li><p>第四次挥手（ACK2）：发送方收到第三次挥手的FIN报文段后，会发送一个ACK报文段作为确认，表示已经收到了接收方的关闭请求，并且同意关闭连接。此时连接处于完全关闭状态，双方都不再发送数据。</p>
+</li>
+</ol>
+<p>需要注意的是，四次挥手过程中的ACK报文段可能携带数据，用于确认收到上一步的挥手请求。在第三次挥手和第四次挥手过程中，ACK报文段可以携带之前接收到的最后一批数据的确认序号。</p>
+<p>四次挥手的目的是确保双方都能够确认连接的关闭，并且在关闭之前完成所有的数据传输。这个过程可以防止连接过早地关闭，导致数据丢失或者中断。</p>
+<h2 id="25-对于FIN-WAIT-2，CLOSE-WAIT状态和TIME-WAIT状态？你知道多少"><a href="#25-对于FIN-WAIT-2，CLOSE-WAIT状态和TIME-WAIT状态？你知道多少" class="headerlink" title="25.对于FIN_WAIT_2，CLOSE_WAIT状态和TIME_WAIT状态？你知道多少?"></a>25.对于FIN_WAIT_2，CLOSE_WAIT状态和TIME_WAIT状态？你知道多少?</h2><ol>
+<li><p>FIN_WAIT_2：</p>
+<ul>
+<li><p>半关闭状态。</p>
+</li>
+<li><p>发送断开请求一方还有接收数据能力，但已经没有发送数据能力。</p>
+</li>
+</ul>
+</li>
+<li><p>CLOSE_WAIT状态：</p>
+<ul>
+<li><p>被动关闭连接一方接收到FIN包会立即回应ACK包表示已接收到断开请求。</p>
+</li>
+<li><p>被动关闭连接一方如果还有剩余数据要发送就会进入CLOSE_WAIT状态。</p>
+</li>
+</ul>
+</li>
+<li><p>TIME_WAIT状态：</p>
+<ul>
+<li>又叫2MSL等待状态。</li>
+<li>如果客户端直接进入CLOSED状态，如果服务端没有接收到最后一次ACK包会在超时之后重新再发FIN包，此时因为客户端已经CLOSED，所以服务端就不会收到ACK而是收到RST。所以TIME_WAIT状态目的是防止最后一次握手数据没有到达对方而触发重传FIN准备的。</li>
+<li>在2MSL时间内，同一个socket不能再被使用，否则有可能会和旧连接数据混淆（如果新连接和旧连接的socket相同的话）。</li>
+</ul>
+</li>
+</ol>
+<h2 id="26-为什么挥手需要四次"><a href="#26-为什么挥手需要四次" class="headerlink" title="26.为什么挥手需要四次"></a>26.为什么挥手需要四次</h2><p>TCP连接的关闭需要四次挥手的原因是为了确保双方都能够确认连接的关闭，并且在关闭之前完成所有的数据传输。这个过程涉及到双向数据传输的结束和连接状态的维护，需要一定的步骤来完成。</p>
+<h2 id="27-2MSL等待状态"><a href="#27-2MSL等待状态" class="headerlink" title="27.2MSL等待状态"></a>27.2MSL等待状态</h2><blockquote>
+<p>MSL是Maximum Segment Lifetime的英文缩写，可译为“最长报文段寿命”，它是任何报文在网络上存在的最长时间，超过这个时间报文将被丢弃。</p>
+</blockquote>
+<p>2MSL（Two Maximum Segment Lifetime）是TCP连接的最长生存时间，通常用来确定连接处于TIME_WAIT状态的持续时间。</p>
+<p>在TCP连接的关闭过程中，当发送方发送了最后一个ACK报文段后，连接会进入<code>TIME_WAIT</code>状态，等待<code>2MSL</code>时间。这个等待时间的目的是<strong>确保在网络中的所有数据报文段都已经被丢弃，以防止这些报文段在网络中仍然存在，并可能被之后建立的连接误认为是当前连接的报文段，导致数据传输错误</strong>。</p>
+<p>2MSL的时间是两个报文段的最长生存时间（Maximum Segment Lifetime）的两倍。在一般情况下，<strong>MSL是一个IP数据报文段在网络中可以存活的最长时间，它通常被设置为路由器或其他网络设备的缓存时间</strong>。因此，2MSL就是为了确保在TIME_WAIT状态期间，网络中的所有数据报文段都被丢弃，而不会误认为是当前连接的数据。</p>
+<p>在TIME_WAIT状态期间，连接的相关资源（如端口号等）仍然被保留，以防止之后建立的连接使用相同的资源造成冲突。在2MSL等待时间结束后，连接的资源会被释放，连接完全关闭。</p>
+<h2 id="28-为什么TIME-WAIT状态需要经过2MSL才能返回到CLOSE状态？"><a href="#28-为什么TIME-WAIT状态需要经过2MSL才能返回到CLOSE状态？" class="headerlink" title="28.为什么TIME_WAIT状态需要经过2MSL才能返回到CLOSE状态？"></a>28.为什么TIME_WAIT状态需要经过2MSL才能返回到CLOSE状态？</h2><p>理论上，四个报文都发送完毕，就可以直接进入CLOSE状态了，但是可能网络是不可靠的，有可能最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。</p>
+<h2 id="29-TCP粘包问题是什么？你会如何去解决它？"><a href="#29-TCP粘包问题是什么？你会如何去解决它？" class="headerlink" title="29.TCP粘包问题是什么？你会如何去解决它？"></a>29.TCP粘包问题是什么？你会如何去解决它？</h2><p>TCP粘包问题是指在TCP通信过程中，发送方连续发送的数据包在接收方处被合并成一个或多个大的数据包，导致接收方无法正确解析和处理。这种情况可能会发生在<code>数据包到达接收方时的缓冲区合并过程中</code>，造成数据粘在一起而无法分割开。</p>
+<p>TCP粘包问题可能由于多种因素引起，包括<code>网络传输过程中的延迟</code>、<code>缓冲区大小设置不合理</code>、<code>发送方数据包大小不一致</code>等。</p>
+<p>解决TCP粘包问题的方法主要包括以下几种：</p>
+<ul>
+<li><p>消息边界标记：在数据包中添加特定的边界标记或者长度字段，用于标识消息的开始和结束。接收方根据这些标记来正确分割接收到的数据，以确保每个消息被正确处理。</p>
+</li>
+<li><p>固定长度消息：发送方将每个消息固定长度进行发送，接收方按照固定的长度来接收和处理消息，无需额外的边界标记。</p>
+</li>
+<li><p>消息头中包含消息长度：在消息头中包含消息的长度信息，接收方先读取消息长度，然后按照消息长度读取数据，确保每个消息都被正确处理。</p>
+</li>
+<li><p>使用应用层协议：使用更高层次的应用层协议，如HTTP、WebSocket等，这些协议通常有自己的消息分割规则，可以帮助解决粘包问题。</p>
+</li>
+<li><p>缓冲区调优：调整接收方的缓冲区大小，使其能够容纳更大的数据量，减少发生粘包的可能性。</p>
+</li>
+<li><p>时间间隔控制：发送方发送数据时，可以通过控制发送数据的时间间隔，或者发送数据的速率来减少粘包发生的频率。</p>
+</li>
+</ul>
+<h2 id="30-HTTPS采用的加密方式有哪些？是对称还是非对称？"><a href="#30-HTTPS采用的加密方式有哪些？是对称还是非对称？" class="headerlink" title="30.HTTPS采用的加密方式有哪些？是对称还是非对称？"></a>30.HTTPS采用的加密方式有哪些？是对称还是非对称？</h2><p>HTTPS 采用混合的加密机制，使用非对称密钥加密用于传输对称密钥来保证传输过程的安全性，之后使用对称密钥加密进行通信来保证通信过程的效率。</p>
+<h2 id="31-网络层常见协议？可以说一下吗？"><a href="#31-网络层常见协议？可以说一下吗？" class="headerlink" title="31.网络层常见协议？可以说一下吗？"></a>31.网络层常见协议？可以说一下吗？</h2><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IP</td>
+<td>网际协议</td>
+<td>IP协议不但定义了数据传输时的基本单元和格式，还定义了数据报的递交方法和路由选择</td>
+</tr>
+<tr>
+<td>ICMP</td>
+<td>Internet控制报文协议</td>
+<td>ICMP就是一个“错误侦测与回报机制”，其目的就是让我们能够检测网路的连线状况﹐也能确保连线的准确性，是ping和traceroute的工作协议</td>
+</tr>
+<tr>
+<td>RIP</td>
+<td>路由信息协议</td>
+<td>使用“跳数”(即metric)来衡量到达目标地址的路由距离</td>
+</tr>
+<tr>
+<td>IGMP</td>
+<td>Internet组管理协议</td>
+<td>用于实现组播、广播等通信</td>
+</tr>
+</tbody></table>
+<h2 id="32-TCP四大拥塞控制算法总结"><a href="#32-TCP四大拥塞控制算法总结" class="headerlink" title="32.TCP四大拥塞控制算法总结"></a>32.TCP四大拥塞控制算法总结</h2><p>TCP拥塞控制算法是用于在网络拥塞情况下调整TCP连接的发送速率，以避免网络拥塞并提高网络性能的一组算法。四大拥塞控制算法包括：<code>慢启动</code>、<code>拥塞避免</code>、<code>快重传</code>、<code>快恢复</code>。下面是对这四个算法的简要总结：</p>
+<ol>
+<li><p>慢启动（Slow Start）：</p>
+<ul>
+<li>慢启动算法用于在连接启动时快速增加发送速率，以尽快填满网络的可用带宽。</li>
+<li>当连接开始时，发送方将初始拥塞窗口设置为一个较小的值（通常是1个或者几个报文段大小），然后在每次收到对应的ACK确认时，将拥塞窗口大小翻倍。</li>
+<li>慢启动算法的目标是快速探测到可用的带宽，并尽快将发送速率提高到一个合适的水平。</li>
+</ul>
+</li>
+<li><p>拥塞避免（Congestion Avoidance）：</p>
+<ul>
+<li>拥塞避免算法用于在慢启动阶段结束后，以一种较为谨慎的方式继续增加发送速率，以避免引起网络拥塞。</li>
+<li>在拥塞避免阶段，发送方将拥塞窗口以线性增长的方式增加，而不是指数增长。</li>
+<li>拥塞避免算法的目标是逐渐增加发送速率，同时观察网络的拥塞情况并避免触发网络拥塞。</li>
+</ul>
+</li>
+<li><p>快重传（Fast Retransmit）：</p>
+<ul>
+<li>快重传算法用于快速检测和恢复丢失的数据报文段，以避免等待超时重传带来的长延迟。</li>
+<li>当发送方收到连续的三个相同的ACK确认时，说明前面的一个报文段丢失了，发送方会立即重传该丢失的报文段，而不必等待超时定时器触发。</li>
+</ul>
+</li>
+<li><p>快恢复（Fast Recovery）：</p>
+<ul>
+<li>快恢复算法用于在发生快重传后，有效地降低拥塞窗口，以减少丢失报文段引起的网络拥塞。</li>
+<li>当发送方收到三个重复的ACK确认时，不仅触发快重传，还会将拥塞窗口减半，并且进入快恢复状态。</li>
+<li>在快恢复状态中，发送方将拥塞窗口设置为拥塞避免阈值的一半，并开始以拥塞避免算法的方式增加拥塞窗口。</li>
+</ul>
+</li>
+</ol>
+<h2 id="33-为何快速重传是选择3次ACK？"><a href="#33-为何快速重传是选择3次ACK？" class="headerlink" title="33.为何快速重传是选择3次ACK？"></a>33.为何快速重传是选择3次ACK？</h2><p>主要的考虑还是要区分包的丢失是由于链路故障还是乱序等其他因素引发。</p>
+<p>两次duplicated ACK时很可能是乱序造成的！三次duplicated ACK时很可能是丢包造成的！四次duplicated ACK更更更可能是丢包造成的，但是这样的响应策略太慢。丢包肯定会造成三次duplicated ACK!综上是选择收到三个重复确认时窗口减半效果最好，这是实践经验。</p>
+<h2 id="34-TCP-协议如何保证可靠传输？"><a href="#34-TCP-协议如何保证可靠传输？" class="headerlink" title="34.TCP 协议如何保证可靠传输？"></a>34.TCP 协议如何保证可靠传输？</h2><p>TCP（Transmission Control Protocol）是一种面向连接的、可靠的、基于字节流的传输层协议。TCP保证可靠传输的主要机制包括：</p>
+<ol>
+<li><p>确认和重传机制：</p>
+<p> TCP使用确认和重传机制来确保数据的可靠传输。接收方收到数据后会向发送方发送确认消息（ACK），表示已成功接收数据。如果发送方在一定时间内未收到确认消息，会认为数据丢失，并触发数据的重传机制，重新发送丢失的数据。</p>
+</li>
+<li><p>序号和确认号：</p>
+<p> TCP使用序号（Sequence Number）和确认号（Acknowledgment Number）来标识数据包的顺序和确认情况。发送方将每个数据包标记上唯一的序号，接收方在收到数据包后会将确认号设置为下一个期望接收的序号。通过序号和确认号的配对，TCP可以实现对数据传输的准确追踪和控制。</p>
+</li>
+<li><p>滑动窗口：</p>
+<p> TCP使用滑动窗口协议来实现流量控制和可靠传输。发送方和接收方维护一个窗口大小，用来控制发送数据的速率和接收数据的能力。通过滑动窗口机制，TCP可以动态调整数据传输的速率，确保发送的数据不会超过接收方的处理能力。</p>
+</li>
+<li><p>连接管理：</p>
+<p> TCP通过建立连接、数据传输和断开连接的完整过程来管理通信连接。在建立连接时，双方交换一系列控制信息（SYN、SYN-ACK、ACK），以确保双方能够正常通信。在数据传输过程中，TCP会维护连接状态和序列号等信息，以保证数据的可靠传输。在断开连接时，TCP会进行适当的释放和清理工作，以确保连接的安全关闭。</p>
+</li>
+<li><p>超时和重传策略：</p>
+<p> TCP使用超时和重传策略来处理丢失的数据包。如果发送方在一定时间内未收到确认消息，则认为数据丢失，并触发数据的重传机制。TCP会根据网络条件和重传次数动态调整超时时间，以提高数据传输的效率和可靠性。</p>
+</li>
+</ol>
+<h2 id="35-TCP和UDP的区别"><a href="#35-TCP和UDP的区别" class="headerlink" title="35.TCP和UDP的区别"></a>35.TCP和UDP的区别</h2><ol>
+<li><p>TCP<strong>面向连接</strong>（如打电话要先拨号建立连接）;UDP是<strong>无连接</strong>的，即发送数据之前不需要建立连接</p>
+</li>
+<li><p>TCP提供<strong>可靠</strong>的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即<strong>不保证可靠交付</strong></p>
+</li>
+<li><p>TCP<strong>面向字节流</strong>，实际上是TCP把数据看成一连串无结构的字节流;UDP是<strong>面向报文</strong>的</p>
+</li>
+<li><p>UDP没有<strong>拥塞控制</strong>，因此网络出现拥塞不会使源主机的发送速率降低（对实时应用很有用，如IP电话，实时视频会议等）</p>
+</li>
+<li><p>每一条TCP连接只能是<strong>点到点</strong>的;UDP支持<strong>一对一，一对多，多对一和多对多</strong>的交互通信</p>
+</li>
+<li><p>TCP首部开销20字节;UDP的首部开销小，只有8个字节</p>
+</li>
+<li><p>TCP的逻辑通信信道是<strong>全双工</strong>的可靠信道，UDP则是不可靠信道</p>
+</li>
+<li><p>UDP是面向报文的，发送方的UDP对应用层交下来的报文，不合并，不拆分，只是在其上面加上首部后就交给了下面的网络层，论应用层交给UDP多长的报文，它统统发送，一次发送一个。而对接收方，接到后直接去除首部，交给上面的应用层就完成任务了。因此，它需要应用层控制报文的大小</p>
+</li>
+<li><p>TCP是面向字节流的，它把上面应用层交下来的数据看成无结构的字节流会发送，可以想象成流水形式的，发送方TCP会将数据放入“蓄水池”（缓存区），等到可以发送的时候就发送，不能发送就等着TCP会根据当前网络的拥塞状态来确定每个报文段的大小。</p>
+</li>
+</ol>
+<h2 id="36-封包和拆包你听说过吗？它是基于TCP还是UDP的？"><a href="#36-封包和拆包你听说过吗？它是基于TCP还是UDP的？" class="headerlink" title="36.封包和拆包你听说过吗？它是基于TCP还是UDP的？"></a>36.封包和拆包你听说过吗？它是基于TCP还是UDP的？</h2><p>封包和拆包都是基于TCP的概念。因为TCP是无边界的流传输，所以需要对TCP进行封包和拆包，确保发送和接收的数据不粘连。</p>
+<ul>
+<li><p>封包：封包就是在发送数据报的时候为每个TCP数据包加上一个包头，将数据报分为包头和包体两个部分。包头是一个固定长度的结构体，里面包含该数据包的总长度。</p>
+</li>
+<li><p>拆包：接收方在接收到报文后提取包头中的长度信息进行截取。</p>
+</li>
+</ul>
+<h2 id="37-协议相关"><a href="#37-协议相关" class="headerlink" title="37.协议相关"></a>37.协议相关</h2><ul>
+<li>TCP对应的应用层协议：<ul>
+<li>HTTP</li>
+<li>FTP</li>
+<li>Telnet</li>
+</ul>
+</li>
+<li>UDP对应的应用层协议：<ul>
+<li>DNS</li>
+<li>DHCP</li>
+</ul>
+</li>
+<li>数据链路层常见协议:<ul>
+<li>ARP</li>
+<li>RARP</li>
+<li>PPP</li>
+</ul>
+</li>
+<li>Ping命令基于什么协议？原理是什么？<ul>
+<li>ping是基于网络层的ICMP协议实现的。</li>
+<li>通过向对方发送一个ICMP回送请求报文，如果对方主机可达的话会收到该报文，并响应一个ICMP回送回答报文。</li>
+</ul>
+</li>
+</ul>
+<h2 id="38-TCP-利用滑动窗口实现流量控制的机制？"><a href="#38-TCP-利用滑动窗口实现流量控制的机制？" class="headerlink" title="38.TCP 利用滑动窗口实现流量控制的机制？"></a>38.TCP 利用滑动窗口实现流量控制的机制？</h2><p>流量控制是为了控制发送方发送速率，保证接收方来得及接收。TCP 利用滑动窗口实现流量控制。</p>
+<p>TCP 中采用滑动窗口来进行传输控制，滑动窗口的大小意味着接收方还有多大的缓冲区可以用于接收数据。发送方可以通过滑动窗口的大小来确定应该发送多少字节的数据。当滑动窗口为 0 时，发送方一般不能再发送数据报，但有两种情况除外，一种情况是可以发送紧急数据。</p>
+<p>例如，允许用户终止在远端机上的运行进程。另一种情况是发送方可以发送一个 1 字节的数据报来通知接收方重新声明它希望接收的下一字节及发送方的滑动窗口大小。</p>
+<h2 id="39-可以解释一下RTO，RTT和超时重传分别是什么吗？"><a href="#39-可以解释一下RTO，RTT和超时重传分别是什么吗？" class="headerlink" title="39.可以解释一下RTO，RTT和超时重传分别是什么吗？"></a>39.可以解释一下RTO，RTT和超时重传分别是什么吗？</h2><p>当使用 TCP 进行通信时，RTO（Retransmission Timeout）、RTT（Round-Trip Time）和超时重传是三个与 TCP 连接可靠性和性能密切相关的概念。</p>
+<ol>
+<li><p>RTO（Retransmission Timeout）：</p>
+<ul>
+<li>RTO 是指重新传输超时时间，即 TCP 在发送数据后等待接收确认的时间长度。当发送方发送数据后，会启动一个定时器，等待接收方发送确认消息。如果在 RTO 时间内未收到确认消息，则认为数据丢失，触发数据的重传机制。RTO 的设定是 TCP 的一个重要参数，影响着数据传输的可靠性和性能。</li>
+</ul>
+</li>
+<li><p>RTT（Round-Trip Time）：</p>
+<ul>
+<li>RTT 是指往返时间，即从发送数据到接收到确认消息所经历的时间。RTT 反映了数据在网络中传输的延迟情况，包括数据在网络中的传播延迟、处理延迟和队列延迟等。RTT 的计算通常通过记录发送数据的时间戳和接收确认消息的时间戳来实现，可以用于调整 RTO 时间以适应网络条件的变化。</li>
+</ul>
+</li>
+<li><p>超时重传：</p>
+<ul>
+<li>超时重传是指当发送方在 RTO 时间内未收到确认消息时，触发的数据重传机制。发送方会重新发送未确认的数据，以确保数据能够被正确接收。超时重传是 TCP 实现可靠数据传输的关键机制之一，通过对丢失数据的及时重传，可以保证数据传输的可靠性。</li>
+</ul>
+</li>
+</ol>
+<p>综上所述，RTO 是 TCP 设定的重新传输超时时间，用于判断数据是否丢失；RTT 是数据往返时间，用于评估网络延迟情况；超时重传是 TCP 在 RTO 时间内未收到确认消息时触发的数据重传机制，用于确保数据传输的可靠性。这些概念在 TCP 连接的性能优化和故障排查中起着重要作用。</p>
+<h2 id="40-CSRF攻击"><a href="#40-CSRF攻击" class="headerlink" title="40.CSRF攻击"></a>40.CSRF攻击</h2><p>CSRF（Cross-Site Request Forgery）跨站请求伪造是一种网络安全攻击，利用用户已经认证过的会话来执行未经授权的操作。攻击者通过诱使用户在受信任的网站上执行恶意操作，利用用户当前的身份认证信息向目标网站发送请求，从而实现攻击目标。CSRF 攻击通常利用用户浏览器的身份验证信息来执行恶意操作，而无需直接获取用户的用户名和密码。</p>
+<p>CSRF 攻击的原理如下：</p>
+<ol>
+<li><p>攻击者诱使受害者登录到目标网站，并获取了用户的身份验证凭据（如会话 Cookie）。</p>
+</li>
+<li><p>攻击者构造恶意网站或者恶意邮件，在页面中插入恶意的请求代码，例如隐藏的表单、图片、iframe 等。</p>
+</li>
+<li><p>受害者访问了攻击者构造的恶意页面，浏览器会自动发送已经认证过的请求给目标网站，执行攻击者预设的恶意操作。</p>
+</li>
+<li><p>目标网站无法区分这个请求是由受害者自己发起的还是攻击者伪造的，因此会执行这个请求，从而使攻击者达到其目的。</p>
+</li>
+</ol>
+<p>防范 CSRF 攻击的常用方法包括：</p>
+<ol>
+<li><p>CSRF Token：在用户请求中添加随机生成的 CSRF Token，服务器端验证请求中的 Token 是否合法。</p>
+</li>
+<li><p>SameSite Cookie 属性：设置 Cookie 的 SameSite 属性为Strict或Lax，限制跨站请求。当设置为 Strict 时，浏览器完全禁止第三方 Cookie；设置为 Lax 时，只允许在顶级导航中发送 Cookie。</p>
+</li>
+<li><p>Referer 检查：服务器端校验请求的 Referer 头部，确保请求来源是合法的网站。</p>
+</li>
+<li><p>双重确认：对于敏感操作，要求用户进行二次确认，如输入密码或者进行其他身份验证。</p>
+</li>
+<li><p>添加验证码：对于一些敏感操作，要求用户输入验证码，以确保请求是由用户本人发起的。</p>
+</li>
+</ol>
+<h2 id="41-如何防范文件上传漏洞"><a href="#41-如何防范文件上传漏洞" class="headerlink" title="41.如何防范文件上传漏洞"></a>41.如何防范文件上传漏洞</h2><p>文件上传的目录设置为不可执行。</p>
+<ol>
+<li><p>判断文件类型。在判断文件类型的时候，可以结合使用MIME Type，后缀检查等方式。因为对于上传文件，不能简单地通过后缀名称来判断文件的类型，因为攻击者可以将可执行文件的后缀名称改为图片或其他后缀类型，诱导用户执行。</p>
+</li>
+<li><p>对上传的文件类型进行白名单校验，只允许上传可靠类型。</p>
+</li>
+<li><p>上传的文件需要进行重新命名，使攻击者无法猜想上传文件的访问路径，将极大地增加攻击成本，同时向shell.php.rar.ara这种文件，因为重命名而无法成功实施攻击。</p>
+</li>
+<li><p>限制上传文件的大小。</p>
+</li>
+<li><p>单独设置文件服务器的域名。</p>
+</li>
+</ol>
+<h2 id="42-如何区分流量控制和拥塞控制？"><a href="#42-如何区分流量控制和拥塞控制？" class="headerlink" title="42.如何区分流量控制和拥塞控制？"></a>42.如何区分流量控制和拥塞控制？</h2><ul>
+<li><p>流量控制属于通信双方协商；拥塞控制涉及通信链路全局。</p>
+</li>
+<li><p>流量控制需要通信双方各维护一个发送窗、一个接收窗，对任意一方，接收窗大小由自身决定，发送窗大小由接收方响应的TCP报文段中窗口值确定；拥塞控制的拥塞窗口大小变化由试探性发送一定数据量数据探查网络状况后而自适应调整。</p>
+</li>
+<li><p>实际最终发送窗口 &#x3D; min{流控发送窗口，拥塞窗口}。</p>
+</li>
+</ul>
+<h2 id="43-常见的HTTP状态码有哪些？"><a href="#43-常见的HTTP状态码有哪些？" class="headerlink" title="43.常见的HTTP状态码有哪些？"></a>43.常见的HTTP状态码有哪些？</h2><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>类别</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1XX</td>
+<td>Informational（信息性状态码）</td>
+<td>接收的请求正在处理</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td>Success（成功状态码）</td>
+<td>请求正常处理完毕</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td>Redirection（重定向状态码）</td>
+<td>需要进行附加操作以完成请求</td>
+</tr>
+<tr>
+<td>4XX</td>
+<td>Client Error（客户端错误状态码）</td>
+<td>服务器无法处理请求</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td>Server Error（服务器错误状态码）</td>
+<td>服务器处理请求出</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>1xx 信息  </p>
+<ul>
+<li>100 Continue ：表明到目前为止都很正常，客户端可以继续发送请求或者忽略这个响应。</li>
+</ul>
+</li>
+<li><p>2xx 成功  </p>
+<ul>
+<li>200 OK</li>
+<li>204 No Content ：请求已经成功处理，但是返回的响应报文不包含实体的主体部分。一般在只需要从客户端往服务器发送信息，而不需要返回数据时使用。</li>
+<li>206 Partial Content ：表示客户端进行了范围请求，响应报文包含由 Content-Range 指定范围的实体内容。</li>
+</ul>
+</li>
+<li><p>3xx 重定向</p>
+<ul>
+<li>301 Moved Permanently ：永久性重定向</li>
+<li>302 Found ：临时性重定向</li>
+<li>303 See Other ：和 302 有着相同的功能，但是 303 明确要求客户端应该采用 GET 方法获取资源。</li>
+<li>304 Not Modified ：如果请求报文首部包含一些条件，例如：If-Match，If-Modified-Since，If-None-Match，If-Range，If-Unmodified-Since，如果不满足条件，则服务器会返回 304 状态码。</li>
+<li>307 Temporary Redirect ：临时重定向，与 302 的含义类似，但是 307 要求浏览器不会把重定向请求的 POST 方法改成 GET 方法。</li>
+</ul>
+</li>
+<li><p>4xx 客户端错误</p>
+<ul>
+<li>400 Bad Request ：请求报文中存在语法错误。</li>
+<li>401 Unauthorized ：该状态码表示发送的请求需要有认证信息（BASIC 认证、DIGEST 认证）。如果之前已进行过一次请求，则表示用户认证失败。</li>
+<li>403 Forbidden ：请求被拒绝。</li>
+<li>404 Not Found</li>
+</ul>
+</li>
+<li><p>5xx 服务器错误</p>
+<ul>
+<li>500 Internal Server Error ：服务器正在执行请求时发生错误。</li>
+<li>503 Service Unavailable ：服务器暂时处于超负载或正在进行停机维护，现在无法处理请求。</li>
+</ul>
+</li>
+</ul>
+<h2 id="44-服务器出现大量close-wait的连接的原因是什么？有什么解决方法？"><a href="#44-服务器出现大量close-wait的连接的原因是什么？有什么解决方法？" class="headerlink" title="44.服务器出现大量close_wait的连接的原因是什么？有什么解决方法？"></a>44.服务器出现大量close_wait的连接的原因是什么？有什么解决方法？</h2><ul>
+<li><p>close_wait状态是在TCP四次挥手的时候收到FIN但是没有发送自己的FIN时出现的，服务器出现大量close_wait状态的原因有两种：</p>
+<ul>
+<li>服务器内部业务处理占用了过多时间，都没能处理完业务；或者还有数据需要发送；或者服务器的业务逻辑有问题，没有执行close()方法</li>
+<li>服务器的父进程派生出子进程，子进程继承了socket，收到FIN的时候子进程处理但父进程没有处理该信号，导致socket的引用不为0无法回收</li>
+</ul>
+</li>
+<li><p>处理方法：</p>
+<ul>
+<li>停止应用程序</li>
+<li>修改程序里的bug</li>
+</ul>
+</li>
+</ul>
+<h2 id="45-一台机器能够使用的端口号上限是多少，是否可以修改？如果想要用的端口超过这个限制怎么办？"><a href="#45-一台机器能够使用的端口号上限是多少，是否可以修改？如果想要用的端口超过这个限制怎么办？" class="headerlink" title="45.一台机器能够使用的端口号上限是多少，是否可以修改？如果想要用的端口超过这个限制怎么办？"></a>45.一台机器能够使用的端口号上限是多少，是否可以修改？如果想要用的端口超过这个限制怎么办？</h2><ul>
+<li><p>65536.因为TCP的报文头部中源端口号和目的端口号的长度是16位，也就是可以表示2^16&#x3D;65536个不同端口号，因此TCP可供识别的端口号最多只有65536个。但是由于0到1023是知名服务端口，所以实际上还要少1024个端口号。</p>
+</li>
+<li><p>而对于服务器来说，可以开的端口号与65536无关，其实是受限于Linux可以打开的文件数量，并且可以通过MaxUserPort来进行配置。</p>
+</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>计算机网络</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">14.3k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
+    <p><span class="copy-title">发布时间:</span>2023-02-13, 17:27:49</p>
+    <p><span class="copy-title">最后更新:</span>2024-04-26, 14:52:35</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/02/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">https://hualog.dns.navy/2023/02/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '53b33c5626275dc09dfa',
+            clientSecret: '285946a68f8f1bafc052f02fded36467fea269c2',
+            repo: 'xuanxuan000.github.io',
+            owner: 'xuanxuan000',
+            admin: ['xuanxuan000'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024-2034 Aze
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
