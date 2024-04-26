@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>我遇到过的疑难杂症 | 花落阁</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="我遇到过的疑难杂症 | 花落阁">
+  <title>抓包 | 花落阁</title>
+  <meta name="keywords" content=" git ">
+  <meta name="description" content="抓包 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="抓包如果说对于网络编程，有什么工具是必会的，我觉得抓包肯定是其中之一了。 抓包工具的选择1. Wireshark在具备图形界面的系统上，比如windows，linux发行版ubuntu，opensuse等，我一般直接使用Wireshark直接进行抓包，也方便进行内容的查看。 2. Tcpdump在使用命令行的系统，比如linux服务器，我一般使用Tcpdump进行抓包，无需额外安装，系统一般自带，">
 <meta property="og:type" content="article">
@@ -495,9 +495,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-我遇到过的疑难杂症" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-抓包" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">我遇到过的疑难杂症</h1>
+        <h1 class="article-title">抓包</h1>
     
     <div class="article-meta">
         
@@ -507,20 +507,29 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a>
+            <a  data-rel="工具">工具</a> > 
+            
+            <a  data-rel="工具&lt;---&gt;tools">tools</a>
             
         </span>
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">git</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-17 18:29:44'>2024-04-17 18:00</time>
+            发布时间 : <time class="date" title='最后更新: 2024-04-26 10:48:45'>2024-04-26 10:20</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:119</span>
+        <span>字数:674</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -550,7 +559,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87"><span class="toc-text">我遇到过的疑难杂症</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8A%E8%B7%91%E7%9A%84udp%E7%A8%8B%E5%BA%8F%E7%AA%81%E7%84%B6%E5%B4%A9%E6%BA%83"><span class="toc-text">单片机上跑的udp程序突然崩溃</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%93%E5%8C%85"><span class="toc-text">抓包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">抓包工具的选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Wireshark"><span class="toc-text">1. Wireshark</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Tcpdump"><span class="toc-text">2. Tcpdump</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="toc-text">工具安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Wireshark%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">Wireshark的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcpdump-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">tcpdump 的安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%8A%93%E5%8C%85"><span class="toc-text">开始抓包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Wireshark"><span class="toc-text">使用Wireshark</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8tcpdump"><span class="toc-text">使用tcpdump</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -566,7 +575,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="我遇到过的疑难杂症"><a href="#我遇到过的疑难杂症" class="headerlink" title="我遇到过的疑难杂症"></a>我遇到过的疑难杂症</h1><h2 id="单片机上跑的udp程序突然崩溃"><a href="#单片机上跑的udp程序突然崩溃" class="headerlink" title="单片机上跑的udp程序突然崩溃"></a>单片机上跑的udp程序突然崩溃</h2><p>同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。<br>一开始工作正常，但是一段时间后他的程序崩溃。<br>经排查，是因为他没有写<code>recv()</code>函数，且一直<code>复用的同一个socket</code>。数据到达后，没处理，堆积在缓冲区导致错误。</p>
+        <h1 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h1><p>如果说对于网络编程，有什么工具是必会的，我觉得抓包肯定是其中之一了。</p>
+<h2 id="抓包工具的选择"><a href="#抓包工具的选择" class="headerlink" title="抓包工具的选择"></a>抓包工具的选择</h2><h3 id="1-Wireshark"><a href="#1-Wireshark" class="headerlink" title="1. Wireshark"></a>1. Wireshark</h3><p>在具备图形界面的系统上，比如windows，linux发行版ubuntu，opensuse等，我一般直接使用Wireshark直接进行抓包，也方便进行内容的查看。</p>
+<h3 id="2-Tcpdump"><a href="#2-Tcpdump" class="headerlink" title="2. Tcpdump"></a>2. Tcpdump</h3><p>在使用命令行的系统，比如linux服务器，我一般使用Tcpdump进行抓包，无需额外安装，系统一般自带，抓包的到的文件，可以使用Wireshark打开，在图形界面下方便查看内容。</p>
+<h2 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h2><h3 id="Wireshark的安装"><a href="#Wireshark的安装" class="headerlink" title="Wireshark的安装"></a>Wireshark的安装</h3><pre><code class="shell"># 1. 添加wireshark用户组
+sudo groupadd wireshark
+# 2. 将dumpcap更改为wireshark用户组
+sudo chgrp wireshark /usr/bin/dumpcap
+# 3. 让wireshark用户组有root权限使用dumpcap
+sudo chmod 4755 /usr/bin/dumpcap
+# 4. 将需要使用的用户名加入wireshark用户组
+sudo gpasswd -a $USER wireshark
+</code></pre>
+<h3 id="tcpdump-的安装"><a href="#tcpdump-的安装" class="headerlink" title="tcpdump 的安装"></a>tcpdump 的安装</h3><p>tcpdump 一般linux都是自带，无需安装，可以这样验证;显示版本信息即是已安装</p>
+<pre><code class="shell">tcpdump --version
+</code></pre>
+<h2 id="开始抓包"><a href="#开始抓包" class="headerlink" title="开始抓包"></a>开始抓包</h2><h3 id="使用Wireshark"><a href="#使用Wireshark" class="headerlink" title="使用Wireshark"></a>使用Wireshark</h3><p>在28181中我一般只关注sip包和rtp包，所以我一般是直接过滤sip和rtp，可以输入框输入 <code>sip or rtp</code>这样即可，如果设备来源比较多还可以加上ip和端口号的过滤<code>(sip or rtp )and ip.addr==192.168.1.3 and udp.port==5060</code><br>详细的过滤规则可以自行百度，我可以提供一些常用的给大家参考<br><img src="/2024/04/26/%E6%8A%93%E5%8C%85/dump1.png"><br><strong>只过滤SIP：</strong></p>
+<pre><code class="shell">sip
+</code></pre>
+<p><strong>只获取rtp数据：</strong></p>
+<pre><code class="shell">rtp
+</code></pre>
+<p><strong>默认方式：</strong></p>
+<pre><code class="shell">sip or rtp
+</code></pre>
+<p><strong>过滤IP：</strong></p>
+<pre><code class="shell"> sip and ip.addr==192.168.1.3
+</code></pre>
+<p><strong>过滤端口：</strong></p>
+<pre><code class="shell"> sip and udp.port==5060
+</code></pre>
+<p>输入命令开启抓包后，此时可以进行音视频播放操作，比如点播，录像回访等，操作完成回到Wireshark点击红色的停止即可，需要保存文件可以点击<code>文件-&gt;导出特定分组</code>导出过滤后的数据，也可以直接<code>文件-&gt;另存为</code>保存未过滤的数据。</p>
+<h3 id="使用tcpdump"><a href="#使用tcpdump" class="headerlink" title="使用tcpdump"></a>使用tcpdump</h3><p>对于服务器抓包，为了得到足够完整的数据，我一般会要求直接抓取网卡数据而不过滤，如下：<br>抓取网卡首先需要获取网卡名，在linux我一般使用<code>ip addr</code>获取网卡信息，如下所示：<br><img src="/2024/04/26/%E6%8A%93%E5%8C%85/dump2.png"></p>
+<pre><code class="shell">sudo tcpdump -i wlp3s0 -w demo.pcap
+</code></pre>
+<p><img src="/2024/04/26/%E6%8A%93%E5%8C%85/dump3.png"><br>命令行会停留在这个位置，此时可以进行操作，比如点播，录像回放等，操作完成回到命令行使用<code>Ctrl+C</code>结束命令行，在当前目录下得到demo.pcap，将这个文件下载到图形界面操作系统里，即可使用Wireshark查看了<br>更多的操作可以参考： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/jiujuan/p/9017495.html">https://www.cnblogs.com/jiujuan/p/9017495.html</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
@@ -576,12 +619,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>我遇到过的疑难杂症</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">119</span></p>
+    <p><span class="copy-title">文章标题:</span>抓包</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">674</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
-    <p><span class="copy-title">发布时间:</span>2024-04-17, 18:00:55</p>
-    <p><span class="copy-title">最后更新:</span>2024-04-17, 18:29:44</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" title="我遇到过的疑难杂症">https://hualog.dns.navy/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</a>
+    <p><span class="copy-title">发布时间:</span>2024-04-26, 10:20:36</p>
+    <p><span class="copy-title">最后更新:</span>2024-04-26, 10:48:45</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/04/26/%E6%8A%93%E5%8C%85/" title="抓包">https://hualog.dns.navy/2024/04/26/%E6%8A%93%E5%8C%85/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>
