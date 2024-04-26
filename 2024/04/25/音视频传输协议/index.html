@@ -6,22 +6,16 @@
   <meta name="keywords" content=" 传输协议 ">
   <meta name="description" content="音视频传输协议 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="抓包如果说对于网络编程，有什么工具是必会的，我觉得抓包肯定是其中之一了。 抓包工具的选择1. Wireshark在具备图形界面的系统上，比如windows，linux发行版ubuntu，opensuse等，我一般直接使用Wireshark直接进行抓包，也方便进行内容的查看。 2. Tcpdump在使用命令行的系统，比如linux服务器，我一般使用Tcpdump进行抓包，无需额外安装，系统一般自带，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="抓包">
-<meta property="og:url" content="https://hualog.dns.navy/2024/04/26/%E6%8A%93%E5%8C%85/index.html">
+<meta property="og:title" content="WebRTC">
+<meta property="og:url" content="https://hualog.dns.navy/2024/04/26/WebRTC/index.html">
 <meta property="og:site_name" content="花落阁">
-<meta property="og:description" content="抓包如果说对于网络编程，有什么工具是必会的，我觉得抓包肯定是其中之一了。 抓包工具的选择1. Wireshark在具备图形界面的系统上，比如windows，linux发行版ubuntu，opensuse等，我一般直接使用Wireshark直接进行抓包，也方便进行内容的查看。 2. Tcpdump在使用命令行的系统，比如linux服务器，我一般使用Tcpdump进行抓包，无需额外安装，系统一般自带，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hualog.dns.navy/2024/04/26/%E6%8A%93%E5%8C%85/dump1.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/04/26/%E6%8A%93%E5%8C%85/dump2.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/04/26/%E6%8A%93%E5%8C%85/dump3.png">
-<meta property="article:published_time" content="2024-04-26T02:20:36.000Z">
-<meta property="article:modified_time" content="2024-04-26T02:48:45.079Z">
+<meta property="article:published_time" content="2024-04-26T03:28:29.000Z">
+<meta property="article:modified_time" content="2024-04-26T03:29:00.399Z">
 <meta property="article:author" content="花落阁">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="传输协议">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hualog.dns.navy/2024/04/26/%E6%8A%93%E5%8C%85/dump1.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -158,7 +152,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(11)</small>
+                <small>(13)</small>
             
         </div>
     </li>
@@ -245,7 +239,7 @@
         <div data-rel="音视频">
             
             音视频
-            <small>(2)</small>
+            <small>(4)</small>
         </div>
         
     </li>
@@ -281,8 +275,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="11">
-<input type="hidden" id="yelog_site_word_count" value="76.5k">
+<input type="hidden" id="yelog_site_posts_number" value="13">
+<input type="hidden" id="yelog_site_word_count" value="77.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -377,6 +371,24 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/04/26/WebRTC/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="WebRTC">WebRTC</span>
+            <span class="post-date" title="2024-04-26 11:28:29">2024/04/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/04/26/GB28181/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="GB28181">GB28181</span>
+            <span class="post-date" title="2024-04-26 11:19:05">2024/04/26</span>
+        </a>
         
         
         <a  class="全部文章 工具 tools "
@@ -522,12 +534,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-26 10:47:40'>2024-04-25 10:53</time>
+            发布时间 : <time class="date" title='最后更新: 2024-04-26 11:25:32'>2024-04-25 10:53</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:5.5k</span>
+        <span>字数:4.4k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -557,7 +569,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E9%9F%B3%E8%A7%86%E9%A2%91%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE"><span class="toc-text">传统音视频传输协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RTP-Real-time-Transport-Protocol"><span class="toc-text">RTP(Real-time Transport Protocol)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A7%E6%A0%BC%E5%BC%8F"><span class="toc-text">帧格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BD%95%E5%85%89%E6%9C%89-UDP-%E4%B8%8D%E5%A4%9F%EF%BC%8C%E8%BF%98%E9%9C%80%E8%A6%81-RTP"><span class="toc-text">为何光有 UDP 不够，还需要 RTP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RTCP-Real-time-Transport-Control-Protocol"><span class="toc-text">RTCP(Real-time Transport Control Protocol)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RTSP%EF%BC%88Real-time-Streaming-Protocol%EF%BC%89"><span class="toc-text">RTSP（Real-time Streaming Protocol）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-1"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-1"><span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RTSP%E6%9C%89%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B%E5%90%97%EF%BC%9F"><span class="toc-text">RTSP有握手过程吗？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RTMP"><span class="toc-text">RTMP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-2"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-1"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-2"><span class="toc-text">其他问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-FLV-HTTP-Flash-Video"><span class="toc-text">HTTP-FLV (HTTP-Flash Video)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-3"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-2"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-3"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-3"><span class="toc-text">其他问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HLS-HTTP-Live-Streaming"><span class="toc-text">HLS (HTTP Live Streaming)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-4"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-3"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-4"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-4"><span class="toc-text">其他问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B0%E5%85%B4%E6%B5%81%E5%AA%92%E4%BD%93%E5%8D%8F%E8%AE%AE"><span class="toc-text">新兴流媒体协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GB28181"><span class="toc-text">GB28181</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-5"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-4"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-5"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-5"><span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SIP%EF%BC%88Session-Initiation-Protocol%EF%BC%89%E4%B8%8E-SDP%EF%BC%88Session-Description-Protocol%EF%BC%89"><span class="toc-text">SIP（Session Initiation Protocol）与 SDP（Session Description Protocol）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebRTC%EF%BC%88Web-Real-Time-Communication%EF%BC%89"><span class="toc-text">WebRTC（Web Real-Time Communication）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-6"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-5"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-6"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-6"><span class="toc-text">其他问题</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E9%9F%B3%E8%A7%86%E9%A2%91%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE"><span class="toc-text">传统音视频传输协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RTP-Real-time-Transport-Protocol"><span class="toc-text">RTP(Real-time Transport Protocol)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A7%E6%A0%BC%E5%BC%8F"><span class="toc-text">帧格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BD%95%E5%85%89%E6%9C%89-UDP-%E4%B8%8D%E5%A4%9F%EF%BC%8C%E8%BF%98%E9%9C%80%E8%A6%81-RTP"><span class="toc-text">为何光有 UDP 不够，还需要 RTP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RTCP-Real-time-Transport-Control-Protocol"><span class="toc-text">RTCP(Real-time Transport Control Protocol)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RTSP%EF%BC%88Real-time-Streaming-Protocol%EF%BC%89"><span class="toc-text">RTSP（Real-time Streaming Protocol）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-1"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-1"><span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RTSP%E6%9C%89%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B%E5%90%97%EF%BC%9F"><span class="toc-text">RTSP有握手过程吗？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RTMP"><span class="toc-text">RTMP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-2"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-1"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-2"><span class="toc-text">其他问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-FLV-HTTP-Flash-Video"><span class="toc-text">HTTP-FLV (HTTP-Flash Video)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-3"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-2"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-3"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-3"><span class="toc-text">其他问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HLS-HTTP-Live-Streaming"><span class="toc-text">HLS (HTTP Live Streaming)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-4"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-3"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-4"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-4"><span class="toc-text">其他问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B0%E5%85%B4%E6%B5%81%E5%AA%92%E4%BD%93%E5%8D%8F%E8%AE%AE"><span class="toc-text">新兴流媒体协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GB28181"><span class="toc-text">GB28181</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebRTC%EF%BC%88Web-Real-Time-Communication%EF%BC%89"><span class="toc-text">WebRTC（Web Real-Time Communication）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B-5"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-4"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-5"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-5"><span class="toc-text">其他问题</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -756,51 +768,8 @@
 </ol>
 <h3 id="其他问题-4"><a href="#其他问题-4" class="headerlink" title="其他问题"></a>其他问题</h3><h1 id="新兴流媒体协议"><a href="#新兴流媒体协议" class="headerlink" title="新兴流媒体协议"></a>新兴流媒体协议</h1><p>基于浏览器插件的老牌直播协议RTMP终于寿钟正寝，虽然各大CDN厂商还在坚持使用RTMP协议，但是也难逃被各大浏览器厂商淘汰的趋势和事实；<strong>RTSP主要应用于安防领域</strong>，而随之兴起流行的HTTP-FLV、HLS直播技术也因为延迟大，平台依赖性强，网络自适应差等问题饱受诟病。</p>
 <p>而新兴的WEBRTC协议是专门基于网页js设计的及时音视频通信协议，其无插件的直播性能完全能满足流媒体直播的要求，而新兴的互联网90%的浏览流量都在浏览器上，所以WEBRTC是目前互联网直播协议中一种比较优质是选择。</p>
-<h2 id="GB28181"><a href="#GB28181" class="headerlink" title="GB28181"></a>GB28181</h2><p>GB28181是中国国家标准编号，标题是“基于IP网络的安全防范视频监控联网系统信息传输、交换、控制技术要求”。这是一个中国国内的标准，主要用于安全防范和监控系统，确保不同制造商的设备在基于IP的网络环境下能够互操作。GB28181标准的主要用途在于公共安全和城市监控应用，例如公安、交通、社区等。</p>
-<h3 id="协议类型-5"><a href="#协议类型-5" class="headerlink" title="协议类型"></a>协议类型</h3><p>GB28181规范了基于IP网络的安全防范视频监控联网系统的信息传输、交换、控制等技术要求。主要内容包括：</p>
-<ol>
-<li>通信协议：规定了信令和媒体传输协议，确保设备之间可以互操作。</li>
-<li>媒体传输：定义了音视频流的传输方式，支持RTP、RTCP等。</li>
-<li>控制信令：定义了设备的控制、管理、告警等功能，包括注册、注销、心跳等信令。</li>
-<li>设备互操作性：确保不同厂商的设备能够在同一个网络环境下进行协作。</li>
-</ol>
-<h3 id="工作机制-4"><a href="#工作机制-4" class="headerlink" title="工作机制"></a>工作机制</h3><p>GB28181采用了标准的IP网络协议堆栈，通常基于<code>SIP（Session Initiation Protocol）</code>作为信令协议，使用<code>RTP（Real-time Transport Protocol）</code>传输音视频流。其工作机制大致如下：</p>
-<ol>
-<li>设备注册：<br>设备通过SIP向中央服务器注册，以便在网络中标识和管理。</li>
-<li>媒体传输：<br>音视频流通过RTP传输，通常在局域网或广域网中传输监控内容。</li>
-<li>设备控制：<br>中央服务器可以通过SIP信令向设备发送控制指令，例如摄像头的移动、变焦、聚焦等。</li>
-<li>告警和心跳：<br>设备可以向服务器发送告警信息或心跳信号，确保系统状态正常。</li>
-</ol>
-<h3 id="应用场景-5"><a href="#应用场景-5" class="headerlink" title="应用场景"></a>应用场景</h3><p>主要应用于安全防范和视频监控领域</p>
-<h3 id="其他问题-5"><a href="#其他问题-5" class="headerlink" title="其他问题"></a>其他问题</h3><h4 id="SIP（Session-Initiation-Protocol）与-SDP（Session-Description-Protocol）"><a href="#SIP（Session-Initiation-Protocol）与-SDP（Session-Description-Protocol）" class="headerlink" title="SIP（Session Initiation Protocol）与 SDP（Session Description Protocol）"></a>SIP（Session Initiation Protocol）与 SDP（Session Description Protocol）</h4><p>SIP 和 SDP 是用于通信领域的重要协议。虽然它们常常一起使用，但它们在功能和作用上有很大的区别。</p>
-<ul>
-<li><p>SIP<br>  SIP，全称 “Session Initiation Protocol”，是一种应用层协议，主要用于创建、修改和终止多媒体会话（如语音、视频、消息等）。它在网络电话、即时消息、视频会议、流媒体等应用中广泛使用。SIP 的核心功能包括：</p>
-<ol>
-<li>会话建立：通过邀请消息（INVITE）和应答消息等建立会话。</li>
-<li>会话修改：在会话进行过程中调整会话的参数，例如添加或移除媒体流。</li>
-<li>会话终止：通过发送 BYE 消息来结束会话。</li>
-</ol>
-<p>  SIP 使用请求-响应模型，类似于 HTTP，并支持多种传输协议（例如，UDP、TCP、TLS）。SIP 不定义实际传输的数据，而是处理与会话控制相关的信令。</p>
-</li>
-<li><p>SDP<br>  SDP，全称 “Session Description Protocol”，是一种用于描述多媒体会话参数的协议。它通常与 SIP 一起使用，用于描述会话的相关信息。<br>  SDP 描述的内容包括：</p>
-<ol>
-<li>会话名称和目的：用于标识会话。</li>
-<li>时间信息：表明会话何时开始和结束。</li>
-<li>媒体描述：包括媒体类型、传输协议、端口号、编解码器等。</li>
-<li>连接信息：表明会话在哪个网络地址进行。</li>
-</ol>
-<p>  SDP 的结构通常是文本格式的，易于解析和生成。它在 SIP 消息中常见，特别是用于描述会话的媒体属性。在 SIP 中，SDP 通常包含在 INVITE 请求和应答消息中，用于协商通信双方如何交换媒体流。</p>
-</li>
-<li><p>关系<br>  SIP 和 SDP 的关系可以概括为：</p>
-<ul>
-<li>SIP 负责建立、修改和终止会话，是一种用于信令和控制的协议。</li>
-<li>SDP 用于描述会话的细节，包括媒体类型、传输参数和编解码器等，是一种描述性协议。</li>
-</ul>
-<p>  在 SIP 会话的建立过程中，SDP 通常作为 SIP 消息的一部分，以描述会话的详细信息。在 SIP 会话中，SDP 的使用是为了协商会话双方的媒体参数，确保能够正确交换媒体流。</p>
-</li>
-</ul>
-<h2 id="WebRTC（Web-Real-Time-Communication）"><a href="#WebRTC（Web-Real-Time-Communication）" class="headerlink" title="WebRTC（Web Real-Time Communication）"></a>WebRTC（Web Real-Time Communication）</h2><p>WebRTC 是一种开放框架，用于在网络应用程序和网站之间实现实时通信。它是一个基于浏览器的技术，使开发人员能够创建语音、视频和数据的实时通信应用，而无需用户下载任何插件或第三方软件。</p>
-<h3 id="协议类型-6"><a href="#协议类型-6" class="headerlink" title="协议类型"></a>协议类型</h3><p>WebRTC 包含一系列协议、API 和标准，用于实现实时通信。主要涉及的协议包括：</p>
+<h2 id="GB28181"><a href="#GB28181" class="headerlink" title="GB28181"></a><a href="GB28181.md">GB28181</a></h2><h2 id="WebRTC（Web-Real-Time-Communication）"><a href="#WebRTC（Web-Real-Time-Communication）" class="headerlink" title="WebRTC（Web Real-Time Communication）"></a>WebRTC（Web Real-Time Communication）</h2><p>WebRTC 是一种开放框架，用于在网络应用程序和网站之间实现实时通信。它是一个基于浏览器的技术，使开发人员能够创建语音、视频和数据的实时通信应用，而无需用户下载任何插件或第三方软件。</p>
+<h3 id="协议类型-5"><a href="#协议类型-5" class="headerlink" title="协议类型"></a>协议类型</h3><p>WebRTC 包含一系列协议、API 和标准，用于实现实时通信。主要涉及的协议包括：</p>
 <ol>
 <li>ICE（Interactive Connectivity Establishment）：<br>用于发现和连接两个端点之间的最优路径。</li>
 <li>STUN（Session Traversal Utilities for NAT）：<br>用于找到对等方的公共 IP 地址。</li>
@@ -808,7 +777,7 @@
 <li>SRTP（Secure Real-time Transport Protocol）：<br>用于安全的音视频传输。</li>
 <li>DTLS（Datagram Transport Layer Security）：<br>为 WebRTC 提供安全性和数据加密。</li>
 </ol>
-<h3 id="工作机制-5"><a href="#工作机制-5" class="headerlink" title="工作机制"></a>工作机制</h3><p>WebRTC 的工作机制主要包括以下几个步骤：</p>
+<h3 id="工作机制-4"><a href="#工作机制-4" class="headerlink" title="工作机制"></a>工作机制</h3><p>WebRTC 的工作机制主要包括以下几个步骤：</p>
 <ol>
 <li>信令（Signaling）：<br>这是一种用于建立 WebRTC 会话的过程，包括会话初始化、设备协商和连接管理。信令本身不属于 WebRTC 的规范范围，开发人员可以使用任意方法实现，例如 WebSockets 或其他协议。</li>
 <li>连接建立：<br>通过 ICE 协商，确定最合适的路径。过程中使用 STUN 和 TURN 来处理 NAT 和防火墙问题。</li>
@@ -816,12 +785,12 @@
 <li>媒体和数据通道：<br>建立后，WebRTC 可以在对等端之间传输音频、视频和数据。数据通道允许任意二进制或文本数据的传输，适用于多种应用场景。</li>
 </ol>
 <p>工作流程：<br><img src="/2024/04/25/%E9%9F%B3%E8%A7%86%E9%A2%91%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/gb28181.png" alt="工作流程"></p>
-<h3 id="应用场景-6"><a href="#应用场景-6" class="headerlink" title="应用场景"></a>应用场景</h3><ol>
+<h3 id="应用场景-5"><a href="#应用场景-5" class="headerlink" title="应用场景"></a>应用场景</h3><ol>
 <li>视频通话和语音通话：用于在浏览器中创建实时音视频通话应用，如视频会议、在线教育等。</li>
 <li>实时数据传输：可用于文件共享、在线游戏、协作应用等。</li>
 <li>直播流媒体：WebRTC 可以用于低延迟直播或点对点流媒体传输。</li>
 </ol>
-<h3 id="其他问题-6"><a href="#其他问题-6" class="headerlink" title="其他问题"></a>其他问题</h3>
+<h3 id="其他问题-5"><a href="#其他问题-5" class="headerlink" title="其他问题"></a>其他问题</h3>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
     </div>
@@ -831,10 +800,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>音视频传输协议</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">5.5k</span></p>
+    <p><span class="copy-title">字数:</span><span class="post-count">4.4k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
     <p><span class="copy-title">发布时间:</span>2024-04-25, 10:53:43</p>
-    <p><span class="copy-title">最后更新:</span>2024-04-26, 10:47:40</p>
+    <p><span class="copy-title">最后更新:</span>2024-04-26, 11:25:32</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/04/25/%E9%9F%B3%E8%A7%86%E9%A2%91%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/" title="音视频传输协议">https://hualog.dns.navy/2024/04/25/%E9%9F%B3%E8%A7%86%E9%A2%91%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
