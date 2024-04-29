@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>WebRTC | 花落阁</title>
-  <meta name="keywords" content=" 传输协议 ">
-  <meta name="description" content="WebRTC | 花落阁">
+  <title>Docker使用说明 | 花落阁</title>
+  <meta name="keywords" content=" docker ">
+  <meta name="description" content="Docker使用说明 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="SRS使用说明方法一： Docker 使用SRS 启动命令： docker run --rm -it -p 1935:1935 -p 1985:1985 -p 8080:8080 registry.cn-hangzhou.aliyuncs.com&#x2F;ossrs&#x2F;srs:5   使用ffmpeg推流： ffmpeg -re -i .&#x2F;doc&#x2F;source.flv -c copy -f flv rtmp">
 <meta property="og:type" content="article">
@@ -522,9 +522,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-WebRTC" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Docker使用说明" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">WebRTC</h1>
+        <h1 class="article-title">Docker使用说明</h1>
     
     <div class="article-meta">
         
@@ -534,7 +534,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="音视频">音视频</a>
+            <a  data-rel="工具">工具</a> > 
+            
+            <a  data-rel="工具&lt;---&gt;tools">tools</a>
             
         </span>
         
@@ -542,19 +544,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">传输协议</a>
+            <a class="color2">docker</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-26 15:27:07'>2023-12-25 11:28</time>
+            发布时间 : <time class="date" title='最后更新: 2024-04-29 11:33:49'>2023-04-29 10:16</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:518</span>
+        <span>字数:2.1k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -584,7 +586,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebRTC"><span class="toc-text">WebRTC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-text">其他问题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-text">Docker使用说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">Docker 的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-compose%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">docker-compose的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">Docker 基本使用</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -600,28 +602,202 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="WebRTC"><a href="#WebRTC" class="headerlink" title="WebRTC"></a>WebRTC</h1><p>WebRTC（Web Real-Time Communication）是一种开放框架，用于在网络应用程序和网站之间实现实时通信。它是一个基于浏览器的技术，使开发人员能够创建语音、视频和数据的实时通信应用，而无需用户下载任何插件或第三方软件。</p>
-<h2 id="协议类型"><a href="#协议类型" class="headerlink" title="协议类型"></a>协议类型</h2><p>WebRTC 包含一系列协议、API 和标准，用于实现实时通信。主要涉及的协议包括：</p>
+        <h1 id="Docker使用说明"><a href="#Docker使用说明" class="headerlink" title="Docker使用说明"></a>Docker使用说明</h1><p>基于Ubuntu20之后的系统使用Docker的操作说明。</p>
+<p>如果是其他操作系统，如debian，请自行修改密钥地址和软件源。</p>
+<h2 id="Docker-的安装"><a href="#Docker-的安装" class="headerlink" title="Docker 的安装"></a>Docker 的安装</h2><ol>
+<li><p>更新 Ubuntu ,确保你的 Ubuntu 系统软件包是最新的。</p>
+<pre><code class="bash">sudo apt-get update
+sudo apt-get upgrade
+</code></pre>
+</li>
+<li><p>安装必要的依赖, Docker 需要一些额外的工具和库。</p>
+<pre><code class="bash">sudo apt-get install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+</code></pre>
+</li>
+<li><p>添加 Docker 的 GPG 密钥,确保你安装的软件包来源是可信的。</p>
+<pre><code class="bash">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+</code></pre>
+</li>
+<li><p>添加 Docker 的官方 APT 源。</p>
+<pre><code class="bash">echo \
+&quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre>
+</li>
+<li><p>安装 Docker 引擎和 Docker CLI。</p>
+<pre><code class="bash">sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+</code></pre>
+</li>
+<li><p>验证 Docker 安装。</p>
+<pre><code class="bash">sudo docker run hello-world
+</code></pre>
+<p> 这会拉取并运行一个简单的 Docker 容器。如果一切正常，你会看到一条成功消息。</p>
+</li>
+<li><p>配置 Docker 权限<br> 为了避免每次使用 Docker 都需要 sudo，你可以将自己添加到 docker 用户组。</p>
+<pre><code class="bash">sudo usermod -aG docker $USER
+</code></pre>
+</li>
+</ol>
+<p>注意：这会让你无需 sudo 即可运行 Docker 命令，但请注意这种设置可能具有安全风险。建议在生产环境中谨慎处理。</p>
+<h2 id="docker-compose的安装"><a href="#docker-compose的安装" class="headerlink" title="docker-compose的安装"></a>docker-compose的安装</h2><p>要在 Ubuntu 上安装 Docker Compose，您需要确保已安装 Docker，然后可以下载 Docker Compose 的可执行文件并将其添加到系统的可执行路径中。以下是安装 Docker Compose 的步骤：</p>
 <ol>
-<li>ICE（Interactive Connectivity Establishment）：<br>用于发现和连接两个端点之间的最优路径。</li>
-<li>STUN（Session Traversal Utilities for NAT）：<br>用于找到对等方的公共 IP 地址。</li>
-<li>TURN（Traversal Using Relays around NAT）：<br>用于在直接连接不可能时，通过中继服务器传递数据。</li>
-<li>SRTP（Secure Real-time Transport Protocol）：<br>用于安全的音视频传输。</li>
-<li>DTLS（Datagram Transport Layer Security）：<br>为 WebRTC 提供安全性和数据加密。</li>
+<li><p>安装 Docker</p>
+<p> 确保已在 Ubuntu 上安装 Docker。如果尚未安装，请先安装 Docker。请参照我之前提供的指南。</p>
+</li>
+<li><p>下载 Docker Compose 的二进制文件</p>
+<p> 使用<code>curl</code>或<code>wget</code>从官方 GitHub 存储库下载 Docker Compose 的最新版本。你可以查看 <a target="_blank" rel="noopener" href="https://github.com/docker/compose/releases">Docker Compose 发布页面</a> 获取最新版本的版本号。</p>
+<pre><code class="bash"># 确保 Docker Compose 的版本号最新
+DOCKER_COMPOSE_VERSION=&quot;2.24.0&quot;  # 这是一个示例，请根据官方版本更新
+
+# 下载 Docker Compose 二进制文件
+# 注意这里的CPU架构 我选的x86_64 请根据自己的架构进行选择
+sudo curl -L &quot;https://github.com/docker/compose/releases/download/v$DOCKER_COMPOSE_VERSION/docker-compose-linux-x86_64&quot; -o /usr/local/bin/docker-compose
+</code></pre>
+</li>
+<li><p>添加执行权限<br> 将下载的 Docker Compose 文件设为可执行状态。</p>
+<pre><code class="bash">sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+</li>
+<li><p>检查 Docker Compose 是否成功安装<br> 验证 Docker Compose 是否已正确安装。</p>
+<pre><code class="bash">docker-compose --version
+</code></pre>
+<p> 如果安装成功，你应该会看到 Docker Compose 的版本信息。</p>
+</li>
+<li><p>使用 Docker Compose</p>
+<p> 安装完成后，你可以开始使用 Docker Compose。创建 docker-compose.yml 文件并在其中定义服务，然后使用 docker-compose up 启动服务。</p>
+</li>
 </ol>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ol>
-<li>视频通话和语音通话：用于在浏览器中创建实时音视频通话应用，如视频会议、在线教育等。</li>
-<li>实时数据传输：可用于文件共享、在线游戏、协作应用等。</li>
-<li>直播流媒体：WebRTC 可以用于低延迟直播或点对点流媒体传输。</li>
-</ol>
-<h2 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h2><p>WebRTC 的工作机制主要包括以下几个步骤：</p>
-<ol>
-<li>信令（Signaling）：<br>这是一种用于建立 WebRTC 会话的过程，包括会话初始化、设备协商和连接管理。信令本身不属于 WebRTC 的规范范围，开发人员可以使用任意方法实现，例如 WebSockets 或其他协议。</li>
-<li>连接建立：<br>通过 ICE 协商，确定最合适的路径。过程中使用 STUN 和 TURN 来处理 NAT 和防火墙问题。</li>
-<li>安全通信：<br>通过 DTLS 和 SRTP，确保音视频数据在传输过程中保持加密和安全。</li>
-<li>媒体和数据通道：<br>建立后，WebRTC 可以在对等端之间传输音频、视频和数据。数据通道允许任意二进制或文本数据的传输，适用于多种应用场景。</li>
-</ol>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2>
+<blockquote>
+<p>注意事项<br>    1. 在下载 Docker Compose 二进制文件时，确保从官方可信渠道下载。<br>    2. 如果你需要 Docker Compose 的旧版本，可以在官方 GitHub 页面上找到以前的版本。<br>    3. 请根据自己的机器系统和CPU架构选择正确的版本。</p>
+</blockquote>
+<h2 id="Docker-基本使用"><a href="#Docker-基本使用" class="headerlink" title="Docker 基本使用"></a>Docker 基本使用</h2><ul>
+<li><p>简单命令</p>
+<pre><code class="bash"># 搜索镜像
+docker search &lt;image&gt;
+# 拉取镜像
+docker pull &lt;image&gt;:&lt;tag&gt;
+# 列出本地的 Docker 镜像
+docker images
+# 列出容器
+docker ps
+# 启动容器
+docker start &lt;container&gt;
+# 停止容器
+docker stop &lt;container&gt;
+# 删除指定镜像 使用 -f 参数可以强制删除
+docker rmi &lt;image_name&gt;
+# 删除指定容器 需要先停止容器
+docker rm &lt;container&gt;
+</code></pre>
+</li>
+<li><p>启动容器</p>
+<pre><code class="bash">docker run -itd --restart always -p &lt;host_port&gt;:&lt;container_port&gt; &lt;image&gt; &lt;cmd&gt;
+</code></pre>
+<ul>
+<li>-d：以后台模式运行容器（即“守护进程”模式）。</li>
+<li>-it：启动交互式容器并分配一个伪终端，通常用于调试和开发。</li>
+<li>–name <container_name>：指定容器的名称。</container_name></li>
+<li>-p <host_port>:<container_port>：映射主机和容器的端口。</container_port></host_port></li>
+<li>-v <host_path>:<container_path>：挂载主机上的文件夹到容器中。</container_path></host_path></li>
+<li>–rm：容器停止后自动删除。</li>
+<li>–env <key>&#x3D;<value>：设置环境变量。</value></key></li>
+<li>–network <network_name>：指定容器运行的网络。</network_name></li>
+<li>–restart 重启策略：<ul>
+<li>no：默认值。容器不会自动重启。</li>
+<li>always：无论容器因何原因停止，它都会自动重启。这对于需要确保容器长期运行的服务非常有用。</li>
+<li>unless-stopped：类似于 always，但如果容器是由用户手动停止的，它不会重新启动。适用于需要持久化服务但允许用户手动停止的场景。</li>
+<li>on-failure：当容器因为非零退出码停止时，它会重新启动。适用于容器可能因错误而停止的场景。可以通过添加一个整数参数来指定尝试重启的最大次数，比如 on-failure:3 表示容器最多尝试重启 3 次。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>查看日志</p>
+<pre><code class="bash">docker logs &lt;container&gt;
+</code></pre>
+<ul>
+<li>-f：跟踪实时日志输出。</li>
+<li>–tail <n>：显示最后的 n 行日志。</n></li>
+</ul>
+</li>
+<li><p>Docker exec</p>
+<p>  docker exec 命令用于在正在运行的容器内执行命令。</p>
+<pre><code class="bash">docker exec -it &lt;container&gt; &lt;cmd&gt;
+</code></pre>
+<ul>
+<li>-it：以交互方式运行命令，通常用于连接容器的终端。</li>
+<li>–user <user>：以指定用户的身份运行命令。</user></li>
+</ul>
+</li>
+<li><p>创建自定义网络</p>
+<pre><code class="bash">docker network create -d macvlan --subnet=192.168.2.0/24  --gateway=192.168.2.1 -o macvlan_mode=bridge -o parent=enp0s31f6 mynet
+</code></pre>
+<ul>
+<li>docker network create:<br>  这是创建 Docker 网络的命令。</li>
+<li>-d macvlan:<br>  指定网络驱动为 macvlan。macvlan 驱动允许容器拥有独立的 MAC 地址，使其看起来像是主机上的一个独立网络接口。在这种模式下，容器可以直接与外部网络进行通信。</li>
+<li>–subnet&#x3D;192.168.2.0&#x2F;24:<br>  定义网络的子网范围。这表示所有 IP 地址在 192.168.2.0&#x2F;24 的范围内，子网掩码为 255.255.255.0。这意味着此网络中可用的 IP 地址从 192.168.2.1 到 192.168.2.254。</li>
+<li>–gateway&#x3D;192.168.2.1:<br>  指定该网络的网关地址。在这个例子中，网关地址是 192.168.2.1。通常，网关用于将网络内的流量路由到外部网络。</li>
+<li>-o macvlan_mode&#x3D;bridge:<br>  macvlan 驱动支持几种不同的模式。bridge 模式是最常用的一种，允许容器与外部网络通信，并通过网关与其他网络通信。这与传统的桥接模式不同，macvlan bridge 模式直接连接到物理网络。</li>
+<li>-o parent&#x3D;enp0s31f6:<br>  指定 macvlan 网络的父接口。这里的 enp0s31f6 是主机上的物理网络接口。macvlan 网络将在该接口上创建虚拟网络，使容器能够通过这个接口与外部网络通信。</li>
+<li>mynet:<br>  这是创建的网络名称。在使用 Docker 时，你可以使用这个名称来引用新创建的网络。</li>
+</ul>
+<p>  除了macvlan外，还有bridge、overlay等类型。  </p>
+<ul>
+<li>bridge <ul>
+<li>概述：这是 Docker 的默认网络类型。每个容器都有一个独立的虚拟网络接口，并通过一个虚拟交换机连接到 bridge 网络。容器间可以通过内部 IP 地址进行通信。</li>
+<li>使用场景：适用于希望在单个主机上的容器之间进行通信，同时保持与外部网络的隔离。可以通过端口映射将外部请求路由到容器。</li>
+</ul>
+</li>
+<li>overlay <ul>
+<li>概述：用于 Docker Swarm 或 Kubernetes 等分布式环境。在多个 Docker 主机之间创建虚拟网络，允许容器跨主机通信。使用 VXLAN 等技术实现。</li>
+<li>使用场景：适用于分布式应用程序，需要容器在多个 Docker 主机间通信。常用于多容器应用程序和微服务架构。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>构建镜像</p>
+<pre><code class="bash"># 在当前目录中构建 Docker 镜像，标签为 &quot;my_image:latest&quot;
+docker build -t my_image:latest .
+
+# 使用特定 Dockerfile 构建，标签为 &quot;my_image:v1&quot;
+docker build -f /path/to/Dockerfile -t my_image:v1 .
+
+# 构建时不使用缓存
+docker build --no-cache -t my_image:no_cache .
+
+# 构建时传递环境变量
+docker build --build-arg MY_VAR=value -t my_image:with_arg .
+</code></pre>
+<ul>
+<li>-t：指定构建镜像的标签和名称。</li>
+<li>-f：指定 Dockerfile 的路径。默认为当前目录下的 Dockerfile。</li>
+<li>–no-cache：构建时不使用缓存。这对于确保每次都从头开始构建很有用。</li>
+<li>–build-arg：传递构建时的参数（如环境变量）。</li>
+<li>–target：指定构建的阶段（用于多阶段构建）。</li>
+<li>–network：指定构建期间使用的网络模式。</li>
+</ul>
+</li>
+<li><p>推送镜像到dockerhub</p>
+<pre><code class="bash">docker push my_dockerhub_username/my_image:latest
+</code></pre>
+</li>
+<li><p>docker-compose</p>
+<pre><code class="bash"># 启动
+docker-compose up
+# 停止
+docker-compose down
+# 查看所有容器的日志
+docker-compose logs
+# 列出所有相关容器
+docker-compose ps
+</code></pre>
+</li>
+</ul>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
     </div>
@@ -630,12 +806,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>WebRTC</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">518</span></p>
+    <p><span class="copy-title">文章标题:</span>Docker使用说明</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">2.1k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
-    <p><span class="copy-title">发布时间:</span>2023-12-25, 11:28:29</p>
-    <p><span class="copy-title">最后更新:</span>2024-04-26, 15:27:07</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/12/25/WebRTC/" title="WebRTC">https://hualog.dns.navy/2023/12/25/WebRTC/</a>
+    <p><span class="copy-title">发布时间:</span>2023-04-29, 10:16:08</p>
+    <p><span class="copy-title">最后更新:</span>2024-04-29, 11:33:49</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/04/29/Docker%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="Docker使用说明">https://hualog.dns.navy/2023/04/29/Docker%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>

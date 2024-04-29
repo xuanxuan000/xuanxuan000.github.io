@@ -2,21 +2,24 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>FFmpeg基础 | 花落阁</title>
+  <title>FFmpeg使用说明 | 花落阁</title>
   <meta name="keywords" content=" ffmpeg ">
-  <meta name="description" content="FFmpeg基础 | 花落阁">
+  <meta name="description" content="FFmpeg使用说明 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="我遇到过的疑难杂症单片机上跑的udp程序突然崩溃同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。一开始工作正常，但是一段时间后他的程序崩溃。经排查，是因为他没有写recv()函数，且一直复用的同一个socket。数据到达后，没处理，堆积在缓冲区导致错误。">
+<meta name="description" content="SRS使用说明方法一： Docker 使用SRS 启动命令： docker run --rm -it -p 1935:1935 -p 1985:1985 -p 8080:8080 registry.cn-hangzhou.aliyuncs.com&#x2F;ossrs&#x2F;srs:5   使用ffmpeg推流： ffmpeg -re -i .&#x2F;doc&#x2F;source.flv -c copy -f flv rtmp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我遇到过的疑难杂症">
-<meta property="og:url" content="https://hualog.dns.navy/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/index.html">
+<meta property="og:title" content="SRS使用说明">
+<meta property="og:url" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/index.html">
 <meta property="og:site_name" content="花落阁">
-<meta property="og:description" content="我遇到过的疑难杂症单片机上跑的udp程序突然崩溃同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。一开始工作正常，但是一段时间后他的程序崩溃。经排查，是因为他没有写recv()函数，且一直复用的同一个socket。数据到达后，没处理，堆积在缓冲区导致错误。">
+<meta property="og:description" content="SRS使用说明方法一： Docker 使用SRS 启动命令： docker run --rm -it -p 1935:1935 -p 1985:1985 -p 8080:8080 registry.cn-hangzhou.aliyuncs.com&#x2F;ossrs&#x2F;srs:5   使用ffmpeg推流： ffmpeg -re -i .&#x2F;doc&#x2F;source.flv -c copy -f flv rtmp">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-17T10:00:55.000Z">
-<meta property="article:modified_time" content="2024-04-17T10:29:44.005Z">
+<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/Oryx.png">
+<meta property="article:published_time" content="2024-04-28T07:25:10.000Z">
+<meta property="article:modified_time" content="2024-04-28T09:28:32.510Z">
 <meta property="article:author" content="花落阁">
+<meta property="article:tag" content="SRS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/Oryx.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -153,7 +156,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(13)</small>
+                <small>(15)</small>
             
         </div>
     </li>
@@ -165,7 +168,7 @@
         <div data-rel="工具">
             <i class="fold iconfont icon-right"></i>
             工具
-            <small>(5)</small>
+            <small>(6)</small>
         </div>
         
             <ul class="sub hide">
@@ -175,7 +178,7 @@
         <div data-rel="工具&lt;---&gt;tools">
             
             tools
-            <small>(4)</small>
+            <small>(5)</small>
         </div>
         
     </li>
@@ -229,7 +232,7 @@
         <div data-rel="音视频">
             
             音视频
-            <small>(4)</small>
+            <small>(5)</small>
         </div>
         
     </li>
@@ -261,8 +264,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="13">
-<input type="hidden" id="yelog_site_word_count" value="78k">
+<input type="hidden" id="yelog_site_posts_number" value="15">
+<input type="hidden" id="yelog_site_word_count" value="80.5k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -328,6 +331,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>ffmpeg</a>
             </li>
         
@@ -347,6 +354,10 @@
                 <i class="iconfont icon-tag"></i><a>md</a>
             </li>
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SRS</a>
+            </li>
+        
     </div>
 
 </div>
@@ -357,6 +368,15 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="SRS"
+           data-author="" >
+            <span class="post-title" title="SRS使用说明">SRS使用说明</span>
+            <span class="post-date" title="2024-04-28 15:25:10">2024/04/28</span>
+        </a>
         
         
         <a  class="全部文章 工具 "
@@ -405,11 +425,20 @@
         
         
         <a  class="全部文章 音视频 "
-           href="/2023/10/14/FFmpeg%E5%9F%BA%E7%A1%80/"
+           href="/2023/10/14/FFmpeg%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
            data-tag="ffmpeg"
            data-author="" >
-            <span class="post-title" title="FFmpeg基础">FFmpeg基础</span>
+            <span class="post-title" title="FFmpeg使用说明">FFmpeg使用说明</span>
             <span class="post-date" title="2023-10-14 15:28:34">2023/10/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2023/04/29/Docker%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker使用说明">Docker使用说明</span>
+            <span class="post-date" title="2023-04-29 10:16:08">2023/04/29</span>
         </a>
         
         
@@ -493,9 +522,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-FFmpeg基础" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-FFmpeg使用说明" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">FFmpeg基础</h1>
+        <h1 class="article-title">FFmpeg使用说明</h1>
     
     <div class="article-meta">
         
@@ -520,7 +549,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-26 14:59:00'>2023-10-14 15:28</time>
+            发布时间 : <time class="date" title='最后更新: 2024-04-28 15:44:26'>2023-10-14 15:28</time>
         
     </div>
     <div class="article-meta">
@@ -555,7 +584,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#FFmpeg%E5%9F%BA%E7%A1%80"><span class="toc-text">FFmpeg基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%A0%BC%E5%BC%8F-%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F-%E5%8D%8F%E8%AE%AE"><span class="toc-text">封装格式 编码格式 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%EF%BC%8F%E8%A7%86%E9%A2%91%E6%B5%81"><span class="toc-text">音／视频流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-text">容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#channel"><span class="toc-text">channel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E8%A7%A3%E7%A0%81"><span class="toc-text">视频解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DTS%E4%B8%8EPTS"><span class="toc-text">DTS与PTS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-text">常见分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dpi"><span class="toc-text">dpi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B"><span class="toc-text">色彩空间模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A7%E7%8E%87"><span class="toc-text">帧率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%81%E7%8E%87"><span class="toc-text">码率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GOP"><span class="toc-text">GOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F"><span class="toc-text">编码格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E6%A0%B7"><span class="toc-text">采样</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E6%B7%B1%E5%BA%A6"><span class="toc-text">位深度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E6%A0%B7%E7%8E%87"><span class="toc-text">采样率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E5%B8%A7"><span class="toc-text">音频帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E7%A0%81%E7%8E%87"><span class="toc-text">音频码率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%9F%B3%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%A0%87%E5%87%86"><span class="toc-text">常用音视频编码标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%BC%96%E7%A0%81%E6%B1%87%E6%80%BB"><span class="toc-text">常用协议与编码汇总</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenGL"><span class="toc-text">OpenGL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenCV"><span class="toc-text">OpenCV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%92%AD%E6%B5%81%E5%B8%B8%E7%94%A8%E5%8D%8F%E8%AE%AE"><span class="toc-text">直播流常用协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E6%92%AD%E5%B0%81%E8%A3%85%E6%A0%BC%E5%BC%8F"><span class="toc-text">点播封装格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E9%87%8D%E9%87%87%E6%A0%B7"><span class="toc-text">音频重采样</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">源码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ffplay%E6%92%AD%E6%94%BE%E5%99%A8%E6%B5%81%E7%A8%8B"><span class="toc-text">ffplay播放器流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%A8%A1%E5%9D%97"><span class="toc-text">主要模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#FFmpeg%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-text">FFmpeg使用说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%A0%BC%E5%BC%8F-%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F-%E5%8D%8F%E8%AE%AE"><span class="toc-text">封装格式 编码格式 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%EF%BC%8F%E8%A7%86%E9%A2%91%E6%B5%81"><span class="toc-text">音／视频流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-text">容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#channel"><span class="toc-text">channel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E8%A7%A3%E7%A0%81"><span class="toc-text">视频解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DTS%E4%B8%8EPTS"><span class="toc-text">DTS与PTS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-text">常见分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dpi"><span class="toc-text">dpi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B"><span class="toc-text">色彩空间模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A7%E7%8E%87"><span class="toc-text">帧率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%81%E7%8E%87"><span class="toc-text">码率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GOP"><span class="toc-text">GOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F"><span class="toc-text">编码格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E6%A0%B7"><span class="toc-text">采样</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E6%B7%B1%E5%BA%A6"><span class="toc-text">位深度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E6%A0%B7%E7%8E%87"><span class="toc-text">采样率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E5%B8%A7"><span class="toc-text">音频帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E7%A0%81%E7%8E%87"><span class="toc-text">音频码率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%9F%B3%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%A0%87%E5%87%86"><span class="toc-text">常用音视频编码标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%BC%96%E7%A0%81%E6%B1%87%E6%80%BB"><span class="toc-text">常用协议与编码汇总</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenGL"><span class="toc-text">OpenGL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenCV"><span class="toc-text">OpenCV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%92%AD%E6%B5%81%E5%B8%B8%E7%94%A8%E5%8D%8F%E8%AE%AE"><span class="toc-text">直播流常用协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E6%92%AD%E5%B0%81%E8%A3%85%E6%A0%BC%E5%BC%8F"><span class="toc-text">点播封装格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E9%87%8D%E9%87%87%E6%A0%B7"><span class="toc-text">音频重采样</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">源码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ffplay%E6%92%AD%E6%94%BE%E5%99%A8%E6%B5%81%E7%A8%8B"><span class="toc-text">ffplay播放器流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%A8%A1%E5%9D%97"><span class="toc-text">主要模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -571,7 +600,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="FFmpeg基础"><a href="#FFmpeg基础" class="headerlink" title="FFmpeg基础"></a>FFmpeg基础</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="封装格式-编码格式-协议"><a href="#封装格式-编码格式-协议" class="headerlink" title="封装格式 编码格式 协议"></a>封装格式 编码格式 协议</h3><p><img src="/2023/10/14/FFmpeg%E5%9F%BA%E7%A1%80/avpack.png"></p>
+        <h1 id="FFmpeg使用说明"><a href="#FFmpeg使用说明" class="headerlink" title="FFmpeg使用说明"></a>FFmpeg使用说明</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="封装格式-编码格式-协议"><a href="#封装格式-编码格式-协议" class="headerlink" title="封装格式 编码格式 协议"></a>封装格式 编码格式 协议</h3><p><img src="/2023/10/14/FFmpeg%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/avpack.png"></p>
 <ul>
 <li>封装格式：MP4</li>
 <li>编码格式：H.264</li>
@@ -872,7 +901,7 @@
 </li>
 </ul>
 <p>重采样的过程通常涉及<code>插值</code>、<code>抽取</code>或<code>过滤</code>等技术，以确保在转换过程中尽量减少失真和伪像。总的来说，音频重采样是一个常见的音频处理过程，可以帮助解决音频数据之间的不匹配问题，保证音频数据的质量和一致性。</p>
-<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><h3 id="ffplay播放器流程"><a href="#ffplay播放器流程" class="headerlink" title="ffplay播放器流程"></a>ffplay播放器流程</h3><p><img src="/2023/10/14/FFmpeg%E5%9F%BA%E7%A1%80/ffplay_flow.png"></p>
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><h3 id="ffplay播放器流程"><a href="#ffplay播放器流程" class="headerlink" title="ffplay播放器流程"></a>ffplay播放器流程</h3><p><img src="/2023/10/14/FFmpeg%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/ffplay_flow.png"></p>
 <h3 id="主要模块"><a href="#主要模块" class="headerlink" title="主要模块"></a>主要模块</h3><ul>
 <li>libavcodec : 编&#x2F;解码</li>
 <li>libavdevice : 设备视频文件的封装&#x2F;解封装</li>
@@ -902,7 +931,7 @@
 <li><p>直播相关</p>
 </li>
 </ul>
-<p>除了 FFMPEG 的基本信息查询命令外，其它命令都按下图所示的流程处理音视频。<br><img src="/2023/10/14/FFmpeg%E5%9F%BA%E7%A1%80/ffmpeg_flow.png"></p>
+<p>除了 FFMPEG 的基本信息查询命令外，其它命令都按下图所示的流程处理音视频。<br><img src="/2023/10/14/FFmpeg%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/ffmpeg_flow.png"></p>
 <ol>
 <li><p>（demuxer）打开输入文件，解封装，从容器格式中分离出音频、视频：</p>
 <p> 使用 FFmpeg 提供的 API 或命令行工具，打开要处理的输入文件。输入文件可以是音频文件、视频文件或者其他多媒体格式。</p>
@@ -927,12 +956,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>FFmpeg基础</p>
+    <p><span class="copy-title">文章标题:</span>FFmpeg使用说明</p>
     <p><span class="copy-title">字数:</span><span class="post-count">5.6k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
     <p><span class="copy-title">发布时间:</span>2023-10-14, 15:28:34</p>
-    <p><span class="copy-title">最后更新:</span>2024-04-26, 14:59:00</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/10/14/FFmpeg%E5%9F%BA%E7%A1%80/" title="FFmpeg基础">https://hualog.dns.navy/2023/10/14/FFmpeg%E5%9F%BA%E7%A1%80/</a>
+    <p><span class="copy-title">最后更新:</span>2024-04-28, 15:44:26</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/10/14/FFmpeg%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="FFmpeg使用说明">https://hualog.dns.navy/2023/10/14/FFmpeg%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>

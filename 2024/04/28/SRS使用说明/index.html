@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>WebRTC | 花落阁</title>
-  <meta name="keywords" content=" 传输协议 ">
-  <meta name="description" content="WebRTC | 花落阁">
+  <title>SRS使用说明 | 花落阁</title>
+  <meta name="keywords" content=" SRS ">
+  <meta name="description" content="SRS使用说明 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="SRS使用说明方法一： Docker 使用SRS 启动命令： docker run --rm -it -p 1935:1935 -p 1985:1985 -p 8080:8080 registry.cn-hangzhou.aliyuncs.com&#x2F;ossrs&#x2F;srs:5   使用ffmpeg推流： ffmpeg -re -i .&#x2F;doc&#x2F;source.flv -c copy -f flv rtmp">
 <meta property="og:type" content="article">
@@ -522,9 +522,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-WebRTC" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-SRS使用说明" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">WebRTC</h1>
+        <h1 class="article-title">SRS使用说明</h1>
     
     <div class="article-meta">
         
@@ -542,19 +542,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">传输协议</a>
+            <a class="color4">SRS</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-26 15:27:07'>2023-12-25 11:28</time>
+            发布时间 : <time class="date" title='最后更新: 2024-04-28 17:28:32'>2024-04-28 15:25</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:518</span>
+        <span>字数:402</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -584,7 +584,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebRTC"><span class="toc-text">WebRTC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-text">其他问题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-text">SRS使用说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A-Docker-%E4%BD%BF%E7%94%A8SRS"><span class="toc-text">方法一： Docker 使用SRS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91-%E4%BD%BF%E7%94%A8SRS"><span class="toc-text">方法二： 源码编译 使用SRS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Oryx-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">Oryx 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SRS-%E6%8E%A5%E5%85%A5-GB28181"><span class="toc-text">SRS 接入 GB28181</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -600,28 +600,83 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="WebRTC"><a href="#WebRTC" class="headerlink" title="WebRTC"></a>WebRTC</h1><p>WebRTC（Web Real-Time Communication）是一种开放框架，用于在网络应用程序和网站之间实现实时通信。它是一个基于浏览器的技术，使开发人员能够创建语音、视频和数据的实时通信应用，而无需用户下载任何插件或第三方软件。</p>
-<h2 id="协议类型"><a href="#协议类型" class="headerlink" title="协议类型"></a>协议类型</h2><p>WebRTC 包含一系列协议、API 和标准，用于实现实时通信。主要涉及的协议包括：</p>
-<ol>
-<li>ICE（Interactive Connectivity Establishment）：<br>用于发现和连接两个端点之间的最优路径。</li>
-<li>STUN（Session Traversal Utilities for NAT）：<br>用于找到对等方的公共 IP 地址。</li>
-<li>TURN（Traversal Using Relays around NAT）：<br>用于在直接连接不可能时，通过中继服务器传递数据。</li>
-<li>SRTP（Secure Real-time Transport Protocol）：<br>用于安全的音视频传输。</li>
-<li>DTLS（Datagram Transport Layer Security）：<br>为 WebRTC 提供安全性和数据加密。</li>
-</ol>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ol>
-<li>视频通话和语音通话：用于在浏览器中创建实时音视频通话应用，如视频会议、在线教育等。</li>
-<li>实时数据传输：可用于文件共享、在线游戏、协作应用等。</li>
-<li>直播流媒体：WebRTC 可以用于低延迟直播或点对点流媒体传输。</li>
-</ol>
-<h2 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h2><p>WebRTC 的工作机制主要包括以下几个步骤：</p>
-<ol>
-<li>信令（Signaling）：<br>这是一种用于建立 WebRTC 会话的过程，包括会话初始化、设备协商和连接管理。信令本身不属于 WebRTC 的规范范围，开发人员可以使用任意方法实现，例如 WebSockets 或其他协议。</li>
-<li>连接建立：<br>通过 ICE 协商，确定最合适的路径。过程中使用 STUN 和 TURN 来处理 NAT 和防火墙问题。</li>
-<li>安全通信：<br>通过 DTLS 和 SRTP，确保音视频数据在传输过程中保持加密和安全。</li>
-<li>媒体和数据通道：<br>建立后，WebRTC 可以在对等端之间传输音频、视频和数据。数据通道允许任意二进制或文本数据的传输，适用于多种应用场景。</li>
-</ol>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2>
+        <h1 id="SRS使用说明"><a href="#SRS使用说明" class="headerlink" title="SRS使用说明"></a>SRS使用说明</h1><h2 id="方法一：-Docker-使用SRS"><a href="#方法一：-Docker-使用SRS" class="headerlink" title="方法一： Docker 使用SRS"></a>方法一： Docker 使用SRS</h2><ul>
+<li><p>启动命令：</p>
+<pre><code class="bash">docker run --rm -it -p 1935:1935 -p 1985:1985 -p 8080:8080 registry.cn-hangzhou.aliyuncs.com/ossrs/srs:5
+</code></pre>
+</li>
+<li><p>使用ffmpeg推流：</p>
+<pre><code class="bash">ffmpeg -re -i ./doc/source.flv -c copy -f flv rtmp://localhost/live/livestream
+</code></pre>
+</li>
+<li><p>打开下面的页面播放流（若SRS不在本机，请将localhost更换成服务器IP）:</p>
+<ul>
+<li>RTMP (by VLC): rtmp:&#x2F;&#x2F;localhost&#x2F;live&#x2F;livestream</li>
+<li>H5(HTTP-FLV): <a target="_blank" rel="noopener" href="http://localhost:8080/live/livestream.flv">http://localhost:8080/live/livestream.flv</a></li>
+<li>H5(HLS): <a target="_blank" rel="noopener" href="http://localhost:8080/live/livestream.m3u8">http://localhost:8080/live/livestream.m3u8</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="方法二：-源码编译-使用SRS"><a href="#方法二：-源码编译-使用SRS" class="headerlink" title="方法二： 源码编译 使用SRS"></a>方法二： 源码编译 使用SRS</h2><ul>
+<li><p>下载源码：</p>
+<pre><code class="bash">git clone -b develop https://gitee.com/ossrs/srs.git
+</code></pre>
+</li>
+<li><p>编译，注意需要切换到srs&#x2F;trunk目录：</p>
+<pre><code class="bash">cd srs/trunk
+./configure
+make
+</code></pre>
+</li>
+<li><p>启动服务器：</p>
+<pre><code class="bash"># conf文件夹下有很多配置，这里默认选用srs.conf
+./objs/srs -c conf/srs.conf
+</code></pre>
+</li>
+<li><p>检查SRS是否成功启动，可以打开 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080/</a> ，或者执行命令：</p>
+<pre><code class="bash"># 查看SRS的状态
+./etc/init.d/srs status
+
+# 或者看SRS的日志
+tail -n 30 -f ./objs/srs.log
+
+# 启动SRS：
+./etc/init.d/srs start
+    
+# 停止SRS：
+./etc/init.d/srs stop
+    
+# 重启SRS：
+./etc/init.d/srs restart
+    
+# Reload SRS：
+./etc/init.d/srs reload
+</code></pre>
+</li>
+<li><p>推流同上</p>
+</li>
+</ul>
+<h2 id="Oryx-的使用"><a href="#Oryx-的使用" class="headerlink" title="Oryx 的使用"></a>Oryx 的使用</h2><p>Oryx(SRS Stack)是一个基于Go、Reactjs、SRS、FFmpeg、WebRTC等的轻量级、开源的视频云解决方案。</p>
+<ul>
+<li><p>使用Docker启动：</p>
+<pre><code class="bash">docker run --restart always -d -it --name oryx -v $HOME/data:/data -p 80:2022 -p 443:2443 -p 1935:1935 -p 8000:8000/udp -p 10080:10080/udp registry.cn-hangzhou.aliyuncs.com/ossrs/oryx:5
+</code></pre>
+</li>
+<li><p>直接访问<code>80</code>端口即可使用Orys</p>
+<p>  SRS5对于推拉流暂时只下图所列出的：</p>
+<p>  <img src="/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/Oryx.png"></p>
+</li>
+</ul>
+<h2 id="SRS-接入-GB28181"><a href="#SRS-接入-GB28181" class="headerlink" title="SRS 接入 GB28181"></a>SRS 接入 GB28181</h2><ul>
+<li><p>修改 conf&#x2F;gb28181.conf：</p>
+</li>
+<li><p>启动服务器：</p>
+<pre><code class="bash"># conf文件夹下有很多配置，这里默认选用srs.conf
+./objs/srs -c conf/gb28181.conf
+</code></pre>
+</li>
+</ul>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
     </div>
@@ -630,12 +685,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>WebRTC</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">518</span></p>
+    <p><span class="copy-title">文章标题:</span>SRS使用说明</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">402</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
-    <p><span class="copy-title">发布时间:</span>2023-12-25, 11:28:29</p>
-    <p><span class="copy-title">最后更新:</span>2024-04-26, 15:27:07</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/12/25/WebRTC/" title="WebRTC">https://hualog.dns.navy/2023/12/25/WebRTC/</a>
+    <p><span class="copy-title">发布时间:</span>2024-04-28, 15:25:10</p>
+    <p><span class="copy-title">最后更新:</span>2024-04-28, 17:28:32</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="SRS使用说明">https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>
