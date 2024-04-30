@@ -14,8 +14,13 @@
 <meta property="og:description" content="SRS使用说明方法一： Docker 使用SRS 启动命令： docker run --rm -it -p 1935:1935 -p 1985:1985 -p 8080:8080 registry.cn-hangzhou.aliyuncs.com&#x2F;ossrs&#x2F;srs:5   使用ffmpeg推流： ffmpeg -re -i .&#x2F;doc&#x2F;source.flv -c copy -f flv rtmp">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/Oryx.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/gb28181_3.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/gb28181_4.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/gb28181_1.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/gb28181_2.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/rtc.png">
 <meta property="article:published_time" content="2024-04-28T07:25:10.000Z">
-<meta property="article:modified_time" content="2024-04-28T09:28:32.510Z">
+<meta property="article:modified_time" content="2024-04-30T09:52:12.938Z">
 <meta property="article:author" content="花落阁">
 <meta property="article:tag" content="SRS">
 <meta name="twitter:card" content="summary">
@@ -265,7 +270,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="15">
-<input type="hidden" id="yelog_site_word_count" value="80.5k">
+<input type="hidden" id="yelog_site_word_count" value="82.6k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -549,12 +554,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-26 15:27:07'>2023-12-25 11:28</time>
+            发布时间 : <time class="date" title='最后更新: 2024-04-30 17:17:24'>2023-12-25 11:28</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:518</span>
+        <span>字数:1.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -584,7 +589,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebRTC"><span class="toc-text">WebRTC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-text">其他问题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebRTC"><span class="toc-text">WebRTC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">协议类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WebRTC-%E6%98%AF-P2P-%E7%9A%84-%E4%B8%80%E5%AF%B9%E4%B8%80%E8%A7%86%E9%A2%91%E7%9A%84%E6%97%B6%E5%80%99%E5%A5%BD%E7%90%86%E8%A7%A3-%E9%82%A3%E5%A4%9A%E5%AF%B9%E5%A4%9A%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0-P2P-%E5%91%A2"><span class="toc-text">WebRTC 是 P2P 的,一对一视频的时候好理解,那多对多怎么做到 P2P 呢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SFU-%E4%B8%8E-MCU-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">SFU 与 MCU 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%A7%80%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE"><span class="toc-text">优秀开源项目</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -614,14 +619,122 @@
 <li>实时数据传输：可用于文件共享、在线游戏、协作应用等。</li>
 <li>直播流媒体：WebRTC 可以用于低延迟直播或点对点流媒体传输。</li>
 </ol>
-<h2 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h2><p>WebRTC 的工作机制主要包括以下几个步骤：</p>
+<h2 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h2><p>WebRTC实际上是两个Web浏览器之间直接通信的标准，主要包含了信令(Signaling)和媒体(Media)两个部分的协议。 信令解决两个设备之间的能力的协商的问题，比如支持的编解码能力。媒体解决两个设备之间加密和低延迟媒体包传输的能力。 除此之外，WebRTC本身还实现了语言处理技术比如3A，网络拥塞控制比如NACK、FEC和GCC，音视频编解码，平滑和低延迟播放技术。</p>
+<pre><code class="css">+----------------+                        +----------------+
++    Browser     +----&lt;--Signaling-----&gt;--+    Browser     +
++ (like Chrome)  +----&lt;----Media-----&gt;----+ (like Chrome)  +
++----------------+                        +----------------+
+</code></pre>
+<blockquote>
+<p>Note: WebRTC已经是RFC正式标准，因此各种浏览器都已经支持，而开源的实现也很多，因此不限于浏览器，移动端的浏览器和 Native库也有很多，因此为了沟通的简单起见，本文一般以浏览器指代所有支持WebRTC协议的客户端或设备。</p>
+</blockquote>
+<p>在互联网上，两个浏览器几乎无法直接通信，特别是不在一个局域网，而且是在远距离跨城市甚至跨国家时，两个浏览器之间 传输数据会经过非常多的网络路由器和防火墙，因此传输质量无法保障。因此，实际应用是需要经过服务器中转，而WebRTC服务器有 几种类型：</p>
 <ol>
-<li>信令（Signaling）：<br>这是一种用于建立 WebRTC 会话的过程，包括会话初始化、设备协商和连接管理。信令本身不属于 WebRTC 的规范范围，开发人员可以使用任意方法实现，例如 WebSockets 或其他协议。</li>
-<li>连接建立：<br>通过 ICE 协商，确定最合适的路径。过程中使用 STUN 和 TURN 来处理 NAT 和防火墙问题。</li>
-<li>安全通信：<br>通过 DTLS 和 SRTP，确保音视频数据在传输过程中保持加密和安全。</li>
-<li>媒体和数据通道：<br>建立后，WebRTC 可以在对等端之间传输音频、视频和数据。数据通道允许任意二进制或文本数据的传输，适用于多种应用场景。</li>
+<li>Signaling Server: 信令服务，两个浏览器之间交换SDP的服务。如果是多人会议，则需要提供房间服务，本质上都是为各个浏览器交换SDP。而在流媒体领域，为了可以使用WebRTC推流和播放，像推送和播放RTMP&#x2F;SRT&#x2F;HLS流一样，WHIP&#x2F;WHEP协议被设计出来了。</li>
+<li>TURN Server: 转发服务，帮助两个浏览器之间转发媒体数据的服务。这是一种透明转发服务，并<strong>不会实现数据缓存</strong>，因此当多人会议时，浏览器之间需要传输<code>N*N + N*(N-2)</code>份数据。一般只应用在非常少的通信场景中，比如一对一。</li>
+<li>SFU Server: 选择性转发服务，服务器上有缓存数据，因此浏览器只需要上传一份数据，服务器会复制给其他参会者。<strong>SRS就是SFU</strong>，关于SFU的作用可以参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/61703692/what-is-the-role-of-sfu-janus-mediasoup-or-medooze-on-a-webrtc-application/75491178#75491178">这里</a>。目前主要的WebRTC服务器都是SFU服务器，会有<code>N*N</code>份流传输，比TURN少<code>N*(N-2)</code>份上行数据传输，能解决大部分的传输问题。</li>
+<li>MCU Server: 多点控制服务，服务器将会议中的流合并成一路，这样浏览器只需要传输N*2份数据，上传一路下载一路数据。但由于<strong>需要编解码</strong>，服务器支持的流的数量比SFU要少一个量级，只有在某些特定场景才会采用。</li>
 </ol>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2>
+<p>我们重点介绍SFU的工作流，因为SFU是在WebTC服务器中使用最多的，它本质上就是一个浏览器：</p>
+<pre><code class="css">+----------------+                        +---------+
++    Browser     +----&lt;--Signaling-----&gt;--+   SFU   +
++ (like Chrome)  +----&lt;----Media-----&gt;----+  Server +
++----------------+                        +---------+
+</code></pre>
+<blockquote>
+<p>Note: SFU一般都会有Signaling的能力，其实可以把RTMP地址也可以看成是一种非常简化的信令协议，只是WebRTC的信令需要协商 媒体和传输能力，所以比较复杂。在复杂的WebRTC系统中，可能有独立的Signaling和Room集群，但是SFU同样也会有简化的Signaling能力， 只是可能是用于和其他服务通信。</p>
+</blockquote>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><h3 id="WebRTC-是-P2P-的-一对一视频的时候好理解-那多对多怎么做到-P2P-呢"><a href="#WebRTC-是-P2P-的-一对一视频的时候好理解-那多对多怎么做到-P2P-呢" class="headerlink" title="WebRTC 是 P2P 的,一对一视频的时候好理解,那多对多怎么做到 P2P 呢"></a>WebRTC 是 P2P 的,一对一视频的时候好理解,那多对多怎么做到 P2P 呢</h3><p>WebRTC 的核心原则是点对点（Peer-to-Peer，P2P）通信，但在多对多的场景中，直接的 P2P 连接可能会变得复杂。WebRTC 的设计初衷是尽可能使用 P2P 连接，以提高效率和降低延迟，但在多对多场景中，可能会使用不同的技术架构和策略。</p>
+<p>在多对多的 WebRTC 应用中，通常有两种主要模式来处理点对点通信：</p>
+<ol>
+<li>Mesh 模式：<br> 在 Mesh 模式中，每个参与者与其他所有参与者建立 P2P 连接。这意味着如果有 N 个参与者，每个参与者将建立 N-1 个连接。因此，整个网络中会有 N*(N-1)&#x2F;2 个连接。<ul>
+<li>优点：直接的 P2P 连接提供了最低的延迟，数据不需要经过中间服务器。</li>
+<li>缺点：连接数量随着参与者数量的增加而指数增长，这会导致带宽和资源消耗的增加。这种模式在小规模会议中效果较好，但在大型会议或资源受限的环境中可能会遇到瓶颈。</li>
+</ul>
+</li>
+<li>SFU 模式（Selective Forwarding Unit）：<br> 在 SFU 模式中，每个参与者只与一个中间服务器（SFU）建立连接。SFU 服务器负责接收每个参与者的音频和视频流，然后根据需求将其转发给其他参与者。<ul>
+<li>优点：减少了参与者之间的连接数量，降低了每个参与者的带宽和处理负担。SFU 服务器可以选择性地转发流，从而支持更大的会议规模。</li>
+<li>缺点：SFU 服务器引入了一定的延迟，因为数据需要经过中间服务器；而且 SFU 服务器可能成为单点故障。</li>
+</ul>
+</li>
+</ol>
+<h3 id="SFU-与-MCU-的区别"><a href="#SFU-与-MCU-的区别" class="headerlink" title="SFU 与 MCU 的区别"></a>SFU 与 MCU 的区别</h3><ul>
+<li><p>SFU（Selective Forwarding Unit）</p>
+<p>  SFU 是选择性转发的，可以选择性地转发音频和视频流，允许每个参与者接收不同数量的流或不同质量的流。</p>
+</li>
+<li><p>MCU（Multipoint Control Unit）</p>
+<p>  MCU 将多个参与者的音频和视频流进行合成，这意味着每个参与者只需接收一条合成流。由于 MCU 需要对媒体流进行解码、合成和转码，资源消耗相对较高。</p>
+</li>
+</ul>
+<p>架构区别如下：</p>
+<p><img src="/2023/12/25/WebRTC/sfu_mcu.png"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>优势</th>
+<th>劣势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SFU</td>
+<td>灵活分发，并发高</td>
+<td>下行转发路数多，带宽占用高，多方通话影响体验</td>
+</tr>
+<tr>
+<td>MCU</td>
+<td>转发流数少，下行带宽占用少</td>
+<td>服务器性能要求高，部署成本高，实时性稍差</td>
+</tr>
+</tbody></table>
+<h3 id="优秀开源项目"><a href="#优秀开源项目" class="headerlink" title="优秀开源项目"></a>优秀开源项目</h3><p>WebRTC 的生态中，有许多优异的开源媒体服务器，下面列出部分关注度高的项目：</p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>SFU</th>
+<th>MCU</th>
+<th>LIcense</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SRS</td>
+<td>☑️</td>
+<td>✖️</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>Janus</td>
+<td>☑️</td>
+<td>☑️</td>
+<td>GPL v3</td>
+</tr>
+<tr>
+<td>Licode</td>
+<td>☑️</td>
+<td>☑️</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>MediaSoup</td>
+<td>☑️</td>
+<td>✖️</td>
+<td>ISC</td>
+</tr>
+<tr>
+<td>Kurento</td>
+<td>☑️</td>
+<td>☑️</td>
+<td>Apache2</td>
+</tr>
+<tr>
+<td>Jitsi</td>
+<td>☑️</td>
+<td>✖️</td>
+<td>Apache2</td>
+</tr>
+</tbody></table>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
     </div>
@@ -631,10 +744,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>WebRTC</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">518</span></p>
+    <p><span class="copy-title">字数:</span><span class="post-count">1.9k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
     <p><span class="copy-title">发布时间:</span>2023-12-25, 11:28:29</p>
-    <p><span class="copy-title">最后更新:</span>2024-04-26, 15:27:07</p>
+    <p><span class="copy-title">最后更新:</span>2024-04-30, 17:17:24</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/12/25/WebRTC/" title="WebRTC">https://hualog.dns.navy/2023/12/25/WebRTC/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
