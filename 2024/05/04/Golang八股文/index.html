@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Golang八股文 | 花落阁</title>
+  <meta name="keywords" content=" 编程语言 , golang ">
+  <meta name="description" content="Golang八股文 | 花落阁">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="C++设计模式面对对象中的设计原则SOLID原则SOLID 是面向对象设计的五个核心原则的首字母缩写。每个原则都是指导良好设计的重要指南。  **单一职责原则 (Single Responsibility Principle, SRP)**：一个类应该只有一个明确的职责。换句话说，一个类应该只有一个导致其变化的原因。这有助于减少类的复杂性，并提高代码的可维护性和测试性。  **开放封闭原则 (Op">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++设计模式">
+<meta property="og:url" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="花落阁">
+<meta property="og:description" content="C++设计模式面对对象中的设计原则SOLID原则SOLID 是面向对象设计的五个核心原则的首字母缩写。每个原则都是指导良好设计的重要指南。  **单一职责原则 (Single Responsibility Principle, SRP)**：一个类应该只有一个明确的职责。换句话说，一个类应该只有一个导致其变化的原因。这有助于减少类的复杂性，并提高代码的可维护性和测试性。  **开放封闭原则 (Op">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE01.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE02.png">
+<meta property="article:published_time" content="2024-05-06T01:55:06.000Z">
+<meta property="article:modified_time" content="2024-05-06T07:00:19.723Z">
+<meta property="article:author" content="花落阁">
+<meta property="article:tag" content="编程语言">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE01.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>花落阁</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/xuanxuan000"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:aze0917@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1430797759&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(22)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            <small>(7)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;tools">
+            
+            tools
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(6)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;常识类">
+            
+            常识类
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="音视频">
+            
+            音视频
+            <small>(8)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="22">
+<input type="hidden" id="yelog_site_word_count" value="112k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编程语言</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编码</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>程序构建</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>传输协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cmake</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ffmpeg</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>gdb</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>golang</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>make</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>md</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SRS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zlmediakit</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 编程语言 常识类 "
+           href="/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="编程语言,C++"
+           data-author="" >
+            <span class="post-title" title="C++设计模式">C++设计模式</span>
+            <span class="post-date" title="2024-05-06 09:55:06">2024/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/05/QT%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="QT多线程与线程池">QT多线程与线程池</span>
+            <span class="post-date" title="2024-05-05 23:13:13">2024/05/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2024/05/05/GDB%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="gdb"
+           data-author="" >
+            <span class="post-title" title="GDB使用说明">GDB使用说明</span>
+            <span class="post-date" title="2024-05-05 19:55:40">2024/05/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 常识类 "
+           href="/2024/05/04/Golang%E5%85%AB%E8%82%A1%E6%96%87/"
+           data-tag="编程语言,golang"
+           data-author="" >
+            <span class="post-title" title="Golang八股文">Golang八股文</span>
+            <span class="post-date" title="2024-05-04 15:55:19">2024/05/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/05/02/H-264%E7%BC%96%E7%A0%81/"
+           data-tag="编码"
+           data-author="" >
+            <span class="post-title" title="H.264编码">H.264编码</span>
+            <span class="post-date" title="2024-05-02 10:32:43">2024/05/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/05/02/WebRTC-%E4%B8%80%E5%AF%B9%E4%B8%80%E9%80%9A%E8%AF%9D/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="WebRTC-一对一通话">WebRTC-一对一通话</span>
+            <span class="post-date" title="2024-05-02 10:04:15">2024/05/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/05/01/ZLMediaKit%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="zlmediakit"
+           data-author="" >
+            <span class="post-title" title="ZLMediaKit使用说明">ZLMediaKit使用说明</span>
+            <span class="post-date" title="2024-05-01 11:43:30">2024/05/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="SRS"
+           data-author="" >
+            <span class="post-title" title="SRS使用说明">SRS使用说明</span>
+            <span class="post-date" title="2024-04-28 15:25:10">2024/04/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 "
+           href="/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="我遇到过的疑难杂症">我遇到过的疑难杂症</span>
+            <span class="post-date" title="2024-04-17 18:00:55">2024/04/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2023/12/25/WebRTC/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="WebRTC">WebRTC</span>
+            <span class="post-date" title="2023-12-25 11:28:29">2023/12/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2023/11/26/GB28181/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="GB28181">GB28181</span>
+            <span class="post-date" title="2023-11-26 11:19:05">2023/11/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2023/11/26/%E6%8A%93%E5%8C%85/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="抓包">抓包</span>
+            <span class="post-date" title="2023-11-26 10:20:36">2023/11/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2023/11/20/%E9%9F%B3%E8%A7%86%E9%A2%91%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="音视频传输协议">音视频传输协议</span>
+            <span class="post-date" title="2023-11-20 10:53:43">2023/11/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2023/10/14/FFmpeg%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="ffmpeg"
+           data-author="" >
+            <span class="post-title" title="FFmpeg使用说明">FFmpeg使用说明</span>
+            <span class="post-date" title="2023-10-14 15:28:34">2023/10/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2023/04/29/Docker%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker使用说明">Docker使用说明</span>
+            <span class="post-date" title="2023-04-29 10:16:08">2023/04/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2023/04/14/Git%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="Git使用说明">Git使用说明</span>
+            <span class="post-date" title="2023-04-14 14:57:56">2023/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 常识类 "
+           href="/2023/04/13/MySQL/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="MySQL">MySQL</span>
+            <span class="post-date" title="2023-04-13 23:58:34">2023/04/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2023/02/28/CMake%E8%AF%AD%E6%B3%95/"
+           data-tag="cmake,make,程序构建"
+           data-author="" >
+            <span class="post-title" title="CMake语法">CMake语法</span>
+            <span class="post-date" title="2023-02-28 17:01:34">2023/02/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 常识类 "
+           href="/2023/02/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="计算机网络">计算机网络</span>
+            <span class="post-date" title="2023-02-13 17:27:49">2023/02/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 常识类 "
+           href="/2023/02/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="操作系统">操作系统</span>
+            <span class="post-date" title="2023-02-12 10:54:34">2023/02/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 常识类 "
+           href="/2023/01/23/C++%E5%85%AB%E8%82%A1%E6%96%87/"
+           data-tag="编程语言,C++"
+           data-author="" >
+            <span class="post-title" title="C++八股文">C++八股文</span>
+            <span class="post-date" title="2023-01-23 17:48:51">2023/01/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2022/08/22/Markdown%E8%AF%AD%E6%B3%95/"
+           data-tag="markdown,md"
+           data-author="" >
+            <span class="post-title" title="Markdown语法">Markdown语法</span>
+            <span class="post-date" title="2022-08-22 11:24:12">2022/08/22</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Golang八股文" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Golang八股文</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;常识类">常识类</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">编程语言</a>
+            
+            <a class="color2">golang</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-05-06 09:57:14'>2024-05-04 15:55</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:13.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Golang%E5%85%AB%E8%82%A1%E6%96%87"><span class="toc-text">Golang八股文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B"><span class="toc-text">一、Go语言编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-make-%E5%92%8C-new-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">1.1 make 和 new 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%88%87%E7%89%87%E5%92%8C%E6%95%B0%E7%BB%84%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">1.2 切片和数组的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-for-range-%E9%99%B7%E9%98%B1"><span class="toc-text">1.3 for range 陷阱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E4%B8%89%E7%A7%8D%E5%BC%95%E5%8F%B7%E5%8C%BA%E5%88%AB"><span class="toc-text">1.4 三种引号区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E5%87%BD%E6%95%B0%E4%B8%8E%E6%96%B9%E6%B3%95"><span class="toc-text">1.5 函数与方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E5%AD%90%E5%88%87%E7%89%87%E5%AF%BC%E8%87%B4%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E9%97%AE%E9%A2%98"><span class="toc-text">1.6 子切片导致的内存泄漏问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-Golang%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E5%9C%B0%E6%8B%BC%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9F"><span class="toc-text">1.7 Golang如何高效地拼接字符串？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-Golang%E4%B8%AD2-%E4%B8%AA-interface-%E5%8F%AF%E4%BB%A5%E6%AF%94%E8%BE%83%E5%90%97%EF%BC%9F"><span class="toc-text">1.8 Golang中2 个 interface 可以比较吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-Golang-%E4%B8%AD-init-%E5%87%BD%E6%95%B0"><span class="toc-text">1.9 Golang 中 init() 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-Golang%E7%9A%84Map%E5%8F%AF%E4%BB%A5%E8%BE%B9%E9%81%8D%E5%8E%86%E8%BE%B9%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0%E5%90%97%EF%BC%9F"><span class="toc-text">1.10 Golang的Map可以边遍历边删除元素吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-11-Golang%E7%9A%84float%E7%B1%BB%E5%9E%8B%E5%8F%AF%E4%BB%A5%E4%BD%9C%E4%B8%BAMap%E7%9A%84key%E5%90%97%EF%BC%9F"><span class="toc-text">1.11 Golang的float类型可以作为Map的key吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-12-Golang%E4%B8%ADMap%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1.12 Golang中Map的数据结构是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-13-Golang%E4%B8%AD%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-text">1.13 Golang中函数返回局部变量的指针是否安全？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-14-Golang%E4%B8%AD%E4%B8%A4%E4%B8%AA-nil-%E5%8F%AF%E8%83%BD%E4%B8%8D%E7%9B%B8%E7%AD%89%E5%90%97%EF%BC%9F"><span class="toc-text">1.14 Golang中两个 nil 可能不相等吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-15-Golang%E7%9A%84%E5%88%87%E7%89%87%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E6%98%AF%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%EF%BC%9F"><span class="toc-text">1.15 Golang的切片作为函数参数是值传递还是引用传递？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-16-Golang%E4%B8%AD%E5%93%AA%E4%BA%9B%E4%B8%8D%E8%83%BD%E4%BD%9C%E4%B8%BAmap%E7%B1%BB%E5%9E%8B%E7%9A%84key%EF%BC%9F"><span class="toc-text">1.16 Golang中哪些不能作为map类型的key？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-17-Golang%E4%B8%ADnil-map-%E5%92%8C%E7%A9%BA-map-%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-text">1.17 Golang中nil map 和空 map 有何不同？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-18-Golang%E7%9A%84Map%E4%B8%AD%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA-key%EF%BC%8C%E5%AE%83%E7%9A%84%E5%86%85%E5%AD%98%E4%BC%9A%E9%87%8A%E6%94%BE%E4%B9%88%EF%BC%9F"><span class="toc-text">1.18 Golang的Map中删除一个 key，它的内存会释放么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-19-Golang-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E4%BC%A0%E5%85%A5%E7%BB%93%E6%9E%84%E4%BD%93%E6%97%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E6%8C%87%E9%92%88%EF%BC%9F"><span class="toc-text">1.19 Golang 调用函数传入结构体时，应该传值还是指针？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-20-%E5%93%AA%E4%BA%9B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%BB%98%E8%AE%A4%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%EF%BC%9F"><span class="toc-text">1.20 哪些数据结构默认引用传递？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-21-Golang-%E4%B8%AD%E8%A7%A3%E6%9E%90-tag-%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="toc-text">1.21 Golang 中解析 tag 是怎么实现的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-22-Golang-sync-Map-%E7%9A%84%E7%94%A8%E6%B3%95%EF%BC%9F"><span class="toc-text">1.22 Golang sync.Map 的用法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-23-Go%E7%9A%84Struct%E8%83%BD%E4%B8%8D%E8%83%BD%E2%BD%90%E8%BE%83%EF%BC%9F"><span class="toc-text">1.23 Go的Struct能不能⽐较？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-24-%E8%A7%A3%E9%87%8AGo%E8%AF%AD%E8%A8%80%E4%BB%80%E4%B9%88%E6%98%AF%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90"><span class="toc-text">1.24 解释Go语言什么是负载因子?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-25-unsafe-Pointer"><span class="toc-text">1.25 unsafe.Pointer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-26-%E7%AE%80%E8%BF%B0Golang%E7%A9%BA%E7%BB%93%E6%9E%84%E4%BD%93-struct-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">1.26 简述Golang空结构体 struct{} 的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-27-string-%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%80%BC%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E5%90%97%EF%BC%9F"><span class="toc-text">1.27 string 类型的值可以修改吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-28-Switch-%E4%B8%AD%E5%A6%82%E4%BD%95%E5%BC%BA%E5%88%B6%E6%89%A7%E8%A1%8C%E4%B8%8B%E4%B8%80%E4%B8%AA-case-%E4%BB%A3%E7%A0%81%E5%9D%97%EF%BC%9F"><span class="toc-text">1.28 Switch 中如何强制执行下一个 case 代码块？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-29-%E8%A7%A3%E6%9E%90-JSON-%E6%95%B0%E6%8D%AE%E6%97%B6%EF%BC%8C%E9%BB%98%E8%AE%A4%E5%B0%86%E6%95%B0%E5%80%BC%E5%BD%93%E5%81%9A%E5%93%AA%E7%A7%8D%E7%B1%BB%E5%9E%8B%EF%BC%9F"><span class="toc-text">1.29 解析 JSON 数据时，默认将数值当做哪种类型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-30-%E5%A6%82%E4%BD%95%E4%BB%8E-panic-%E4%B8%AD%E6%81%A2%E5%A4%8D%EF%BC%9F"><span class="toc-text">1.30 如何从 panic 中恢复？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-31-%E9%98%90%E8%BF%B0-Printf-%E3%80%81Sprintf-%E3%80%81Fprintf-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB%E7%94%A8%E6%B3%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1.31 阐述 Printf()、Sprintf()、Fprintf()函数的区别用法是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-32-%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80"><span class="toc-text">1.32 类型断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-33-%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-text">1.33 静态类型声明的好处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-34-%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="toc-text">1.34 可变参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-35-Golang%E5%AF%BC%E5%85%A5%E5%8C%85%E6%97%B6%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E8%83%BD%E4%BD%BF%E7%94%A8-%E6%88%96-%E5%AF%BC%E5%85%A5-%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="toc-text">1.35 Golang导入包时，为什么可能使用_ 或 .导入? 举例说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-36-Golang%E4%B8%AD%E7%9A%84%E6%8E%A5%E5%8F%A3%E7%B1%BB%E5%9E%8B%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81%E5%83%8FJava%E9%82%A3%E6%A0%B7%E7%9A%84%E5%A4%9A%E7%BB%A7%E6%89%BF%EF%BC%9F"><span class="toc-text">1.36 Golang中的接口类型是否支持像Java那样的多继承？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-37-Golang%E4%B8%AD%E7%9A%84sync%E5%8C%85%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="toc-text">1.37 Golang中的sync包是什么？如何使用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-38-Go-%E8%B0%83%E5%BA%A6%E5%99%A8-MPG%E6%A8%A1%E5%9E%8B"><span class="toc-text">1.38 Go 调度器 MPG模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-39-CSP%E6%A8%A1%E5%9E%8B"><span class="toc-text">1.39 CSP模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-40-%E7%AE%80%E8%BF%B0Go-%E8%AF%AD%E8%A8%80%E4%B8%AD-cap-%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E4%BD%9C%E7%94%A8%E4%BA%8E%E9%82%A3%E4%BA%9B%E5%86%85%E5%AE%B9%EF%BC%9F"><span class="toc-text">1.40 简述Go 语言中 cap 函数可以作用于那些内容？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-41-%E7%AE%80%E8%BF%B0go-convey-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%80%E8%88%AC%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1.41 简述go convey 是什么？一般用来做什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-42-%E9%97%AD%E5%8C%85"><span class="toc-text">1.42 闭包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Go%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86"><span class="toc-text">二、Go机制原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Golang-uint-%E7%B1%BB%E5%9E%8B%E6%BA%A2%E5%87%BA%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-text">2.1 Golang uint 类型溢出问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Golang%E4%B8%AD%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%8F%E7%A8%8B%E6%B3%84%E9%9C%B2-Goroutine-Leak-%EF%BC%9F"><span class="toc-text">2.2 Golang中什么是协程泄露(Goroutine Leak)？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Go-%E8%AF%AD%E8%A8%80%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%88%86%E9%85%8D%E5%9C%A8%E6%A0%88%E4%B8%8A%E8%BF%98%E6%98%AF%E5%A0%86%E4%B8%8A%EF%BC%9F"><span class="toc-text">2.3 Go 语言的局部变量分配在栈上还是堆上？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E9%98%90%E8%BF%B0-Go-%E7%9A%84-select-%E7%9A%84%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="toc-text">2.4 阐述 Go 的 select 的特性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Golang%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%88%90byte%E6%95%B0%E7%BB%84%EF%BC%8C%E4%BC%9A%E5%8F%91%E7%94%9F%E5%86%85%E5%AD%98%E6%8B%B7%E8%B4%9D%E5%90%97%EF%BC%9F"><span class="toc-text">2.5 Golang字符串转成byte数组，会发生内存拷贝吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%AF%B9%E5%B7%B2%E7%BB%8F%E5%85%B3%E9%97%AD%E7%9A%84%E7%9A%84chan%E8%BF%9B%E8%A1%8C%E8%AF%BB%E5%86%99%EF%BC%8C%E4%BC%9A%E6%80%8E%E4%B9%88%E6%A0%B7%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">2.6 对已经关闭的的chan进行读写，会怎么样？为什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-Golang%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E2%BC%A9%E5%AF%B9%E8%B1%A1%E5%A4%9A%E4%BA%86%E4%BC%9A%E9%80%A0%E6%88%90GC%E5%8E%8B%E2%BC%92%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-text">2.7 Golang的内存模型中为什么⼩对象多了会造成GC压⼒？如何解决？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-Golang-%E7%9A%84-GC%E7%9A%84%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6%EF%BC%9F"><span class="toc-text">2.8 Golang 的 GC的触发条件？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-Go%E4%B8%AD%E7%9A%84%E9%94%81%E6%9C%89%E5%93%AA%E4%BA%9B-%EF%BC%9F"><span class="toc-text">2.9 Go中的锁有哪些 ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-Channel%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84%EF%BC%9F"><span class="toc-text">2.10 Channel是同步的还是异步的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-%E7%AE%80%E8%BF%B0Goroutine%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">2.11 简述Goroutine和线程的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-%E4%BB%8B%E7%BB%8D%E4%B8%8Bgolang%E7%9A%84atomic%E5%8C%85"><span class="toc-text">2.12 介绍下golang的atomic包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-%E7%AE%80%E8%BF%B0Go%E4%B8%ADCAS%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="toc-text">2.13 简述Go中CAS算法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-Go%E5%87%BD%E6%95%B0%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%8F%91%E2%BD%A3%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%EF%BC%9F"><span class="toc-text">2.14 Go函数中为什么会发⽣内存泄露？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-Golang%E5%8D%8F%E7%A8%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E2%BD%90%E7%BA%BF%E7%A8%8B%E8%BD%BB%E9%87%8F%EF%BC%9F"><span class="toc-text">2.15 Golang协程为什么⽐线程轻量？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-16-%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88-Go-Scheduler-%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0-M-N-%E7%9A%84%E2%BD%85%E6%A1%88%EF%BC%9FGo-Scheduler-%E7%94%B1%E5%93%AA%E4%BA%9B%E5%85%83-%E7%B4%A0%E6%9E%84%E6%88%90%E5%91%A2%EF%BC%9F"><span class="toc-text">2.16 线程模型有哪些？为什么 Go Scheduler 需要实现 M:N 的⽅案？Go Scheduler 由哪些元 素构成呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-17-%E4%BA%92%E6%96%A5%E9%94%81%E6%AD%A3%E5%B8%B8%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%A5%A5%E9%A5%BF%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB-%EF%BC%9F"><span class="toc-text">2.17 互斥锁正常模式和饥饿模式的区别 ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-18-%E8%A7%A3%E9%87%8AGo-work-stealing-%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-text">2.18 解释Go work stealing 机制？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-19-%E8%A7%A3%E9%87%8A-Go-hand-off-%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-text">2.19 解释 Go hand off 机制？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-20-%E5%A6%82%E4%BD%95%E5%9C%A8Golang%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="toc-text">2.20 如何在Golang中实现协程池？</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Golang八股文"><a href="#Golang八股文" class="headerlink" title="Golang八股文"></a>Golang八股文</h1><h2 id="一、Go语言编程"><a href="#一、Go语言编程" class="headerlink" title="一、Go语言编程"></a>一、Go语言编程</h2><h3 id="1-1-make-和-new-的区别"><a href="#1-1-make-和-new-的区别" class="headerlink" title="1.1 make 和 new 的区别"></a>1.1 make 和 new 的区别</h3><ul>
+<li>接收参数个数不一样：new() 只接收一个参数，而 make() 可以接收多个参数</li>
+<li>返回类型不一样：new() 返回一个指针，而 make() 返回类型和它接收的第一个参数类型一样</li>
+<li>应用场景不一样：make() 专门用来为 slice、map、chan 这样的引用类型分配内存并作初始化，而 new() 用来为其他类型分配内存。</li>
+</ul>
+<h3 id="1-2-切片和数组的比较"><a href="#1-2-切片和数组的比较" class="headerlink" title="1.2 切片和数组的比较"></a>1.2 切片和数组的比较</h3><p>切片的数据结构</p>
+<pre><code class="Go">type slice struct &#123;
+    array unsafe.Pointer
+    len int
+    cap int
+&#125;
+</code></pre>
+<p>切片的结构体由3部分构成，Pointer 是指向一个<code>数组的指针</code>，len 代表当前切片的<code>长度</code>，cap 是当前切片的<code>容量</code>。cap 总是大于等于 len 的。</p>
+<ul>
+<li>长度和容量：<ul>
+<li>数组的长度是固定的，在声明时需要指定长度，并且不能动态改变。数组的声明方式为 [长度]类型，例如 [5]int 表示一个包含 5 个整数的数组。</li>
+<li>切片的长度可以动态改变，它是对底层数组的一个视图，可以根据需要动态调整其长度。切片的声明方式为 []类型，例如 []int 表示一个整数切片。</li>
+</ul>
+</li>
+<li>传递和拷贝：<ul>
+<li>数组在传递给函数或赋值给其他变量时会 进行<strong>值拷贝</strong>，即创建一个完全相同的新数组。</li>
+<li>切片在传递给函数或赋值给其他变量时是<strong>引用传递</strong>，即传递的是切片的引用（底层数组的引用），修改切片会影响到原始切片和底层数组。</li>
+</ul>
+</li>
+<li>底层数组：<ul>
+<li>数组是一个固定长度的数据结构，它在内存中是连续存储的。</li>
+<li>切片是一个动态长度的数据结构，它本质上是对底层数组的一个视图，通过指向底层数组的指针、长度和容量来表示切片。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-for-range-陷阱"><a href="#1-3-for-range-陷阱" class="headerlink" title="1.3 for range 陷阱"></a>1.3 for range 陷阱</h3><p>我之前写边缘网关项目的时候也遇到过：</p>
+<p>在 Go 中，使用 for range 循环遍历切片、数组、映射等数据结构时，循环体中的变量可能会因为引用同一个内存地址而产生意想不到的行为。</p>
+<p>切片&#x2F;数组：for range 会创建循环变量的拷贝，每次循环更新拷贝。因此，如果你取循环变量的地址，地址保持不变，因为你取的是循环变量的地址，而不是数据本身的地址。要避免这个问题，可以在循环体内创建变量的拷贝。<br>示例：避免地址变化导致的问题。</p>
+<pre><code class="go">names := []string&#123;&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;&#125;
+
+// 这里会引发问题，因为 `name` 变量的地址固定
+pointers := []*string&#123;&#125;
+for _, name := range names &#123;
+  pointers = append(pointers, &amp;name)
+&#125;
+
+// 解决办法：创建变量的独立拷贝
+for _, name := range names &#123;
+  n := name
+  pointers = append(pointers, &amp;n)
+&#125;
+</code></pre>
+<p>解决办法：  </p>
+<ol>
+<li>创建变量的独立拷贝</li>
+<li>使用指针作为成员（不推荐，指针的使用可能增加内存管理的复杂性，可能导致内存泄漏。）</li>
+</ol>
+<h3 id="1-4-三种引号区别"><a href="#1-4-三种引号区别" class="headerlink" title="1.4 三种引号区别"></a>1.4 三种引号区别</h3><ul>
+<li>单引号用于表示单个字符，类型是 rune。</li>
+<li>双引号用于表示字符串，支持转义字符，类型是 string。</li>
+<li>反引号用于表示原始字符串，不支持转义字符，保留原样，类型也是 string。<blockquote>
+<p><code>rune</code>是 Go 语言中的一种数据类型，代表一个 Unicode 码点。它是一种特殊类型的整数，实际是 Go 的内置类型<code>int32</code>的别名。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="1-5-函数与方法"><a href="#1-5-函数与方法" class="headerlink" title="1.5 函数与方法"></a>1.5 函数与方法</h3><p>方法就是成员函数</p>
+<h3 id="1-6-子切片导致的内存泄漏问题"><a href="#1-6-子切片导致的内存泄漏问题" class="headerlink" title="1.6 子切片导致的内存泄漏问题"></a>1.6 子切片导致的内存泄漏问题</h3><p>子切片可能导致内存泄露，因为它们可能引用了较大的底层数组。为了避免这个问题，<strong>确保在不需要引用底层数组时显式复制数据，并在不需要时释放切片。合理使用切片和定期监控内存是防止内存泄露的有效方法</strong>。</p>
+<h3 id="1-7-Golang如何高效地拼接字符串？"><a href="#1-7-Golang如何高效地拼接字符串？" class="headerlink" title="1.7 Golang如何高效地拼接字符串？"></a>1.7 Golang如何高效地拼接字符串？</h3><p>在 Go 语言中，字符串是不可变的，所以<strong>直接使用 + 运算符拼接字符串可能导致性能问题</strong>，尤其是在大量拼接操作时。高效拼接字符串的方法包括使用<code>strings.Builder</code>、<code>bytes.Buffer</code> 和 <code>join</code> 等方式。这些方法在拼接大量字符串时比 + 运算符更有效。</p>
+<ul>
+<li>strings.Builder 是 Go 语言专为高效拼接字符串设计的工具。它可以动态分配内存，并在内部使用可变缓冲区来避免不必要的字符串复制。</li>
+<li>特点：<ul>
+<li>适合在循环中拼接字符串。</li>
+<li>内部使用动态缓冲区，减少内存分配。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="go">import (
+    &quot;strings&quot;
+)
+
+func efficientConcat(parts []string) string &#123;
+    var builder strings.Builder
+    
+    for _, part := range parts &#123;
+        builder.WriteString(part) // 拼接字符串
+    &#125;
+    
+    return builder.String() // 最后返回拼接结果
+&#125;
+</code></pre>
+<ul>
+<li>bytes.Buffer 类似于 strings.Builder，但主要用于操作字节。它适合在需要处理字节流或跨字符串和字节之间转换时使用。</li>
+<li>特点：<ul>
+<li>可以用于拼接字符串和字节。</li>
+<li>在处理混合类型数据时表现良好。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="go">import (
+    &quot;bytes&quot;
+)
+
+func bufferConcat(parts []string) string &#123;
+    var buffer bytes.Buffer
+    
+    for _, part := range parts &#123;
+        buffer.WriteString(part) // 拼接字符串
+    &#125;
+    
+    return buffer.String() // 最后返回拼接结果
+&#125;
+</code></pre>
+<ul>
+<li><p>strings.Join 是一个方便的函数，用于将字符串切片拼接成一个字符串，使用指定的分隔符。它适合在需要用特定字符分隔字符串时使用。</p>
+</li>
+<li><p>特点：</p>
+<ul>
+<li>可以用指定的分隔符拼接字符串。</li>
+<li>对于拼接字符串切片，效率高。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="go">import (
+    &quot;strings&quot;
+)
+
+func joinConcat(parts []string) string &#123;
+    return strings.Join(parts, &quot;, &quot;) // 用逗号和空格拼接
+&#125;
+</code></pre>
+<p><strong>直接使用 + 运算符拼接字符串可能导致性能问题，因为每次拼接都会创建新的字符串，并复制内容。</strong></p>
+<h3 id="1-8-Golang中2-个-interface-可以比较吗？"><a href="#1-8-Golang中2-个-interface-可以比较吗？" class="headerlink" title="1.8 Golang中2 个 interface 可以比较吗？"></a>1.8 Golang中2 个 interface 可以比较吗？</h3><p>在 Go 中，两个 interface 是否可比较取决于它们指向的底层类型。可以比较两个空接口，或者两个指向同一对象的接口。不可比较的类型，如切片、映射和函数，不能用于接口比较。如果尝试比较不可比较的接口，会引发运行时panic。在比较接口之前，确保它们的底层类型是可比较的，避免潜在的错误和panic。</p>
+<h3 id="1-9-Golang-中-init-函数"><a href="#1-9-Golang-中-init-函数" class="headerlink" title="1.9 Golang 中 init() 函数"></a>1.9 Golang 中 init() 函数</h3><ul>
+<li>自动执行：init() 不需要手动调用，会在包加载时自动执行。</li>
+<li>没有参数和返回值：init() 不能接受参数，也没有返回值。</li>
+<li>每个包可以有多个：一个包可以包含多个 init() 函数，按照源文件中的顺序执行。</li>
+<li>执行顺序：init() 的执行顺序取决于包的导入顺序和依赖关系。</li>
+</ul>
+<h3 id="1-10-Golang的Map可以边遍历边删除元素吗？"><a href="#1-10-Golang的Map可以边遍历边删除元素吗？" class="headerlink" title="1.10 Golang的Map可以边遍历边删除元素吗？"></a>1.10 Golang的Map可以边遍历边删除元素吗？</h3><p>在 Go 中，边遍历 Map 边删除元素可能导致未定义行为或运行时恐慌。为了确保安全，建议先收集要删除的键，然后在第二个循环中删除这些键，或使用新的 Map 进行替换。这样可以避免边遍历边删除导致的问题，确保 Map 的稳定性和正确性。</p>
+<h3 id="1-11-Golang的float类型可以作为Map的key吗？"><a href="#1-11-Golang的float类型可以作为Map的key吗？" class="headerlink" title="1.11 Golang的float类型可以作为Map的key吗？"></a>1.11 Golang的float类型可以作为Map的key吗？</h3><p>虽然 Go 允许 float 类型作为 Map 的键，但由于浮点数的精度和比较不稳定，不建议将其作为 Map 的键。推荐使用整数或字符串作为 Map 的键，以确保稳定性和可预测性。如果必须使用 float 类型作为键，请注意可能的精度问题，并确保足够的测试来验证行为的一致性。</p>
+<h3 id="1-12-Golang中Map的数据结构是什么？"><a href="#1-12-Golang中Map的数据结构是什么？" class="headerlink" title="1.12 Golang中Map的数据结构是什么？"></a>1.12 Golang中Map的数据结构是什么？</h3><p>在Go语言中，map是一种键值对数据结构。它是一种<strong>哈希表实现</strong>，所以它是无序的。允许您通过键来快速检索、插入和删除值。map的键和值可以是各种类型，但键的类型必须是可以比较的类型，以支持哈希计算和键比较操作。常见的可比较类型包括整数、字符串、指针、接口、数组和结构体（条件是结构体的所有字段也必须是可比较的）。</p>
+<p>值得注意的是，map在Go中是无序的，每次迭代的顺序可能不同。此外，map在并发情况下并不是线程安全的。如果需要并发访问map，可以使用同步机制，如锁或其他并发安全的数据结构，比如<code>sync.Map</code>。</p>
+<h3 id="1-13-Golang中函数返回局部变量的指针是否安全？"><a href="#1-13-Golang中函数返回局部变量的指针是否安全？" class="headerlink" title="1.13 Golang中函数返回局部变量的指针是否安全？"></a>1.13 Golang中函数返回局部变量的指针是否安全？</h3><p>在 Go 语言中，函数返回局部变量的指针是安全的。这是因为 Go 具有<strong>智能的内存管理和逃逸分析机制</strong>，它确保在返回指针或引用时，指向的变量不会在返回后被释放或无效。</p>
+<p>局部变量指针的逃逸分析<br>当函数返回局部变量的指针时，Go 的编译器会执行逃逸分析。逃逸分析的目的是确定变量的生命周期。如果一个局部变量的地址被返回给外部，它的内存将不会分配在栈上，而是分配在堆上，这样即使函数结束，该变量也不会被销毁。</p>
+<blockquote>
+<p>逃逸分析（Escape Analysis）是一种在<code>编译阶段</code>进行的静态分析技术，用于确定程序中变量的作用域和生命周期，特别是判断变量是保留在栈上还是堆上。通过逃逸分析，编译器可以决定变量在程序执行过程中是否需要逃逸到堆上分配，从而影响内存分配和垃圾收集的效率。<br>如果变量在函数或代码块内的生命周期结束后仍可能被引用，则这个变量需要在堆上分配，确保它在函数返回后仍然有效。这种情况称为<code>逃逸到堆</code>。如果变量只在当前函数或代码块内使用，不会被外部引用，则可以在栈上分配。这样做更高效，因为栈分配和释放的成本较低。<br>可以使用 go build -gcflags “-m” 来查看 Go 编译器的逃逸分析结果。这个命令会显示哪些变量逃逸到堆上，以及编译器对变量内存分配的决策过程。这对于理解编译器的内存管理策略以及优化代码性能非常有帮助。</p>
+</blockquote>
+<p><strong>小心内存泄漏</strong><br>虽然返回局部变量的指针是安全的，但需要注意的是，如果不适当地管理指针，可能导致内存泄漏。例如，当指针引用了一个很大的数据块，并且这个数据块不再需要时，没有将指针设置为 nil 或让它超出作用域，可能导致内存没有被释放。这可能会造成程序消耗大量的内存资源。</p>
+<h3 id="1-14-Golang中两个-nil-可能不相等吗？"><a href="#1-14-Golang中两个-nil-可能不相等吗？" class="headerlink" title="1.14 Golang中两个 nil 可能不相等吗？"></a>1.14 Golang中两个 nil 可能不相等吗？</h3><p>在 Go 语言中，通常情况下，两个 nil 是相等的。但在接口比较时，如果<strong>接口的静态类型不同</strong>，即使动态值都是 nil，它们也可能不相等。理解这个特性对于接口编程和处理多态性非常重要。</p>
+<h3 id="1-15-Golang的切片作为函数参数是值传递还是引用传递？"><a href="#1-15-Golang的切片作为函数参数是值传递还是引用传递？" class="headerlink" title="1.15 Golang的切片作为函数参数是值传递还是引用传递？"></a>1.15 Golang的切片作为函数参数是值传递还是引用传递？</h3><p>在 Go 中，切片作为函数参数是值传递的，但由于切片内部结构的特性，这种传递行为类似于引用传递。<strong>切片的长度和容量是值传递的部分</strong>，而<strong>指向底层数组的指针是共享的</strong>。因此，切片作为参数传递时，改变其内容可能影响原始切片。</p>
+<h3 id="1-16-Golang中哪些不能作为map类型的key？"><a href="#1-16-Golang中哪些不能作为map类型的key？" class="headerlink" title="1.16 Golang中哪些不能作为map类型的key？"></a>1.16 Golang中哪些不能作为map类型的key？</h3><p>在 Go 中，map 的键必须是可比较的，因此<code>切片</code>、<code>映射</code>、<code>函数</code>等不可比较的类型不能用作 map 键。可作为 map 键的类型包括基础类型、数组、结构体（所有字段可比较）、指针等。理解这一点可以避免在使用 map 时遇到编译错误。</p>
+<h3 id="1-17-Golang中nil-map-和空-map-有何不同？"><a href="#1-17-Golang中nil-map-和空-map-有何不同？" class="headerlink" title="1.17 Golang中nil map 和空 map 有何不同？"></a>1.17 Golang中nil map 和空 map 有何不同？</h3><p>nil map 和 空 map 的主要区别在于，nil map 未初始化，不能添加或修改元素，而空 map 已初始化，可以进行添加、修改和删除操作。在实际应用中，应根据需求来选择适当的 map 类型。</p>
+<h3 id="1-18-Golang的Map中删除一个-key，它的内存会释放么？"><a href="#1-18-Golang的Map中删除一个-key，它的内存会释放么？" class="headerlink" title="1.18 Golang的Map中删除一个 key，它的内存会释放么？"></a>1.18 Golang的Map中删除一个 key，它的内存会释放么？</h3><p>在 Go 语言中，当您从 map 中删除一个键时，map 的内存管理是自动处理的，但删除键并不一定会立即释放相应的内存。以下是关于 Go 中 map 删除键和内存管理的详细解释。</p>
+<h3 id="1-19-Golang-调用函数传入结构体时，应该传值还是指针？"><a href="#1-19-Golang-调用函数传入结构体时，应该传值还是指针？" class="headerlink" title="1.19 Golang 调用函数传入结构体时，应该传值还是指针？"></a>1.19 Golang 调用函数传入结构体时，应该传值还是指针？</h3><p>传递结构体到函数时，传值和传指针都有各自的用例。了解具体需求，综合考虑性能和数据一致性，是选择传值还是传指针的关键。</p>
+<h3 id="1-20-哪些数据结构默认引用传递？"><a href="#1-20-哪些数据结构默认引用传递？" class="headerlink" title="1.20 哪些数据结构默认引用传递？"></a>1.20 哪些数据结构默认引用传递？</h3><p>切片、Map、通道、函数等数据类型是默认以引用传递的。</p>
+<h3 id="1-21-Golang-中解析-tag-是怎么实现的？"><a href="#1-21-Golang-中解析-tag-是怎么实现的？" class="headerlink" title="1.21 Golang 中解析 tag 是怎么实现的？"></a>1.21 Golang 中解析 tag 是怎么实现的？</h3><pre><code class="go">type Person struct &#123;
+    Name string `json:&quot;name&quot;` // 使用标签指定 JSON 字段名称
+    Age  int    `json:&quot;age&quot;`
+&#125;
+</code></pre>
+<p>在 Go 语言中，标签提供了一种在结构体字段上存储元数据的方法，可以通过<strong>反射</strong>在运行时解析这些标签。使用反射可以获取结构体的字段信息，并根据需要提取和解析标签内容。这种机制在 Go 中非常有用，特别是在需要自定义序列化&#x2F;反序列化、验证或其他基于元数据的操作时。</p>
+<h3 id="1-22-Golang-sync-Map-的用法？"><a href="#1-22-Golang-sync-Map-的用法？" class="headerlink" title="1.22 Golang sync.Map 的用法？"></a>1.22 Golang sync.Map 的用法？</h3><p>无需显式初始化，可以直接声明并使用<br>Store Load Delete</p>
+<h3 id="1-23-Go的Struct能不能⽐较？"><a href="#1-23-Go的Struct能不能⽐较？" class="headerlink" title="1.23 Go的Struct能不能⽐较？"></a>1.23 Go的Struct能不能⽐较？</h3><p>在 Go 语言中，结构体可以比较，但前提是所有字段都必须是可比较的类型。</p>
+<ul>
+<li>对于可比较的结构体，可以使用 &#x3D;&#x3D; 和 !&#x3D; 操作符直接比较。</li>
+<li>对于不可比较的结构体，可能需要自定义比较逻辑或确保结构体字段都是可比较的类型。</li>
+</ul>
+<h3 id="1-24-解释Go语言什么是负载因子"><a href="#1-24-解释Go语言什么是负载因子" class="headerlink" title="1.24 解释Go语言什么是负载因子?"></a>1.24 解释Go语言什么是负载因子?</h3><p>负载因子是哈希表中存储的元素数量与哈希表中可用存储位置数量之比。通常用公式来表示：</p>
+<pre><code>负载因子=哈希表中的元素数量/哈希表的容量 
+</code></pre>
+<p>在 Go 中，哈希表的主要应用之一是 map。当创建 map 时，通常指定初始容量。随着元素的添加，哈希表会根据负载因子进行自动扩容或调整。</p>
+<p>负载因子的作用<br>负载因子用于衡量哈希表的效率和性能。负载因子影响以下几个方面：</p>
+<ul>
+<li>查找性能：  <ul>
+<li>负载因子越低，哈希表的冲突越少，查找性能越高。</li>
+<li>负载因子越高，可能导致哈希表中的冲突增加，查找性能下降。</li>
+</ul>
+</li>
+<li>空间效率：  <ul>
+<li>负载因子较低时，哈希表可能浪费大量空间，因为许多存储位置未被使用。</li>
+<li>负载因子较高时，哈希表利用率更高，但可能增加冲突和查找时间。</li>
+</ul>
+</li>
+<li>自动扩容：  <ul>
+<li>当负载因子超过特定阈值时，哈希表可能自动扩容。扩容时，哈希表会增加容量，并将现有元素重新分配到新的存储位置。这可以减少冲突并提高查找性能。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-25-unsafe-Pointer"><a href="#1-25-unsafe-Pointer" class="headerlink" title="1.25 unsafe.Pointer"></a>1.25 unsafe.Pointer</h3><ul>
+<li>通用指针：unsafe.Pointer 是一种特殊的非类型化指针，用于与 Go 的类型安全系统交互。它可以转换为其他类型的指针，也可以从其他指针类型转换过来。</li>
+<li>内存操作：unsafe.Pointer 通常用于与底层内存操作相关的场景，允许绕过 Go 的类型系统。</li>
+<li>强制转换：unsafe.Pointer 允许指针之间的强制转换，但这样的操作需要谨慎，因为它绕过了类型安全。</li>
+</ul>
+<h3 id="1-26-简述Golang空结构体-struct-的使用"><a href="#1-26-简述Golang空结构体-struct-的使用" class="headerlink" title="1.26 简述Golang空结构体 struct{} 的使用"></a>1.26 简述Golang空结构体 struct{} 的使用</h3><p>在 Go 语言中，空结构体 struct{} 是一种非常轻量级的结构体，没有字段和方法。虽然看似没有功能，但它有几个有用的用途，通常与节省内存、信号传递、标签等相关。以下是空结构体在 Go 中的常见使用场景和用途：</p>
+<ol>
+<li><p>内存优化<br>空结构体不占用额外的内存空间。在 Go 中，空结构体实例的大小通常为零字节，因为它没有字段。这使得空结构体在需要存储标志或标记的场景中非常有用。</p>
+</li>
+<li><p>用作集合中的值<br>在 Go 中，映射（map）通常用于实现集合（Set）。使用空结构体作为映射的值可以有效地创建一个不重复的键集合，而不会浪费额外的内存。</p>
+</li>
+</ol>
+<pre><code class="go">package main
+
+import &quot;fmt&quot;
+
+func main() &#123;
+    set := make(map[string]struct&#123;&#125;) // 使用空结构体作为值，创建一个集合
+    set[&quot;apple&quot;] = struct&#123;&#125;&#123;&#125;        // 添加元素
+    set[&quot;banana&quot;] = struct&#123;&#125;&#123;&#125;
+    
+    if _, exists := set[&quot;apple&quot;]; exists &#123;
+        fmt.Println(&quot;Apple is in the set&quot;) // 检查集合中是否存在元素
+    &#125;
+&#125;
+</code></pre>
+<p>在这个例子中，map[string]struct{} 表示一个字符串集合，使用空结构体作为值。这样做比使用其他非空值更节省内存。</p>
+<ol start="3">
+<li>通道通信<br>空结构体常用于通道传递信号。这通常用于 Goroutine 之间的同步，不需要额外的数据信息。</li>
+</ol>
+<pre><code class="go">package main
+
+import &quot;fmt&quot;
+
+func main() &#123;
+    done := make(chan struct&#123;&#125;) // 使用空结构体通道
+
+    go func() &#123;
+        // 做一些工作
+        fmt.Println(&quot;Goroutine started&quot;)
+        done &lt;- struct&#123;&#125;&#123;&#125; // 发送完成信号
+    &#125;()
+
+    &lt;-done // 接收完成信号
+    fmt.Println(&quot;Main goroutine resumed&quot;)
+&#125;
+</code></pre>
+<p>在这个例子中，chan struct{} 用于 Goroutine 之间的同步。空结构体作为信号传递，不需要携带额外的信息。</p>
+<p>1.3 用作占位符<br>空结构体也可以用于占位符或标记。在某些设计中，这可能用于标记特定的状态或属性，而无需存储额外数据。</p>
+<pre><code class="go">package main
+
+import &quot;fmt&quot;
+
+// 用作状态标记
+type State struct &#123;
+    isCompleted struct&#123;&#125; // 标记完成状态
+&#125;
+
+func main() &#123;
+    s := State&#123;&#125;
+    s.isCompleted = struct&#123;&#125;&#123;&#125; // 标记为已完成
+    fmt.Println(&quot;State is completed:&quot;, s.isCompleted != struct&#123;&#125;&#123;&#125;)
+&#125;
+</code></pre>
+<p>在这个例子中，空结构体作为标记，表明某个状态已完成。</p>
+<h3 id="1-27-string-类型的值可以修改吗？"><a href="#1-27-string-类型的值可以修改吗？" class="headerlink" title="1.27 string 类型的值可以修改吗？"></a>1.27 string 类型的值可以修改吗？</h3><p>在 Go 语言中，string 类型是不可变的，一旦创建，不能直接修改内容。如果需要更改字符串的内容，通常需要创建一个新的字符串。可以通过字符串拼接、子串操作、转换为字节切片等方式来创建新的字符串。理解字符串的不可变性有助于避免在 Go 中使用字符串时出现意外行为。</p>
+<h3 id="1-28-Switch-中如何强制执行下一个-case-代码块？"><a href="#1-28-Switch-中如何强制执行下一个-case-代码块？" class="headerlink" title="1.28 Switch 中如何强制执行下一个 case 代码块？"></a>1.28 Switch 中如何强制执行下一个 case 代码块？</h3><p>Go 语言中的<code>fallthrough</code>关键字用于强制执行 switch 语句中的下一个 case。它可以在某些情况下实现类似 C 或 Java 中的 “fallthrough” 行为，但只支持无条件跳转。这意味着一旦使用 fallthrough，会立即跳转到下一个 case。</p>
+<h3 id="1-29-解析-JSON-数据时，默认将数值当做哪种类型？"><a href="#1-29-解析-JSON-数据时，默认将数值当做哪种类型？" class="headerlink" title="1.29 解析 JSON 数据时，默认将数值当做哪种类型？"></a>1.29 解析 JSON 数据时，默认将数值当做哪种类型？</h3><p>在 Go 语言中，解析 JSON 数据时，默认情况下，数值被视为<code>float64</code>类型。这是因为 JSON 格式的数值可以包含整数和浮点数，而 float64 可以兼容这些情况。</p>
+<h3 id="1-30-如何从-panic-中恢复？"><a href="#1-30-如何从-panic-中恢复？" class="headerlink" title="1.30 如何从 panic 中恢复？"></a>1.30 如何从 panic 中恢复？</h3><p>recover 是 Go 的内建函数，用于从 panic 中恢复。recover 只能在 defer 函数中使用，它允许您处理 panic 并继续执行其他代码。</p>
+<p>关键点</p>
+<ul>
+<li><p>只能在 defer 中使用：recover 只有在 defer 函数中调用时才有效。如果在非 defer 的上下文中调用，它返回 nil 并不起作用。</p>
+</li>
+<li><p>用于从 panic 中恢复：当 panic 发生时，Go 会沿堆栈向上寻找 defer 语句。如果找到一个包含 recover 的 defer，它会调用 recover 并停止堆栈展开。</p>
+</li>
+<li><p>继续执行：在调用 recover 并成功捕获 panic 后，程序会继续执行 defer 后的代码，而不是继续展开堆栈。</p>
+</li>
+</ul>
+<pre><code class="go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;errors&quot;
+)
+
+func main() &#123;
+    defer func() &#123;
+        if r := recover(); r != nil &#123;
+            fmt.Println(&quot;Recovered from panic:&quot;, r) // 恢复并打印 panic 信息
+        &#125;
+    &#125;()
+
+    fmt.Println(&quot;Start&quot;)
+    panic(errors.New(&quot;Something went wrong&quot;)) // 触发 panic
+    fmt.Println(&quot;This line won&#39;t execute&quot;)   // 因为发生了 panic
+&#125;
+</code></pre>
+<p>在这个例子中，panic 发生时，defer 中的 recover 成功捕获 panic，然后继续执行其他代码。输出将是：</p>
+<pre><code class="go">Start
+Recovered from panic: Something went wrong
+</code></pre>
+<h3 id="1-31-阐述-Printf-、Sprintf-、Fprintf-函数的区别用法是什么？"><a href="#1-31-阐述-Printf-、Sprintf-、Fprintf-函数的区别用法是什么？" class="headerlink" title="1.31 阐述 Printf()、Sprintf()、Fprintf()函数的区别用法是什么？"></a>1.31 阐述 Printf()、Sprintf()、Fprintf()函数的区别用法是什么？</h3><ul>
+<li>Printf() 用于将格式化的字符串输出到标准输出，通常是控制台。</li>
+<li>Sprintf() 返回格式化后的字符串，而不是直接输出，适合需要保存或进一步处理的场景。</li>
+<li><strong>Fprintf()</strong> 将格式化的字符串输出到指定的 Writer，如文件、网络连接、缓冲区等，适用于需要定制输出目的地的场景。</li>
+</ul>
+<h3 id="1-32-类型断言"><a href="#1-32-类型断言" class="headerlink" title="1.32 类型断言"></a>1.32 类型断言</h3><p>在 Go 语言中，类型断言是一种将接口值转换为特定类型的机制。它可以用于安全地检查接口的具体类型，并在需要时将其转换为具体类型。</p>
+<pre><code class="go">func main() &#123;
+    var x interface&#123;&#125; = 42 // 接口值
+    s, ok := x.(string)   // 断言为 string 类型
+    if ok &#123;
+        fmt.Println(&quot;String:&quot;, s)
+    &#125; else &#123;
+        fmt.Println(&quot;Not a string&quot;) // 输出: Not a string
+    &#125;
+&#125;
+</code></pre>
+<h3 id="1-33-静态类型声明的好处"><a href="#1-33-静态类型声明的好处" class="headerlink" title="1.33 静态类型声明的好处"></a>1.33 静态类型声明的好处</h3><pre><code class="go">var x int = 42 // 显式声明类型为 int
+</code></pre>
+<ul>
+<li>类型安全：编译时检查类型，减少运行时错误。</li>
+<li>性能优化：因为类型在编译时确定，编译器可以进行更多优化。</li>
+<li>代码可读性：明确的类型声明提高了代码的可读性和可维护性。</li>
+</ul>
+<h3 id="1-34-可变参数"><a href="#1-34-可变参数" class="headerlink" title="1.34 可变参数"></a>1.34 可变参数</h3><pre><code class="go">// 定义一个可变参数的函数
+func sum(nums ...int) int &#123;
+    total := 0
+    for _, num := range nums &#123;
+        total += num // 累加所有参数
+    &#125;
+    return total
+&#125;
+</code></pre>
+<ul>
+<li>可变参数的位置：在参数列表中，可变参数必须是最后一个参数，因为它会接收所有剩余的参数。</li>
+<li>使用切片展开：当使用切片作为可变参数时，需要使用 … 将切片展开。</li>
+<li>可变参数的类型：在定义可变参数时，需要指定其类型。例如，…int 表示可变数量的整数。</li>
+<li>避免混淆：在函数接受多种类型的参数时，确保可变参数的位置和传递方式不会引起混淆。</li>
+</ul>
+<h3 id="1-35-Golang导入包时，为什么可能使用-或-导入-举例说明"><a href="#1-35-Golang导入包时，为什么可能使用-或-导入-举例说明" class="headerlink" title="1.35 Golang导入包时，为什么可能使用_ 或 .导入? 举例说明"></a>1.35 Golang导入包时，为什么可能使用<code>_</code> 或 <code>.</code>导入? 举例说明</h3><ul>
+<li><p>使用 ‘_’ 导入时，表示只导入包以执行其初始化代码，而不使用该包中的任何标识符。这样做的主要目的是<strong>触发包的 init() 函数或其他初始化行为，而不需要使用包的具体内容</strong>。</p>
+</li>
+<li><p>使用 ‘.’ 导入时，表示将包中的标识符直接引入当前命名空间。这意味着可以使用包中的标识符，而不需要通过包名进行引用。这种导入方式被认为是不好的实践，因为它可能导致命名冲突或代码可读性下降。</p>
+</li>
+</ul>
+<h3 id="1-36-Golang中的接口类型是否支持像Java那样的多继承？"><a href="#1-36-Golang中的接口类型是否支持像Java那样的多继承？" class="headerlink" title="1.36 Golang中的接口类型是否支持像Java那样的多继承？"></a>1.36 Golang中的接口类型是否支持像Java那样的多继承？</h3><p>在 Go 语言中，接口类型不支持像 Java 或 C++ 那样的多继承概念。Java 中的多继承通常指的是类可以继承多个其他类，或者接口可以继承多个其他接口。在 Go 中，虽然没有类的概念，但接口可以嵌入其他接口，这是一种类似多继承的机制，但并不完全相同。</p>
+<p><strong>接口嵌入示例</strong></p>
+<pre><code class="go">package main
+
+import &quot;fmt&quot;
+
+// 定义两个简单的接口
+type Speaker interface &#123;
+    Speak() string
+&#125;
+
+type Walker interface &#123;
+    Walk() string
+&#125;
+
+// 定义一个嵌入其他接口的接口
+type Person interface &#123;
+    Speaker
+    Walker
+&#125;
+
+// 定义一个结构体，实现嵌入接口
+type Human struct&#123;&#125;
+
+func (h Human) Speak() string &#123;
+    return &quot;I am speaking&quot;
+&#125;
+
+func (h Human) Walk() string &#123;
+    return &quot;I am walking&quot;
+&#125;
+
+func main() &#123;
+    var p Person = Human&#123;&#125;
+    fmt.Println(p.Speak()) // 输出: &quot;I am speaking&quot;
+    fmt.Println(p.Walk())  // 输出: &quot;I am walking&quot;
+&#125;
+</code></pre>
+<h3 id="1-37-Golang中的sync包是什么？如何使用？"><a href="#1-37-Golang中的sync包是什么？如何使用？" class="headerlink" title="1.37 Golang中的sync包是什么？如何使用？"></a>1.37 Golang中的sync包是什么？如何使用？</h3><p>sync 包提供了 Go 语言中常用的同步原语，用于确保并发环境中的线程安全和数据一致性。<br>常用的有：</p>
+<ul>
+<li>互斥锁（Mutex）</li>
+<li>读写锁（RWMutex）</li>
+<li>等待组（WaitGroup）</li>
+<li>Map</li>
+</ul>
+<h3 id="1-38-Go-调度器-MPG模型"><a href="#1-38-Go-调度器-MPG模型" class="headerlink" title="1.38 Go 调度器 MPG模型"></a>1.38 Go 调度器 MPG模型</h3><p>多对一 动态变化</p>
+<p>Go 调度器由以下核心组件组成：</p>
+<ul>
+<li>M：代表操作系统线程（OS Thread），用于运行 Goroutine。</li>
+<li>P：代表处理器（Processor），控制 Goroutine 的执行。每个 P 绑定一个操作系统线程 M，负责调度 Goroutine 的执行。</li>
+<li>G：代表 Goroutine，是 Go 的并发单元。<br><img src="/2024/05/04/Golang%E5%85%AB%E8%82%A1%E6%96%87/MPG.png"></li>
+</ul>
+<h3 id="1-39-CSP模型"><a href="#1-39-CSP模型" class="headerlink" title="1.39 CSP模型"></a>1.39 CSP模型</h3><p><strong>管道通信</strong> 实现并发同步Communicating Sequential Process</p>
+<p>严格来说，CSP 是一门形式语言（类似于 ℷ calculus），用于描述并发系统中的互动模式，也因此成为一众面向并发的编程语言的理论源头，并衍生出了 Occam&#x2F;Limbo&#x2F;Golang…<br>而具体到编程语言，如Golang，其实只用到了 CSP 的很小一部分，即理论中的 Process&#x2F;Channel（对应到语言中的 goroutine&#x2F;channel）：这两个并发原语之间没有从属关系， Process 可以订阅任意个 Channel，Channel 也并不关心是哪个 Process 在利用它进行通信；Process 围绕 Channel 进行读写，形成一套有序阻塞和可预测的并发模型。</p>
+<h3 id="1-40-简述Go-语言中-cap-函数可以作用于那些内容？"><a href="#1-40-简述Go-语言中-cap-函数可以作用于那些内容？" class="headerlink" title="1.40 简述Go 语言中 cap 函数可以作用于那些内容？"></a>1.40 简述Go 语言中 cap 函数可以作用于那些内容？</h3><p>在 Go 语言中，cap 函数可以作用于<code>切片</code>、<code>数组</code>和<code>通道</code>，返回它们的容量。容量是数据结构在扩展前可以容纳的最大元素数量。</p>
+<ul>
+<li>对于切片，容量可以大于其长度；</li>
+<li>对于数组，容量与长度相同；</li>
+<li>对于通道，容量是通道的缓冲区大小。</li>
+</ul>
+<h3 id="1-41-简述go-convey-是什么？一般用来做什么？"><a href="#1-41-简述go-convey-是什么？一般用来做什么？" class="headerlink" title="1.41 简述go convey 是什么？一般用来做什么？"></a>1.41 简述go convey 是什么？一般用来做什么？</h3><p>GoConvey 是 Go 语言中的一个用于编写和执行单元测试的测试框架。与标准的 Go 测试库相比，GoConvey 提供了一种更直观和简洁的方式来编写测试，并支持行为驱动开发（BDD）的风格。它提供了用于组织和描述测试的工具，以及内置的测试服务器来展示测试结果。</p>
+<h3 id="1-42-闭包"><a href="#1-42-闭包" class="headerlink" title="1.42 闭包"></a>1.42 闭包</h3><p>在 Go 中，闭包主要体现在匿名函数中。匿名函数可以捕获其外部作用域中的变量，并在不同的上下文中保留这些变量的状态。</p>
+<p>示例：简单闭包</p>
+<pre><code class="go">func main() &#123;
+    // 定义一个变量
+    x := 10
+    
+    // 定义一个闭包，捕获 x
+    increment := func() int &#123;
+        x++ // 增加 x 的值
+        return x
+    &#125;
+
+    // 每次调用闭包，x 都会增加
+    fmt.Println(increment()) // 输出: 11
+    fmt.Println(increment()) // 输出: 12
+    fmt.Println(increment()) // 输出: 13
+&#125;
+</code></pre>
+<ul>
+<li><p>闭包的特点</p>
+<ul>
+<li><p>捕获环境变量：闭包可以捕获其创建时的外部作用域中的变量，并在不同的上下文中使用这些变量。</p>
+</li>
+<li><p>状态保持：闭包可以保持变量的状态，这在某些情况下非常有用，如计数器、累加器等。</p>
+</li>
+<li><p>匿名函数：闭包通常通过匿名函数实现，但不一定是匿名函数。关键是捕获变量的作用域。</p>
+</li>
+</ul>
+</li>
+<li><p>闭包的应用场景<br>闭包在 Go 中有多种应用场景，包括但不限于：</p>
+<ul>
+<li><p>计数器：使用闭包实现计数器，每次调用闭包时增加计数。</p>
+</li>
+<li><p>延迟计算：闭包可以用于延迟计算，在需要时再执行。</p>
+</li>
+<li><p>函数作为参数：闭包可以作为参数传递给其他函数，提供更灵活的行为。</p>
+</li>
+</ul>
+</li>
+<li><p>闭包的注意事项</p>
+<ul>
+<li><p>变量作用域：闭包捕获的变量是外部作用域中的变量，因此在多 Goroutine 场景中要小心变量的共享状态。</p>
+</li>
+<li><p>内存管理：闭包会保留捕获的变量，如果变量过多或生命周期过长，可能会增加内存使用。</p>
+</li>
+<li><p>闭包的副作用：由于闭包可以改变外部变量的状态，因此在使用闭包时要注意可能的副作用。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、Go机制原理"><a href="#二、Go机制原理" class="headerlink" title="二、Go机制原理"></a>二、Go机制原理</h2><h3 id="2-1-Golang-uint-类型溢出问题？"><a href="#2-1-Golang-uint-类型溢出问题？" class="headerlink" title="2.1 Golang uint 类型溢出问题？"></a>2.1 Golang uint 类型溢出问题？</h3><p>在 Go 语言中，uint 类型溢出是无符号整数的固有问题。当无符号整数的值超过其最大值时，它会绕回最小值。理解溢出问题的原因和解决方法有助于在 Go 中编写健壮且安全的代码。防止溢出需要显式检查、使用大容量类型和错误处理等方法。</p>
+<pre><code class="go">func safeAdd(a, b uint8) (uint8, error) &#123;
+    if a &gt; 255-b &#123;
+        return 0, errors.New(&quot;Overflow occurred&quot;)
+    &#125;
+    return a + b, nil
+&#125;
+
+func main() &#123;
+    result, err := safeAdd(250, 10)
+    if err != nil &#123;
+        fmt.Println(&quot;Error:&quot;, err) // 输出: &quot;Overflow occurred&quot;
+    &#125; else &#123;
+        fmt.Println(&quot;Result:&quot;, result)
+    &#125;
+&#125;
+</code></pre>
+<h3 id="2-2-Golang中什么是协程泄露-Goroutine-Leak-？"><a href="#2-2-Golang中什么是协程泄露-Goroutine-Leak-？" class="headerlink" title="2.2 Golang中什么是协程泄露(Goroutine Leak)？"></a>2.2 Golang中什么是协程泄露(Goroutine Leak)？</h3><p>Goroutine 泄露是指 Goroutine 未按预期结束而持续运行，占用系统资源。防止 Goroutine 泄露需要:</p>
+<ul>
+<li>确保 Goroutine 正常结束</li>
+<li>使用 context 包实现超时取消</li>
+<li>正确处理通道操作（close(ch)）等</li>
+</ul>
+<h3 id="2-3-Go-语言的局部变量分配在栈上还是堆上？"><a href="#2-3-Go-语言的局部变量分配在栈上还是堆上？" class="headerlink" title="2.3 Go 语言的局部变量分配在栈上还是堆上？"></a>2.3 Go 语言的局部变量分配在栈上还是堆上？</h3><p>Go 语言中的局部变量分配在栈上还是堆上取决于逃逸分析。如果变量在函数返回后没有外部引用，编译器通常会将其分配到栈上。如果变量可能在函数返回后仍然被引用，编译器会将其分配到堆上。</p>
+<h3 id="2-4-阐述-Go-的-select-的特性？"><a href="#2-4-阐述-Go-的-select-的特性？" class="headerlink" title="2.4 阐述 Go 的 select 的特性？"></a>2.4 阐述 Go 的 select 的特性？</h3><ul>
+<li>多通道选择：select 可以监控多个通道，并根据通道的状态进行选择。Go 运行时会监控这些通道的状态，确保选择操作的正确性。</li>
+<li>等待队列：每个通道都有一个等待队列，当 Goroutine 执行 select 时，它会被添加到等待队列中。运行时会确保当通道变得可用时，正确唤醒等待队列中的 Goroutine。</li>
+<li><strong>随机选择</strong>：如果 select 中有多个通道可用，Go 运行时会随机选择一个进行操作。这种随机选择确保 select 操作的公平性，避免通道的偏向和不平衡。</li>
+</ul>
+<h3 id="2-5-Golang字符串转成byte数组，会发生内存拷贝吗？"><a href="#2-5-Golang字符串转成byte数组，会发生内存拷贝吗？" class="headerlink" title="2.5 Golang字符串转成byte数组，会发生内存拷贝吗？"></a>2.5 Golang字符串转成byte数组，会发生内存拷贝吗？</h3><p>在 Go 语言中，将字符串转换为字节数组（[]byte）<strong>会发生内存拷贝</strong>。这意味着一个新的字节数组会被创建，其中包含与原始字符串相同的数据。这种内存拷贝在转换过程中是必然的，<strong>因为字符串在 Go 中是不可变的，而字节数组是可变的</strong>。</p>
+<h3 id="2-6-对已经关闭的的chan进行读写，会怎么样？为什么？"><a href="#2-6-对已经关闭的的chan进行读写，会怎么样？为什么？" class="headerlink" title="2.6 对已经关闭的的chan进行读写，会怎么样？为什么？"></a>2.6 对已经关闭的的chan进行读写，会怎么样？为什么？</h3><ul>
+<li>读取一个已经关闭的通道：  <ul>
+<li>当你从一个关闭的通道中读取数据时，如果通道里有剩余的数据，你会读取到这些数据。</li>
+<li>如果通道已经没有数据了，读取操作会立即返回零值，并且通道的第二个返回值将是 false，表示通道已关闭。例如，读取一个 chan int 类型的通道，如果通道为空且已关闭，你会得到 0 和 false。</li>
+</ul>
+</li>
+</ul>
+<p><strong>读取一个关闭的通道是安全的，也不会引发 panic。</strong></p>
+<ul>
+<li>写入一个已经关闭的通道:<ul>
+<li>当你尝试写入一个已经关闭的通道时，会引发 panic。这是因为在关闭后，通道不再接受任何新的数据。</li>
+<li>因此，在写入通道之前，务必确认通道没有被关闭。这可以通过同步机制来确保，或者通过捕获 panic 进行错误处理。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-7-Golang的内存模型中为什么⼩对象多了会造成GC压⼒？如何解决？"><a href="#2-7-Golang的内存模型中为什么⼩对象多了会造成GC压⼒？如何解决？" class="headerlink" title="2.7 Golang的内存模型中为什么⼩对象多了会造成GC压⼒？如何解决？"></a>2.7 Golang的内存模型中为什么⼩对象多了会造成GC压⼒？如何解决？</h3><p>在 Golang 中，小对象的数量增多会导致垃圾回收（GC）压力增加。主要原因包括以下几点：</p>
+<ol>
+<li><p>对象的创建与销毁<br>每个对象的创建和销毁都会产生管理成本。当大量小对象被创建和销毁时，垃圾回收器需要处理更多的对象，这意味着更频繁的垃圾回收过程。</p>
+</li>
+<li><p>垃圾回收的工作<br>垃圾回收器的主要任务是清理不再需要的内存。Go 的垃圾回收器使用一种标记-清除的算法，在每次垃圾回收过程中，垃圾回收器需要：</p>
+<ul>
+<li><strong>标记：遍历整个堆，标记所有存活的对象。</strong></li>
+<li><strong>清除：释放未标记的内存。</strong></li>
+</ul>
+<p> 当有大量小对象时，标记和清除的过程会更频繁且成本更高，因为垃圾回收器需要处理更多的对象并跟踪更多的引用。</p>
+</li>
+<li><p>增加的堆碎片<br>大量小对象的创建和销毁可能导致堆内存的碎片化。碎片化增加了内存的非连续性，导致垃圾回收器在清除内存时更难以找到可以合并的大块空闲内存。碎片化通常需要更多的 GC 迭代来保持堆的效率。</p>
+</li>
+<li><p>并发与暂停时间<br>Go 的垃圾回收器设计为并发运行，但在某些阶段需要短暂暂停整个程序。例如，在标记阶段，垃圾回收器需要确保堆上的对象不再改变，导致某些暂停。当小对象很多时，标记阶段可能需要更长时间，增加了程序的暂停时间。</p>
+</li>
+<li><p>高速对象分配<br>当程序频繁分配和释放小对象时，这些操作会在堆上产生较多的压力。较频繁的分配操作可能导致堆的快速增长，而这反过来会触发更多的垃圾回收周期。</p>
+</li>
+</ol>
+<p>缓解 GC 压力的策略</p>
+<ul>
+<li>对象重用：尽可能重用对象，避免频繁的创建和销毁。</li>
+<li>减少对象分配：避免过多的小对象分配，考虑使用缓冲池或临时缓存。</li>
+<li>优化垃圾回收：根据需要调整 GC 的参数，如 GOGC，以减少垃圾回收的频率。</li>
+</ul>
+<h3 id="2-8-Golang-的-GC的触发条件？"><a href="#2-8-Golang-的-GC的触发条件？" class="headerlink" title="2.8 Golang 的 GC的触发条件？"></a>2.8 Golang 的 GC的触发条件？</h3><p>Go 的垃圾回收器是自适应的，会根据<code>程序的运行情况</code>、<code>堆的大小和存活率</code>等多种因素自动调整触发条件。这种机制确保了 GC 在保持高效垃圾回收的同时，尽量减少对程序性能的影响。</p>
+<h3 id="2-9-Go中的锁有哪些-？"><a href="#2-9-Go中的锁有哪些-？" class="headerlink" title="2.9 Go中的锁有哪些 ？"></a>2.9 Go中的锁有哪些 ？</h3><ol>
+<li>互斥锁</li>
+<li>读写锁</li>
+<li>一次性锁（Once）<br>sync.Once<br>Once 确保某段代码只会执行一次，通常用于初始化操作或单例模式。<br>使用 Do() 方法，传入要执行的函数，保证该函数只会被执行一次。<pre><code class="go">var once sync.Once
+var config map[string]string
+
+func initializeConfig() &#123;
+    once.Do(func() &#123;
+        config = make(map[string]string)
+        // 初始化配置
+    &#125;)
+&#125;
+</code></pre>
+</li>
+<li>条件变量（Cond）<br>sync.Cond<br>条件变量用于实现基于条件的同步，允许 Goroutine 在某个条件满足时继续执行。<br>条件变量通常与 Mutex 结合使用，用于实现复杂的同步逻辑。<br>具有 Wait(), Signal(), 和 Broadcast() 等方法，用于控制等待和唤醒 Goroutine。<pre><code class="go">var mu sync.Mutex
+var cond = sync.NewCond(&amp;mu)
+var ready = false
+
+func worker() &#123;
+    mu.Lock()
+    defer mu.Unlock()
+    
+    for !ready &#123;
+        cond.Wait() // 等待条件满足
+    &#125;
+    
+    // 执行工作
+&#125;
+
+func setReady() &#123;
+    mu.Lock()
+    ready = true
+    cond.Signal() // 唤醒一个等待的 Goroutine
+    mu.Unlock()
+&#125;
+</code></pre>
+</li>
+<li>等待组（WaitGroup）<br>sync.WaitGroup<br>等待组用于等待一组 Goroutine 完成，可以用于同步 Goroutine 的结束。<br>使用 Add() 指定等待的 Goroutine 数量，Done() 表示一个 Goroutine 完成，Wait() 等待所有 Goroutine 完成。<pre><code class="go">var wg sync.WaitGroup
+
+func worker() &#123;
+    defer wg.Done() // 标记 Goroutine 完成
+    // 执行工作
+&#125;
+
+func main() &#123;
+    wg.Add(2) // 期望等待两个 Goroutine
+    go worker()
+    go worker()
+    wg.Wait() // 等待所有 Goroutine 完成
+&#125;
+</code></pre>
+</li>
+</ol>
+<h3 id="2-10-Channel是同步的还是异步的？"><a href="#2-10-Channel是同步的还是异步的？" class="headerlink" title="2.10 Channel是同步的还是异步的？"></a>2.10 Channel是同步的还是异步的？</h3><p>Go 中的通道（Channel）可以是同步的，也可以是异步的，取决于通道的缓冲机制和容量设置。</p>
+<h3 id="2-11-简述Goroutine和线程的区别？"><a href="#2-11-简述Goroutine和线程的区别？" class="headerlink" title="2.11 简述Goroutine和线程的区别？"></a>2.11 简述Goroutine和线程的区别？</h3><ol>
+<li>轻量级 vs. 重量级<ul>
+<li>Goroutine 是轻量级的<ul>
+<li>Goroutine 是 Go 语言中的一种协程，它在启动和运行时的开销非常小。每个 Goroutine 只需几 KB 的初始内存，运行时能根据需要自动扩展和收缩。</li>
+</ul>
+</li>
+<li>线程是重量级的<ul>
+<li>操作系统线程需要较大的内存和资源，通常启动一个线程需要几 MB 的内存，并且会消耗更多的操作系统资源。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>调度模型<ul>
+<li>Goroutine 使用用户态调度<ul>
+<li>Go 运行时包含一个用户态的调度器，负责在多个操作系统线程上调度和运行 Goroutine。这个调度器可以更灵活地管理 Goroutine，并且不依赖操作系统的调度机制。</li>
+</ul>
+</li>
+<li>线程使用内核态调度<ul>
+<li>操作系统线程由内核调度，调度机制取决于操作系统。由于内核调度器的复杂性，线程的调度成本通常更高。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>并发数量<ul>
+<li>Goroutine 可以大量创建<ul>
+<li>由于 Goroutine 的轻量级特性，Go 应用可以同时运行数以千计甚至数百万个 Goroutine，适合高度并发的应用场景。</li>
+</ul>
+</li>
+<li>线程的数量受限<ul>
+<li>线程由于其高开销和资源限制，无法像 Goroutine 那样大量创建。通常一个应用创建数百个线程就可能遇到性能和资源问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据共享和通信<ul>
+<li>Goroutine 倾向于使用通道进行通信<ul>
+<li>Go 倡导 “不要通过共享内存来通信，而是通过通信来共享内存”。Goroutine 之间使用通道进行通信，这种机制有助于避免数据竞争。</li>
+</ul>
+</li>
+<li>线程通常使用锁和共享内存<ul>
+<li>线程之间经常通过共享内存和锁进行同步，这种方式更容易引发数据竞争和死锁等问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>并行性与并发性<ul>
+<li>Goroutine 适合并发<ul>
+<li>Goroutine 的轻量级和用户态调度使其适合并发编程，特别是在 I&#x2F;O 密集型和高延迟操作中。</li>
+</ul>
+</li>
+<li>线程适合并行<ul>
+<li>线程的重量级特性和内核态调度使其适合 CPU 密集型任务，可以充分利用多核 CPU 的并行能力。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>错误处理<ul>
+<li>Goroutine 的错误隔离<ul>
+<li>Goroutine 的错误不会影响其他 Goroutine。当一个 Goroutine 出现 panic 时，其他 Goroutine 可以继续运行。</li>
+</ul>
+</li>
+<li>线程的错误影响<ul>
+<li>当一个线程出错时，可能影响整个进程，尤其是在未捕获异常的情况下。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-12-介绍下golang的atomic包"><a href="#2-12-介绍下golang的atomic包" class="headerlink" title="2.12 介绍下golang的atomic包"></a>2.12 介绍下golang的atomic包</h3><p>Golang 的 sync&#x2F;atomic 包提供了一组用于实现原子操作的工具，这些操作可以确保在并发环境中安全地更新和读取简单变量类型，而不需要使用互斥锁。原子操作可以在并发环境中避免数据竞争，是构建无锁数据结构和实现线程安全操作的关键工具。</p>
+<ul>
+<li><p>原子操作的作用</p>
+<ul>
+<li>原子操作确保某个操作在执行过程中不会被其他操作中断。这意味着在并发环境中，原子操作能够保证操作的完整性和一致性。sync&#x2F;atomic 包中的原子操作通常用于对简单数据类型的原子性更新、读取和比较。</li>
+</ul>
+</li>
+<li><p>sync&#x2F;atomic 支持的原子操作</p>
+<ol>
+<li>原子性读取和写入</li>
+</ol>
+<ul>
+<li>读取操作<ul>
+<li>LoadInt32, LoadInt64, LoadUint32, LoadUint64, LoadPointer, LoadUintptr: 以原子方式读取变量的当前值。</li>
+</ul>
+</li>
+<li>写入操作<ul>
+<li>StoreInt32, StoreInt64, StoreUint32, StoreUint64, StorePointer, StoreUintptr: 以原子方式将值写入变量。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>原子性加法和减法</li>
+</ol>
+<ul>
+<li>加法操作<ul>
+<li>AddInt32, AddInt64, AddUint32, AddUint64: 以原子方式将变量增加特定值。</li>
+</ul>
+</li>
+<li>减法操作<ul>
+<li>AddInt32 等同于减负数，但没有显式减法操作。</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>原子性比较和交换（CAS）</li>
+</ol>
+<ul>
+<li>CompareAndSwapInt32, CompareAndSwapInt64, CompareAndSwapUint32, CompareAndSwapUint64, CompareAndSwapPointer: 以原子方式比较变量的当前值，如果等于期望值，则替换为新的值。</li>
+</ul>
+<ol start="4">
+<li>原子性交换</li>
+</ol>
+<ul>
+<li>SwapInt32, SwapInt64, SwapUint32, SwapUint64, SwapPointer: 以原子方式将变量的值替换为新值，并返回旧值。</li>
+</ul>
+</li>
+<li><p>使用 sync&#x2F;atomic 的场景</p>
+<ul>
+<li>无锁计数器: 使用 Add 或 CompareAndSwap 实现线程安全的计数器。</li>
+<li>条件性更新: 使用 CAS 在特定条件下更新变量。</li>
+<li>无锁数据结构: 构建无锁队列、堆栈等复杂数据结构。</li>
+<li>原子性标志: 使用原子操作实现简单的标志变量，以避免数据竞争。</li>
+</ul>
+</li>
+<li><p>sync&#x2F;atomic 的限制</p>
+<ul>
+<li>简单数据类型: sync&#x2F;atomic 仅支持简单的标量类型（如整数、指针、布尔等），不适用于复杂数据结构。</li>
+<li>ABA 问题: CAS 操作可能导致 ABA 问题，需要额外处理。</li>
+<li>高竞争环境: 在高竞争环境中，使用原子操作可能导致自旋和性能下降。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-13-简述Go中CAS算法？"><a href="#2-13-简述Go中CAS算法？" class="headerlink" title="2.13 简述Go中CAS算法？"></a>2.13 简述Go中CAS算法？</h3><p>CAS（Compare and Swap）算法是一种常用的原子操作算法，通常用于在多线程或并发环境中实现无锁操作。CAS 算法提供了一种确保原子性的方法，可以用于避免竞争条件和数据不一致的问题。Go 语言通过 sync&#x2F;atomic 包提供了对 CAS 操作的支持。</p>
+<ol>
+<li><p>CAS 算法的概念<br>CAS 是一种原子性操作，其核心思想是“比较并交换”。在 CAS 操作中，会对某个共享变量执行以下步骤：</p>
+<ul>
+<li>比较（Compare）：检查共享变量的当前值是否等于期望值。</li>
+<li>交换（Swap）：如果当前值等于期望值，则将其更改为新的值。</li>
+<li>如果当前值不等于期望值，操作失败，通常会返回当前的实际值。</li>
+</ul>
+<p> CAS 允许在并发环境中进行原子性的变量更新，而不使用传统的锁机制。</p>
+</li>
+<li><p>Go 中的 CAS 操作<br>Go 语言中的 sync&#x2F;atomic 包提供了多种 CAS 操作，用于对简单数据类型（如整数、布尔值、指针等）进行原子操作。主要操作包括：</p>
+<ul>
+<li>CompareAndSwapInt32, CompareAndSwapInt64：对 32 位和 64 位整数进行 CAS 操作。</li>
+<li>CompareAndSwapUint32, CompareAndSwapUint64：对 32 位和 64 位无符号整数进行 CAS 操作。</li>
+<li>CompareAndSwapPointer：对指针类型进行 CAS 操作。</li>
+<li>CompareAndSwapUintptr：对 uintptr 类型进行 CAS 操作。</li>
+</ul>
+</li>
+<li><p>CAS 的使用场景</p>
+<ul>
+<li>无锁计数器：通过 CAS 实现线程安全的计数器，而不使用锁。</li>
+<li>锁的实现：一些锁的实现可以通过 CAS 操作来避免竞争条件。</li>
+<li>原子变量更新：在多线程环境中，CAS 允许安全地更新共享变量。</li>
+</ul>
+</li>
+<li><p>CAS 的优缺点</p>
+<ul>
+<li>优点<ul>
+<li>无锁：CAS 不需要使用锁，避免了锁的开销和潜在的死锁问题。</li>
+<li>高效：CAS 操作通常比锁更高效，因为它是原子性的，避免了上下文切换。</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>ABA 问题：CAS 中可能发生 ABA 问题，即变量经过多次变化后又恢复原值，但状态已改变。这个问题在某些场景下需要额外处理。</li>
+<li>自旋：CAS 失败时，可能需要不断重试（自旋），在高竞争环境中可能导致性能问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CAS 的示例</p>
+</li>
+</ol>
+<pre><code class="go">import (
+    &quot;sync/atomic&quot;
+)
+
+var counter int32
+
+func increment() &#123;
+    for &#123;
+        current := atomic.LoadInt32(&amp;counter) // 读取当前值
+        newValue := current + 1              // 计算新的值
+        if atomic.CompareAndSwapInt32(&amp;counter, current, newValue) &#123; // 尝试更新
+            break // 更新成功，退出循环
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>在这个示例中，increment 函数尝试增加 counter，并通过 CAS 确保在多线程环境中是原子性的。</p>
+<h3 id="2-14-Go函数中为什么会发⽣内存泄露？"><a href="#2-14-Go函数中为什么会发⽣内存泄露？" class="headerlink" title="2.14 Go函数中为什么会发⽣内存泄露？"></a>2.14 Go函数中为什么会发⽣内存泄露？</h3><p>在 Go 中，内存泄露可能由于以下原因导致：</p>
+<ul>
+<li>无意保留引用：对象的引用在程序中意外保留，垃圾回收器无法回收它们。</li>
+<li>循环引用：多个对象相互引用，导致垃圾回收器无法释放它们。</li>
+<li>未关闭的通道或 Goroutine：通道未关闭或 Goroutine 无法正常退出，导致资源被占用。</li>
+<li>未关闭的文件或资源：文件、数据库连接等资源未关闭，导致泄露。</li>
+<li>全局变量或缓存：全局变量或缓存中保留了不再使用的对象。</li>
+</ul>
+<h3 id="2-15-Golang协程为什么⽐线程轻量？"><a href="#2-15-Golang协程为什么⽐线程轻量？" class="headerlink" title="2.15 Golang协程为什么⽐线程轻量？"></a>2.15 Golang协程为什么⽐线程轻量？</h3><p>Golang 的协程（Goroutines）比传统的线程轻量，因为 Go 语言设计了独特的用户态调度器和灵活的栈管理机制，这使得 Goroutines 能在更低的资源消耗下高效运行。以下是 Goroutines 比线程轻量的主要原因：</p>
+<ol>
+<li><p>初始栈大小较小</p>
+<ul>
+<li>Goroutines 的初始栈大小通常只有几 KB，这与传统线程的栈大小相差甚远。传统线程的栈通常是固定大小，可能是 1 MB 或更大。较小的初始栈大小使得创建 Goroutines 的开销大大降低。</li>
+</ul>
+</li>
+<li><p>动态栈扩展</p>
+<ul>
+<li>Go 的 Goroutines 支持栈的动态扩展和收缩。这意味着栈可以根据需要增长，而不会固定占用大量内存。动态栈扩展可以减少内存的浪费，并允许更多 Goroutines 在同一时刻运行。</li>
+</ul>
+</li>
+<li><p>用户态调度</p>
+<ul>
+<li>Go 语言的调度器是用户态调度器，与操作系统的线程调度器不同。用户态调度器可以更高效地调度 Goroutines，而不需要进行系统调用或内核态的线程切换，这减少了上下文切换的成本。</li>
+</ul>
+</li>
+<li><p>较少的系统资源消耗</p>
+<ul>
+<li>Goroutines 不需要为每个实例创建操作系统级别的线程，因此它们消耗的系统资源较少。传统线程需要操作系统资源，如文件描述符、内核栈、线程上下文等，这些资源开销较高。</li>
+</ul>
+</li>
+<li><p>高效的 Goroutines 调度</p>
+<ul>
+<li>Go 运行时的调度器可以在多个操作系统线程上调度大量的 Goroutines。它采用 M:N 模型，意味着多个 Goroutines 可以共享少量的操作系统线程。这种调度方式更加灵活，减少了系统资源的消耗。</li>
+</ul>
+</li>
+<li><p>Goroutines 的创建成本较低</p>
+<ul>
+<li>由于 Goroutines 的轻量级特性，它们的创建和销毁成本较低。<strong>传统线程的创建通常涉及操作系统的系统调用，而 Goroutines 可以在用户态完成，大大减少了创建成本</strong>。</li>
+</ul>
+</li>
+<li><p>并发模型的简化</p>
+<ul>
+<li>Go 的并发模型通过 Goroutines 和通道提供了简化的通信机制。这种机制减少了传统线程模型中的复杂同步操作，如锁定、条件变量等，从而降低了 Goroutines 的管理成本。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-16-线程模型有哪些？为什么-Go-Scheduler-需要实现-M-N-的⽅案？Go-Scheduler-由哪些元-素构成呢？"><a href="#2-16-线程模型有哪些？为什么-Go-Scheduler-需要实现-M-N-的⽅案？Go-Scheduler-由哪些元-素构成呢？" class="headerlink" title="2.16 线程模型有哪些？为什么 Go Scheduler 需要实现 M:N 的⽅案？Go Scheduler 由哪些元 素构成呢？"></a>2.16 线程模型有哪些？为什么 Go Scheduler 需要实现 M:N 的⽅案？Go Scheduler 由哪些元 素构成呢？</h3><p>线程模型描述了如何在操作系统或语言运行时中管理线程或协程。不同的线程模型在调度、资源利用和性能方面具有不同的特点。常见的线程模型包括：</p>
+<ol>
+<li>1:1 线程模型<ul>
+<li>定义：每个用户线程映射到一个操作系统线程。</li>
+<li>优点：操作系统调度器直接管理线程，调度可靠，集成了操作系统的多线程特性。</li>
+<li>缺点：创建、上下文切换和管理成本较高，受限于操作系统线程的限制。</li>
+</ul>
+</li>
+<li>N:1 线程模型<ul>
+<li>定义：多个用户线程映射到一个操作系统线程。</li>
+<li>优点：用户态调度更轻量，创建和管理成本低，节约资源。</li>
+<li>缺点：如果用户态线程阻塞，整个线程就会阻塞；无法充分利用多核。</li>
+</ul>
+</li>
+<li>M:N 线程模型<ul>
+<li>定义：多个用户线程可以映射到多个操作系统线程，通过用户态调度器调度。</li>
+<li>优点：灵活性强，可以在用户态进行高效调度，充分利用多核优势，同时减少线程创建和上下文切换的成本。</li>
+<li>缺点：实现复杂，用户态调度器需要与操作系统进行交互，确保高效和一致性。</li>
+</ul>
+</li>
+</ol>
+<p>为什么 Go Scheduler 选择 M:N 模型？</p>
+<ul>
+<li><p>Go Scheduler 采用 M:N 线程模型，主要是为了结合 1:1 和 N:1 模型的优势，解决两者的缺点：</p>
+<ul>
+<li>高效并发：通过用户态调度器，实现轻量级的 Goroutine 并发，降低创建和管理成本。</li>
+<li>多核支持：通过多个操作系统线程，确保可以充分利用多核 CPU，支持高并发。</li>
+<li>灵活的调度：用户态调度器可以实现灵活的调度策略，减少线程阻塞导致的性能问题。</li>
+</ul>
+</li>
+</ul>
+<p>Go Scheduler 由以下几个关键部分构成：</p>
+<ul>
+<li>M（Machine）：表示操作系统线程。一个 M 可以运行多个 Goroutine。</li>
+<li>P（Processor）：逻辑处理器，负责管理 Goroutine 的调度和运行。每个 P 与一个 M 关联，M 可以在不同 P 之间切换。</li>
+<li>G（Goroutine）：代表一个 Goroutine 实例，可以在 P 上运行。</li>
+</ul>
+<p>Go 的 Scheduler 使用 GMP 模型管理 Goroutine 的调度。P 负责调度 Goroutine，M 负责操作系统线程，G 代表具体的 Goroutine 实例。</p>
+<h3 id="2-17-互斥锁正常模式和饥饿模式的区别-？"><a href="#2-17-互斥锁正常模式和饥饿模式的区别-？" class="headerlink" title="2.17 互斥锁正常模式和饥饿模式的区别 ？"></a>2.17 互斥锁正常模式和饥饿模式的区别 ？</h3><p>在 Go 语言中，互斥锁（sync.Mutex）有两种不同的工作模式：正常模式和饥饿模式。两者的区别主要在于锁的公平性以及锁竞争时的调度策略。</p>
+<ol>
+<li><p>正常模式</p>
+<ul>
+<li>在正常模式下，sync.Mutex 按照 “先到先得” 的原则工作，但并不保证绝对的公平性。锁在释放后，会尽量满足已经在等待的 Goroutine，但不是严格按照队列顺序。以下是正常模式的主要特点：</li>
+</ul>
+</li>
+<li><p>饥饿模式</p>
+<ul>
+<li>饥饿模式用于处理锁竞争中可能出现的饥饿问题。在饥饿模式下，锁按照严格的队列顺序分配，确保所有等待的 Goroutine 按照请求顺序获得锁。以下是饥饿模式的主要特点：</li>
+</ul>
+</li>
+<li><p>什么时候使用饥饿模式？</p>
+<ul>
+<li>在 Go 中，sync.Mutex 默认使用正常模式，但在某些情况下可能会切换到饥饿模式。当锁竞争激烈时，可能会出现某些 Goroutine 长时间无法获得锁的情况，此时锁会自动切换到饥饿模式，确保公平性。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-18-解释Go-work-stealing-机制？"><a href="#2-18-解释Go-work-stealing-机制？" class="headerlink" title="2.18 解释Go work stealing 机制？"></a>2.18 解释Go work stealing 机制？</h3><p>Work Stealing 机制的基本原理是：</p>
+<p>当一个 P 处理完其队列中的 Goroutines，但其他 P 仍然有未处理的 Goroutines 时，它可以从其他 P 的队列中窃取工作。这种机制的核心目的是平衡负载，确保所有的 P 都有足够的工作，以最大限度地利用多核 CPU 的性能。</p>
+<h3 id="2-19-解释-Go-hand-off-机制？"><a href="#2-19-解释-Go-hand-off-机制？" class="headerlink" title="2.19 解释 Go hand off 机制？"></a>2.19 解释 Go hand off 机制？</h3><p>Hand Off 机制的关键在于减少 Goroutines 的调度延迟。当一个 Goroutine 释放锁、结束 I&#x2F;O 操作或执行其他使其可以再次运行的操作时，如果将其重新放回调度队列可能会导致额外的调度延迟。因此，Hand Off 机制允许在适当的情况下，直接将 Goroutine 交给其他操作系统线程进行运行，减少中间步骤。</p>
+<h3 id="2-20-如何在Golang中实现协程池？"><a href="#2-20-如何在Golang中实现协程池？" class="headerlink" title="2.20 如何在Golang中实现协程池？"></a>2.20 如何在Golang中实现协程池？</h3><pre><code class="go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+)
+
+// Worker 是一个执行任务的协程
+func Worker(id int, tasks &lt;-chan func(), wg *sync.WaitGroup) &#123;
+    defer wg.Done()
+    for task := range tasks &#123;
+        fmt.Printf(&quot;Worker %d starting task\n&quot;, id)
+        task() // 执行任务
+        fmt.Printf(&quot;Worker %d completed task\n&quot;, id)
+    &#125;
+&#125;
+
+func main() &#123;
+    const numWorkers = 3  // 协程池大小
+    const numTasks = 10   // 总任务数量
+
+    tasks := make(chan func(), numTasks) // 用于分发任务的通道
+    var wg sync.WaitGroup                // 等待所有任务完成的 WaitGroup
+
+    // 创建工作者
+    for i := 1; i &lt;= numWorkers; i++ &#123;
+        wg.Add(1)
+        go Worker(i, tasks, &amp;wg)
+    &#125;
+
+    // 分发任务
+    for i := 1; i &lt;= numTasks; i++ &#123;
+        task := func(taskID int) func() &#123;
+            return func() &#123;
+                fmt.Printf(&quot;Executing task %d\n&quot;, taskID)
+                time.Sleep(1 * time.Second) // 模拟任务处理时间
+            &#125;
+        &#125;(i)
+        tasks &lt;- task
+    &#125;
+
+    // 关闭任务通道，表示不再有新任务
+    close(tasks)
+
+    // 等待所有工作者完成任务
+    wg.Wait()
+
+    fmt.Println(&quot;All tasks completed&quot;)
+&#125;
+</code></pre>
+<p>通过这样的方式，你可以控制同时运行的协程数量，避免创建过多的协程引起的性能和资源问题。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Golang八股文</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">13.3k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
+    <p><span class="copy-title">发布时间:</span>2024-05-04, 15:55:19</p>
+    <p><span class="copy-title">最后更新:</span>2024-05-06, 09:57:14</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/05/04/Golang%E5%85%AB%E8%82%A1%E6%96%87/" title="Golang八股文">https://hualog.dns.navy/2024/05/04/Golang%E5%85%AB%E8%82%A1%E6%96%87/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '53b33c5626275dc09dfa',
+            clientSecret: '285946a68f8f1bafc052f02fded36467fea269c2',
+            repo: 'xuanxuan000.github.io',
+            owner: 'xuanxuan000',
+            admin: ['xuanxuan000'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024-2034 Aze
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

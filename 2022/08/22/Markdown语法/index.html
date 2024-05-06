@@ -6,25 +6,22 @@
   <meta name="keywords" content=" markdown , md ">
   <meta name="description" content="Markdown语法 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="SRS使用说明方法一： Docker 使用SRS 启动命令： docker run --rm -it -p 1935:1935 -p 1985:1985 -p 8080:8080 registry.cn-hangzhou.aliyuncs.com&#x2F;ossrs&#x2F;srs:5   使用ffmpeg推流： ffmpeg -re -i .&#x2F;doc&#x2F;source.flv -c copy -f flv rtmp">
+<meta name="description" content="C++设计模式面对对象中的设计原则SOLID原则SOLID 是面向对象设计的五个核心原则的首字母缩写。每个原则都是指导良好设计的重要指南。  **单一职责原则 (Single Responsibility Principle, SRP)**：一个类应该只有一个明确的职责。换句话说，一个类应该只有一个导致其变化的原因。这有助于减少类的复杂性，并提高代码的可维护性和测试性。  **开放封闭原则 (Op">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SRS使用说明">
-<meta property="og:url" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:title" content="C++设计模式">
+<meta property="og:url" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="花落阁">
-<meta property="og:description" content="SRS使用说明方法一： Docker 使用SRS 启动命令： docker run --rm -it -p 1935:1935 -p 1985:1985 -p 8080:8080 registry.cn-hangzhou.aliyuncs.com&#x2F;ossrs&#x2F;srs:5   使用ffmpeg推流： ffmpeg -re -i .&#x2F;doc&#x2F;source.flv -c copy -f flv rtmp">
+<meta property="og:description" content="C++设计模式面对对象中的设计原则SOLID原则SOLID 是面向对象设计的五个核心原则的首字母缩写。每个原则都是指导良好设计的重要指南。  **单一职责原则 (Single Responsibility Principle, SRP)**：一个类应该只有一个明确的职责。换句话说，一个类应该只有一个导致其变化的原因。这有助于减少类的复杂性，并提高代码的可维护性和测试性。  **开放封闭原则 (Op">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/Oryx.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/gb28181_3.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/gb28181_4.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/gb28181_1.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/gb28181_2.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/rtc.png">
-<meta property="article:published_time" content="2024-04-28T07:25:10.000Z">
-<meta property="article:modified_time" content="2024-04-30T09:52:12.938Z">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE01.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE02.png">
+<meta property="article:published_time" content="2024-05-06T01:55:06.000Z">
+<meta property="article:modified_time" content="2024-05-06T07:00:19.723Z">
 <meta property="article:author" content="花落阁">
-<meta property="article:tag" content="SRS">
+<meta property="article:tag" content="编程语言">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hualog.dns.navy/2024/04/28/SRS%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/Oryx.png">
+<meta name="twitter:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE01.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -161,7 +158,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(15)</small>
+                <small>(22)</small>
             
         </div>
     </li>
@@ -173,7 +170,7 @@
         <div data-rel="工具">
             <i class="fold iconfont icon-right"></i>
             工具
-            <small>(6)</small>
+            <small>(7)</small>
         </div>
         
             <ul class="sub hide">
@@ -183,7 +180,7 @@
         <div data-rel="工具&lt;---&gt;tools">
             
             tools
-            <small>(5)</small>
+            <small>(6)</small>
         </div>
         
     </li>
@@ -203,17 +200,17 @@
         <div data-rel="编程语言">
             <i class="fold iconfont icon-right"></i>
             编程语言
-            <small>(4)</small>
+            <small>(6)</small>
         </div>
         
             <ul class="sub hide">
                 
                     
     <li>
-        <div data-rel="编程语言&lt;---&gt;八股">
+        <div data-rel="编程语言&lt;---&gt;常识类">
             
-            八股
-            <small>(4)</small>
+            常识类
+            <small>(6)</small>
         </div>
         
     </li>
@@ -237,7 +234,7 @@
         <div data-rel="音视频">
             
             音视频
-            <small>(5)</small>
+            <small>(8)</small>
         </div>
         
     </li>
@@ -269,8 +266,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="15">
-<input type="hidden" id="yelog_site_word_count" value="82.6k">
+<input type="hidden" id="yelog_site_posts_number" value="22">
+<input type="hidden" id="yelog_site_word_count" value="112k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -320,6 +317,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编码</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>程序构建</a>
             </li>
         
@@ -344,7 +345,15 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>gdb</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>golang</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -363,6 +372,10 @@
                 <i class="iconfont icon-tag"></i><a>SRS</a>
             </li>
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zlmediakit</a>
+            </li>
+        
     </div>
 
 </div>
@@ -373,6 +386,69 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 编程语言 常识类 "
+           href="/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="编程语言,C++"
+           data-author="" >
+            <span class="post-title" title="C++设计模式">C++设计模式</span>
+            <span class="post-date" title="2024-05-06 09:55:06">2024/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/05/QT%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="QT多线程与线程池">QT多线程与线程池</span>
+            <span class="post-date" title="2024-05-05 23:13:13">2024/05/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2024/05/05/GDB%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="gdb"
+           data-author="" >
+            <span class="post-title" title="GDB使用说明">GDB使用说明</span>
+            <span class="post-date" title="2024-05-05 19:55:40">2024/05/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 常识类 "
+           href="/2024/05/04/Golang%E5%85%AB%E8%82%A1%E6%96%87/"
+           data-tag="编程语言,golang"
+           data-author="" >
+            <span class="post-title" title="Golang八股文">Golang八股文</span>
+            <span class="post-date" title="2024-05-04 15:55:19">2024/05/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/05/02/H-264%E7%BC%96%E7%A0%81/"
+           data-tag="编码"
+           data-author="" >
+            <span class="post-title" title="H.264编码">H.264编码</span>
+            <span class="post-date" title="2024-05-02 10:32:43">2024/05/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/05/02/WebRTC-%E4%B8%80%E5%AF%B9%E4%B8%80%E9%80%9A%E8%AF%9D/"
+           data-tag="传输协议"
+           data-author="" >
+            <span class="post-title" title="WebRTC-一对一通话">WebRTC-一对一通话</span>
+            <span class="post-date" title="2024-05-02 10:04:15">2024/05/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 音视频 "
+           href="/2024/05/01/ZLMediaKit%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="zlmediakit"
+           data-author="" >
+            <span class="post-title" title="ZLMediaKit使用说明">ZLMediaKit使用说明</span>
+            <span class="post-date" title="2024-05-01 11:43:30">2024/05/01</span>
+        </a>
         
         
         <a  class="全部文章 音视频 "
@@ -456,7 +532,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 八股 "
+        <a  class="全部文章 编程语言 常识类 "
            href="/2023/04/13/MySQL/"
            data-tag="编程语言"
            data-author="" >
@@ -474,7 +550,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 八股 "
+        <a  class="全部文章 编程语言 常识类 "
            href="/2023/02/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
            data-tag="编程语言"
            data-author="" >
@@ -483,7 +559,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 八股 "
+        <a  class="全部文章 编程语言 常识类 "
            href="/2023/02/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
            data-tag="编程语言"
            data-author="" >
@@ -492,7 +568,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 八股 "
+        <a  class="全部文章 编程语言 常识类 "
            href="/2023/01/23/C++%E5%85%AB%E8%82%A1%E6%96%87/"
            data-tag="编程语言,C++"
            data-author="" >
