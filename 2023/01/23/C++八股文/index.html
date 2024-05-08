@@ -6,22 +6,32 @@
   <meta name="keywords" content=" 编程语言 , C++ ">
   <meta name="description" content="C++八股文 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="C++设计模式面对对象中的设计原则SOLID原则SOLID 是面向对象设计的五个核心原则的首字母缩写。每个原则都是指导良好设计的重要指南。  **单一职责原则 (Single Responsibility Principle, SRP)**：一个类应该只有一个明确的职责。换句话说，一个类应该只有一个导致其变化的原因。这有助于减少类的复杂性，并提高代码的可维护性和测试性。  **开放封闭原则 (Op">
+<meta name="description" content="GMP调度模型GMP调度模型的设计思想传统多线程的问题在现代的操作系统中，为了提高并发处理任务的能力，一个 CPU 核上通常会运行多个线程，多个线程的创建、切换使用、销毁开销通常较大：  一个内核线程的大小通常达到1M，因为需要分配内存来存放用户栈和内核栈的数据；  在一个线程执行系统调用（发生 IO 事件如网络请求或读写文件）不占用 CPU 时，需要及时让出 CPU，交给其他线程执行，这时会发生">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++设计模式">
-<meta property="og:url" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="Golang-GMP调度模型">
+<meta property="og:url" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="花落阁">
-<meta property="og:description" content="C++设计模式面对对象中的设计原则SOLID原则SOLID 是面向对象设计的五个核心原则的首字母缩写。每个原则都是指导良好设计的重要指南。  **单一职责原则 (Single Responsibility Principle, SRP)**：一个类应该只有一个明确的职责。换句话说，一个类应该只有一个导致其变化的原因。这有助于减少类的复杂性，并提高代码的可维护性和测试性。  **开放封闭原则 (Op">
+<meta property="og:description" content="GMP调度模型GMP调度模型的设计思想传统多线程的问题在现代的操作系统中，为了提高并发处理任务的能力，一个 CPU 核上通常会运行多个线程，多个线程的创建、切换使用、销毁开销通常较大：  一个内核线程的大小通常达到1M，因为需要分配内存来存放用户栈和内核栈的数据；  在一个线程执行系统调用（发生 IO 事件如网络请求或读写文件）不占用 CPU 时，需要及时让出 CPU，交给其他线程执行，这时会发生">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE01.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE02.png">
-<meta property="article:published_time" content="2024-05-06T01:55:06.000Z">
-<meta property="article:modified_time" content="2024-05-06T07:00:19.723Z">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/001.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/002.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/003.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/004.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/005.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/006.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/007.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/008.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/009.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/010.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/011.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/012.png">
+<meta property="article:published_time" content="2024-05-07T09:53:36.000Z">
+<meta property="article:modified_time" content="2024-05-08T02:23:38.414Z">
 <meta property="article:author" content="花落阁">
 <meta property="article:tag" content="编程语言">
-<meta property="article:tag" content="C++">
+<meta property="article:tag" content="golang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE01.png">
+<meta name="twitter:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/001.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -158,7 +168,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(22)</small>
+                <small>(23)</small>
             
         </div>
     </li>
@@ -200,7 +210,7 @@
         <div data-rel="编程语言">
             <i class="fold iconfont icon-right"></i>
             编程语言
-            <small>(6)</small>
+            <small>(7)</small>
         </div>
         
             <ul class="sub hide">
@@ -210,7 +220,18 @@
         <div data-rel="编程语言&lt;---&gt;常识类">
             
             常识类
-            <small>(6)</small>
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Golang">
+            
+            Golang
+            <small>(2)</small>
         </div>
         
     </li>
@@ -246,6 +267,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -266,8 +291,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="22">
-<input type="hidden" id="yelog_site_word_count" value="112k">
+<input type="hidden" id="yelog_site_posts_number" value="23">
+<input type="hidden" id="yelog_site_word_count" value="115.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -388,6 +413,15 @@
     <nav id="title-list-nav">
         
         
+        <a  class="全部文章 编程语言 Golang "
+           href="/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/"
+           data-tag="编程语言,golang"
+           data-author="" >
+            <span class="post-title" title="Golang-GMP调度模型">Golang-GMP调度模型</span>
+            <span class="post-date" title="2024-05-07 17:53:36">2024/05/07</span>
+        </a>
+        
+        
         <a  class="全部文章 编程语言 常识类 "
            href="/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
            data-tag="编程语言,C++"
@@ -415,7 +449,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 常识类 "
+        <a  class="全部文章 编程语言 Golang "
            href="/2024/05/04/Golang%E5%85%AB%E8%82%A1%E6%96%87/"
            data-tag="编程语言,golang"
            data-author="" >
@@ -634,12 +668,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-06 18:10:32'>2023-01-23 17:48</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-07 16:18:39'>2023-01-23 17:48</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:31.7k</span>
+        <span>字数:32.5k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -742,6 +776,24 @@ struct alignas(2) Info2 &#123;
 <p>栈由系统分配，速度快，不会有碎片。<br>堆由程序员分配，速度慢，且会有碎片。</p>
 </li>
 </ul>
+<pre><code class="bash">user@master:~$ ulimit -a
+core file size          (blocks, -c) 0              // 当程序崩溃时生成的核心转储文件的最大大小
+data seg size           (kbytes, -d) unlimited      // 堆内存
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 63181
+max locked memory       (kbytes, -l) 65536
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 8192           // 栈内存
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 63181
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+</code></pre>
 <h3 id="1-6-栈为什么比堆执行快？"><a href="#1-6-栈为什么比堆执行快？" class="headerlink" title="1.6 栈为什么比堆执行快？"></a>1.6 栈为什么比堆执行快？</h3><ol>
 <li><p>栈内存的快速访问主要是因为它通常位于主存中的相对较小的内存区域，这使得 CPU 缓存（包括一级缓存）中的数据能够快速加载到处理器中。此外，栈内存的顺序访问模式也有助于提高缓存的命中率。    </p>
 </li>
@@ -1228,7 +1280,7 @@ myVector.push_back(std::move(obj)); // 使用 std::move 将对象移入容器中
 </ol>
 <h3 id="1-35-C-中将临时变量作为返回值时的处理过程"><a href="#1-35-C-中将临时变量作为返回值时的处理过程" class="headerlink" title="1.35 C++中将临时变量作为返回值时的处理过程"></a>1.35 C++中将临时变量作为返回值时的处理过程</h3><p>首先需要明白一件事情，临时变量，在函数调用过程中是被压到程序进程的栈中的，当函数退出时，临时变量出栈，即临时变量已经被销毁，临时变量占用的内存空间没有被清空，但是可以被分配给其他变量，所以有可能在函数退出时，该内存已经被修改了，对于临时变量来说已经是没有意义的值了</p>
 <p>C语言里规定：16bit程序中，返回值保存在ax寄存器中，32bit程序中，返回值保持在eax寄存器中，如果是64bit返回值，edx寄存器保存高32bit，eax寄存器保存低32bit</p>
-<p>由此可见，函数调用结束后，返回值被临时存储到寄存器中，并没有放到堆或栈中，也就是说与内存没有关系了。当退出函数的时候，临时变量可能被销毁，但是返回值却被放到寄存器中与临时变量的生命周期没有关系</p>
+<p>由此可见，<strong>函数调用结束后，返回值被临时存储到<code>寄存器</code>中，并没有放到堆或栈中，也就是说与内存没有关系了</strong>。当退出函数的时候，临时变量可能被销毁，但是返回值却被放到寄存器中与临时变量的生命周期没有关系</p>
 <p>如果我们需要返回值，一般使用赋值语句就可以了。</p>
 <h3 id="1-36-如何获得结构成员相对于结构开头的字节偏移量"><a href="#1-36-如何获得结构成员相对于结构开头的字节偏移量" class="headerlink" title="1.36 如何获得结构成员相对于结构开头的字节偏移量"></a>1.36 如何获得结构成员相对于结构开头的字节偏移量</h3><p>使用&lt;stddef.h&gt;头文件中的，offsetof宏。</p>
 <pre><code class="C++">#include &lt;cstddef&gt;
@@ -1254,6 +1306,29 @@ Offset of &#39;b&#39; in MyStruct: 4
 Offset of &#39;c&#39; in MyStruct: 8
 </code></pre>
 <h3 id="1-37-怎样判断两个浮点数是否相等？"><a href="#1-37-怎样判断两个浮点数是否相等？" class="headerlink" title="1.37 怎样判断两个浮点数是否相等？"></a>1.37 怎样判断两个浮点数是否相等？</h3><p>对两个浮点数判断大小和是否相等不能直接用&#x3D;&#x3D;来判断，会出错！明明相等的两个数比较反而是不相等！对于两个浮点数比较只能通过<code>相减并与预先设定的精度比较</code>，记得要取绝对值！浮点数与0的比较也应该注意。与浮点数的表示方式有关。</p>
+<pre><code class="C++">#include &lt;cmath&gt; // 包含数学库
+#include &lt;iostream&gt;
+
+// 判断两个浮点数是否相等的函数
+bool areFloatsEqual(double a, double b, double tolerance) &#123;
+    return std::fabs(a - b) &lt;= tolerance; // fabs 计算绝对值
+&#125;
+
+int main() &#123;
+    double x = 0.1 + 0.2;
+    double y = 0.3;
+
+    double tolerance = 1e-9; // 设置公差值 0.000000001
+
+    if (areFloatsEqual(x, y, tolerance)) &#123;
+        std::cout &lt;&lt; &quot;The numbers are considered equal.&quot; &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; &quot;The numbers are NOT equal.&quot; &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
 <h3 id="1-38-C-的标准库，STL及std的区别"><a href="#1-38-C-的标准库，STL及std的区别" class="headerlink" title="1.38 C++的标准库，STL及std的区别"></a>1.38 C++的标准库，STL及std的区别</h3><ul>
 <li>std（Standard）</li>
 <li>STL（Standard Template Library）  </li>
@@ -1296,19 +1371,23 @@ public:
 </ul>
 </li>
 <li><strong>只能动态分配的类：</strong>  <ul>
-<li>如果希望类的对象只能在堆上分配，可以在类中重载<code>new</code>和<code>delete</code>运算符，并将它们设置为私有或者保护成员，以防止用户直接调用。<pre><code class="cpp">class DynamicAllocatedClass &#123;
+<li>无法通过在类中将<code>构造函数</code>设置为私有或者保护成员来实现，因为私有构造函数或受保护构造函数只限制直接实例化，但并不能阻止在类内部创建对象。如果在类内提供了一个静态方法来返回对象的实例，它仍然可以返回一个在栈上创建的对象的引用或指针，或者通过友元类等方式绕过限制。</li>
+<li>如果希望类的对象只能在堆上分配，可以在类中将<code>析构函数</code>设置为私有或者保护成员，以防止用户直接调用。强行创建会因为无法调用析构函数而导致编译错误。<pre><code class="cpp">class HeapOnly &#123;
 public:
-    // 重载 new 和 delete 运算符
-    void* operator new(std::size_t size) &#123;
-        return ::operator new(size);
+    static HeapOnly* createInstance() &#123;
+        return new HeapOnly();  // 只能在堆上创建
     &#125;
-    void operator delete(void* ptr) &#123;
-        ::operator delete(ptr);
-    &#125;
+
 private:
-    // 防止直接创建对象
-    DynamicAllocatedClass() &#123;&#125;
+    HeapOnly() &#123;&#125;  // 私有构造函数
+    ~HeapOnly() &#123;&#125;  // 私有析构函数
 &#125;;
+
+int main() &#123;
+    // HeapOnly ho;  // 无法编译，因为无法调用私有析构函数
+    HeapOnly* ho = HeapOnly::createInstance();
+    delete ho;  // 通过 delete 手动释放
+&#125;
 </code></pre>
 </li>
 </ul>
@@ -1433,6 +1512,26 @@ static int localVar = 10; // 声明文件作用域的静态变量
 <li><p>static 用于限定变量或函数的作用域为当前文件，使得它们只能在当前文件中可见，对其他文件不可见。</p>
 </li>
 </ul>
+<p>扩展：</p>
+<p>如果你在头文件中声明了static变量，而后包含这个头文件，你将无法在不同的源文件之间访问该变量。<strong>每个源文件会有自己的独立实例</strong>，这种方式常用于实现某种形式的封装，以避免全局变量的意外干扰。</p>
+<p>示例：</p>
+<pre><code class="c">Copy code
+// my_header.h
+static int my_static_variable = 42;
+
+// file1.c
+#include &quot;my_header.h&quot;
+void func1() &#123;
+    my_static_variable = 100;  // 这是file1.c中的my_static_variable
+&#125;
+
+// file2.c
+#include &quot;my_header.h&quot;
+void func2() &#123;
+    my_static_variable = 200;  // 这是file2.c中的my_static_variable
+&#125;
+</code></pre>
+<p>在这个例子中，file1.c和file2.c中的my_static_variable是彼此独立的，修改其中一个不会影响另一个。这种行为符合static关键字的意图，即限制变量的作用域和链接范围。</p>
 <h3 id="1-47-如何在不使用额外空间的情况下，交换两个数？你有几种方法"><a href="#1-47-如何在不使用额外空间的情况下，交换两个数？你有几种方法" class="headerlink" title="1.47 如何在不使用额外空间的情况下，交换两个数？你有几种方法"></a>1.47 如何在不使用额外空间的情况下，交换两个数？你有几种方法</h3><ol>
 <li>使用加法和减法：<pre><code class="cpp">a = a + b;
 b = a - b;
@@ -1896,7 +1995,7 @@ int main() &#123;
 <h2 id="四、STL"><a href="#四、STL" class="headerlink" title="四、STL"></a>四、STL</h2><p>部分<a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15127564/4871878">面试题</a></p>
 <h3 id="4-1-什么是STL"><a href="#4-1-什么是STL" class="headerlink" title="4.1 什么是STL"></a>4.1 什么是STL</h3><p>STL通常指的是“标准模板库”（Standard Template Library）。这是C++编程语言的一部分，包含一组用于常见数据结构和算法的模板库。这些模板库是泛型的，允许程序员使用单个代码库来处理各种数据类型。</p>
 <p>广义上讲，STL分为3类：Algorithm（算法）、Container（容器）和Iterator（迭代器），容器和算法通过迭代器可以进行无缝地连接。</p>
-<p>详细的说，STL由6部分组成：容器(Container)、算法（Algorithm）、 迭代器（Iterator）、仿函数（Function object）、适配器（Adaptor）、空间配制器（Allocator）。</p>
+<p>详细的说，STL由6部分组成：容器(Container)、算法（Algorithm）、 迭代器（Iterator）、仿函数（Function object）、容器配接器（Adaptor）、空间配制器（Allocator）。</p>
 <h4 id="1-容器（Containers）"><a href="#1-容器（Containers）" class="headerlink" title="1. 容器（Containers）"></a>1. 容器（Containers）</h4><p>容器是STL中用于存储和组织数据的基础结构。它们提供了一系列操作，如插入、删除、查找、迭代等。STL中的主要容器包括：</p>
 <ul>
 <li><p>序列容器（Sequence Containers）：这些容器按顺序存储元素。</p>
@@ -2171,6 +2270,9 @@ int main() &#123;
 </ul>
 </li>
 </ul>
+<blockquote>
+<p><strong>纯虚函数</strong>：只要一个类中至少有一个纯虚函数，这个类就成为抽象类。抽象类不能直接实例化，它的主要作用是作为其他类的基类，提供一个接口或基本结构供子类继承和实现。</p>
+</blockquote>
 <h3 id="5-4-目标文件存储结构"><a href="#5-4-目标文件存储结构" class="headerlink" title="5.4 目标文件存储结构"></a>5.4 目标文件存储结构</h3><table>
 <thead>
 <tr>
@@ -2296,7 +2398,7 @@ T&amp; CTest&lt;T&gt;::GetValue()
    return m_Value;  
 &#125;
 </code></pre>
-<p>在这儿test.cpp中的内容应放在test.h中，否则在生成最终可执行程序时就会出现错误(在链接时会出错)。因为<code>在编译时模板并不能生成真正的二进制代码，而是在编译调用模板类或函数的CPP文件时才会去找对应的模板声明和实现</code>，在这种情况下编译器是不知道实现模板类或函数的CPP文件的存在，所以它只能找到模板类或函数的声明而找不到实现，而只好创建一个符号寄希望于链接程序找地址。但模板类或函数的实现并不能被编译成二进制代码，结果链接程序找不到地址只好报错了。</p>
+<p>在这儿test.cpp中的内容应放在test.h中，否则在生成最终可执行程序时就会出现错误(在链接时会出错)。因为<strong>在编译时模板并不能生成真正的二进制代码，而是在编译调用模板类或函数的CPP文件时才会去找对应的模板声明和实现</strong>，在这种情况下编译器是不知道实现模板类或函数的CPP文件的存在，所以它只能找到模板类或函数的声明而找不到实现，而只好创建一个符号寄希望于链接程序找地址。但<strong>模板类或函数的实现并不能被编译成二进制代码</strong>，结果链接程序找不到地址只好报错了。</p>
 <h3 id="5-8-构造函数、析构函数、虚函数可否声明为内联函数"><a href="#5-8-构造函数、析构函数、虚函数可否声明为内联函数" class="headerlink" title="5.8 构造函数、析构函数、虚函数可否声明为内联函数"></a>5.8 构造函数、析构函数、虚函数可否声明为内联函数</h3><p>首先，将这些函数声明为内联函数，在语法上没有错误。因为inline同register一样，只是个建议，编译器并不一定真正的内联。</p>
 <blockquote>
 <p>register关键字：这个关键字请求编译器尽可能的将变量存在CPU内部寄存器中，而不是通过内存寻址访问，以提高效率</p>
@@ -2320,6 +2422,25 @@ T&amp; CTest&lt;T&gt;::GetValue()
 <h3 id="5-11-如何解决菱形继承"><a href="#5-11-如何解决菱形继承" class="headerlink" title="5.11 如何解决菱形继承"></a>5.11 如何解决菱形继承</h3><p>使用虚继承：</p>
 <p>虚拟继承是多重继承中特有的概念。虚拟基类是为解决多重继承而出现的。 如:类D继承自类B1、B2，而类B1、B2都继 承自类A，因此在类D中两次出现类A中的变量和函数。为了节省内存空间，可以将B1、B2对A的继承定义为虚拟继承，而A就成了虚拟基类,虚拟继承在一般的应用中很少用到，所以也往往被忽视，这也主要是因为在C++中，多重继承是不推荐的，也并不常用，而一旦离开了多重继承，虚拟继承就完全失去了存在的必要因为这样只会降低效率和占用更多的空间。</p>
 <p>虚继承的特点是，在任何派生类中的virtual基类总用同一个（共享）对象表示，</p>
+<pre><code class="C++">#include &lt;iostream&gt;
+
+class Base &#123;
+public:
+    int value;
+    Base() : value(0) &#123;&#125;
+&#125;;
+
+class Derived1 : virtual public Base &#123;&#125;;
+class Derived2 : virtual public Base &#123;&#125;;
+class Final : public Derived1, public Derived2 &#123;&#125;;
+
+int main() &#123;
+    Final f;
+    f.value = 42;  // 只有一个Base实例，不再需要指定作用域
+
+    std::cout &lt;&lt; &quot;f.value = &quot; &lt;&lt; f.value &lt;&lt; std::endl;  // 输出：42
+&#125;
+</code></pre>
 <h3 id="5-12-将字符串“hello-world”从开始到打印到屏幕上的全过程"><a href="#5-12-将字符串“hello-world”从开始到打印到屏幕上的全过程" class="headerlink" title="5.12 将字符串“hello world”从开始到打印到屏幕上的全过程?"></a>5.12 将字符串“hello world”从开始到打印到屏幕上的全过程?</h3><ol>
 <li><p>用户告诉操作系统执行HelloWorld程序（通过键盘输入等）</p>
 </li>
@@ -2420,10 +2541,10 @@ T&amp; CTest&lt;T&gt;::GetValue()
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>C++八股文</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">31.7k</span></p>
+    <p><span class="copy-title">字数:</span><span class="post-count">32.5k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
     <p><span class="copy-title">发布时间:</span>2023-01-23, 17:48:51</p>
-    <p><span class="copy-title">最后更新:</span>2024-05-06, 18:10:32</p>
+    <p><span class="copy-title">最后更新:</span>2024-05-07, 16:18:39</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2023/01/23/C++%E5%85%AB%E8%82%A1%E6%96%87/" title="C++八股文">https://hualog.dns.navy/2023/01/23/C++%E5%85%AB%E8%82%A1%E6%96%87/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。

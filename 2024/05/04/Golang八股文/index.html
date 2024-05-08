@@ -6,22 +6,32 @@
   <meta name="keywords" content=" 编程语言 , golang ">
   <meta name="description" content="Golang八股文 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="C++设计模式面对对象中的设计原则SOLID原则SOLID 是面向对象设计的五个核心原则的首字母缩写。每个原则都是指导良好设计的重要指南。  **单一职责原则 (Single Responsibility Principle, SRP)**：一个类应该只有一个明确的职责。换句话说，一个类应该只有一个导致其变化的原因。这有助于减少类的复杂性，并提高代码的可维护性和测试性。  **开放封闭原则 (Op">
+<meta name="description" content="GMP调度模型GMP调度模型的设计思想传统多线程的问题在现代的操作系统中，为了提高并发处理任务的能力，一个 CPU 核上通常会运行多个线程，多个线程的创建、切换使用、销毁开销通常较大：  一个内核线程的大小通常达到1M，因为需要分配内存来存放用户栈和内核栈的数据；  在一个线程执行系统调用（发生 IO 事件如网络请求或读写文件）不占用 CPU 时，需要及时让出 CPU，交给其他线程执行，这时会发生">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++设计模式">
-<meta property="og:url" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="Golang-GMP调度模型">
+<meta property="og:url" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="花落阁">
-<meta property="og:description" content="C++设计模式面对对象中的设计原则SOLID原则SOLID 是面向对象设计的五个核心原则的首字母缩写。每个原则都是指导良好设计的重要指南。  **单一职责原则 (Single Responsibility Principle, SRP)**：一个类应该只有一个明确的职责。换句话说，一个类应该只有一个导致其变化的原因。这有助于减少类的复杂性，并提高代码的可维护性和测试性。  **开放封闭原则 (Op">
+<meta property="og:description" content="GMP调度模型GMP调度模型的设计思想传统多线程的问题在现代的操作系统中，为了提高并发处理任务的能力，一个 CPU 核上通常会运行多个线程，多个线程的创建、切换使用、销毁开销通常较大：  一个内核线程的大小通常达到1M，因为需要分配内存来存放用户栈和内核栈的数据；  在一个线程执行系统调用（发生 IO 事件如网络请求或读写文件）不占用 CPU 时，需要及时让出 CPU，交给其他线程执行，这时会发生">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE01.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE02.png">
-<meta property="article:published_time" content="2024-05-06T01:55:06.000Z">
-<meta property="article:modified_time" content="2024-05-06T07:00:19.723Z">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/001.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/002.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/003.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/004.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/005.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/006.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/007.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/008.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/009.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/010.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/011.png">
+<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/012.png">
+<meta property="article:published_time" content="2024-05-07T09:53:36.000Z">
+<meta property="article:modified_time" content="2024-05-08T02:23:38.414Z">
 <meta property="article:author" content="花落阁">
 <meta property="article:tag" content="编程语言">
-<meta property="article:tag" content="C++">
+<meta property="article:tag" content="golang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hualog.dns.navy/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE01.png">
+<meta name="twitter:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/001.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -158,7 +168,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(22)</small>
+                <small>(23)</small>
             
         </div>
     </li>
@@ -200,7 +210,7 @@
         <div data-rel="编程语言">
             <i class="fold iconfont icon-right"></i>
             编程语言
-            <small>(6)</small>
+            <small>(7)</small>
         </div>
         
             <ul class="sub hide">
@@ -210,7 +220,18 @@
         <div data-rel="编程语言&lt;---&gt;常识类">
             
             常识类
-            <small>(6)</small>
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Golang">
+            
+            Golang
+            <small>(2)</small>
         </div>
         
     </li>
@@ -246,6 +267,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -266,8 +291,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="22">
-<input type="hidden" id="yelog_site_word_count" value="112k">
+<input type="hidden" id="yelog_site_posts_number" value="23">
+<input type="hidden" id="yelog_site_word_count" value="115.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -388,6 +413,15 @@
     <nav id="title-list-nav">
         
         
+        <a  class="全部文章 编程语言 Golang "
+           href="/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/"
+           data-tag="编程语言,golang"
+           data-author="" >
+            <span class="post-title" title="Golang-GMP调度模型">Golang-GMP调度模型</span>
+            <span class="post-date" title="2024-05-07 17:53:36">2024/05/07</span>
+        </a>
+        
+        
         <a  class="全部文章 编程语言 常识类 "
            href="/2024/05/06/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
            data-tag="编程语言,C++"
@@ -415,7 +449,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 常识类 "
+        <a  class="全部文章 编程语言 Golang "
            href="/2024/05/04/Golang%E5%85%AB%E8%82%A1%E6%96%87/"
            data-tag="编程语言,golang"
            data-author="" >
@@ -617,7 +651,7 @@
             
             <a  data-rel="编程语言">编程语言</a> > 
             
-            <a  data-rel="编程语言&lt;---&gt;常识类">常识类</a>
+            <a  data-rel="编程语言&lt;---&gt;Golang">Golang</a>
             
         </span>
         
@@ -634,12 +668,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-06 09:57:14'>2024-05-04 15:55</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-08 14:44:53'>2024-05-04 15:55</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:13.3k</span>
+        <span>字数:13.6k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -832,7 +866,13 @@ func joinConcat(parts []string) string &#123;
 <h3 id="1-15-Golang的切片作为函数参数是值传递还是引用传递？"><a href="#1-15-Golang的切片作为函数参数是值传递还是引用传递？" class="headerlink" title="1.15 Golang的切片作为函数参数是值传递还是引用传递？"></a>1.15 Golang的切片作为函数参数是值传递还是引用传递？</h3><p>在 Go 中，切片作为函数参数是值传递的，但由于切片内部结构的特性，这种传递行为类似于引用传递。<strong>切片的长度和容量是值传递的部分</strong>，而<strong>指向底层数组的指针是共享的</strong>。因此，切片作为参数传递时，改变其内容可能影响原始切片。</p>
 <h3 id="1-16-Golang中哪些不能作为map类型的key？"><a href="#1-16-Golang中哪些不能作为map类型的key？" class="headerlink" title="1.16 Golang中哪些不能作为map类型的key？"></a>1.16 Golang中哪些不能作为map类型的key？</h3><p>在 Go 中，map 的键必须是可比较的，因此<code>切片</code>、<code>映射</code>、<code>函数</code>等不可比较的类型不能用作 map 键。可作为 map 键的类型包括基础类型、数组、结构体（所有字段可比较）、指针等。理解这一点可以避免在使用 map 时遇到编译错误。</p>
 <h3 id="1-17-Golang中nil-map-和空-map-有何不同？"><a href="#1-17-Golang中nil-map-和空-map-有何不同？" class="headerlink" title="1.17 Golang中nil map 和空 map 有何不同？"></a>1.17 Golang中nil map 和空 map 有何不同？</h3><p>nil map 和 空 map 的主要区别在于，nil map 未初始化，不能添加或修改元素，而空 map 已初始化，可以进行添加、修改和删除操作。在实际应用中，应根据需求来选择适当的 map 类型。</p>
-<h3 id="1-18-Golang的Map中删除一个-key，它的内存会释放么？"><a href="#1-18-Golang的Map中删除一个-key，它的内存会释放么？" class="headerlink" title="1.18 Golang的Map中删除一个 key，它的内存会释放么？"></a>1.18 Golang的Map中删除一个 key，它的内存会释放么？</h3><p>在 Go 语言中，当您从 map 中删除一个键时，map 的内存管理是自动处理的，但删除键并不一定会立即释放相应的内存。以下是关于 Go 中 map 删除键和内存管理的详细解释。</p>
+<h3 id="1-18-Golang的Map中删除一个-key，它的内存会释放么？"><a href="#1-18-Golang的Map中删除一个-key，它的内存会释放么？" class="headerlink" title="1.18 Golang的Map中删除一个 key，它的内存会释放么？"></a>1.18 Golang的Map中删除一个 key，它的内存会释放么？</h3><p>在 Go 语言中，当您从 map 中删除一个键时，map 的内存管理是自动处理的，但删除键并不一定会立即释放相应的内存。</p>
+<ul>
+<li><p>垃圾回收的时机：垃圾回收不是即时的。它在后台异步运行，可能会有一定的延迟。因此，删除键后，相关内存可能需要等待一段时间才会被回收。</p>
+</li>
+<li><p>Map 的容量：即使删除了某个键，Map 的容量可能不会立即缩小。这是因为 Map 的内部结构有其自身的管理方式，通常会保留一些空闲容量以便于未来的增长。这个特点可以避免频繁的内存重新分配，但也意味着即使删除了键，Map 的内存占用可能不会立刻减少。</p>
+</li>
+</ul>
 <h3 id="1-19-Golang-调用函数传入结构体时，应该传值还是指针？"><a href="#1-19-Golang-调用函数传入结构体时，应该传值还是指针？" class="headerlink" title="1.19 Golang 调用函数传入结构体时，应该传值还是指针？"></a>1.19 Golang 调用函数传入结构体时，应该传值还是指针？</h3><p>传递结构体到函数时，传值和传指针都有各自的用例。了解具体需求，综合考虑性能和数据一致性，是选择传值还是传指针的关键。</p>
 <h3 id="1-20-哪些数据结构默认引用传递？"><a href="#1-20-哪些数据结构默认引用传递？" class="headerlink" title="1.20 哪些数据结构默认引用传递？"></a>1.20 哪些数据结构默认引用传递？</h3><p>切片、Map、通道、函数等数据类型是默认以引用传递的。</p>
 <h3 id="1-21-Golang-中解析-tag-是怎么实现的？"><a href="#1-21-Golang-中解析-tag-是怎么实现的？" class="headerlink" title="1.21 Golang 中解析 tag 是怎么实现的？"></a>1.21 Golang 中解析 tag 是怎么实现的？</h3><pre><code class="go">type Person struct &#123;
@@ -1014,6 +1054,7 @@ func sum(nums ...int) int &#123;
 </li>
 </ul>
 <h3 id="1-36-Golang中的接口类型是否支持像Java那样的多继承？"><a href="#1-36-Golang中的接口类型是否支持像Java那样的多继承？" class="headerlink" title="1.36 Golang中的接口类型是否支持像Java那样的多继承？"></a>1.36 Golang中的接口类型是否支持像Java那样的多继承？</h3><p>在 Go 语言中，接口类型不支持像 Java 或 C++ 那样的多继承概念。Java 中的多继承通常指的是类可以继承多个其他类，或者接口可以继承多个其他接口。在 Go 中，虽然没有类的概念，但接口可以嵌入其他接口，这是一种类似多继承的机制，但并不完全相同。</p>
+<p>类似C++的组合</p>
 <p><strong>接口嵌入示例</strong></p>
 <pre><code class="go">package main
 
@@ -1075,6 +1116,8 @@ func main() &#123;
 </ul>
 <h3 id="1-41-简述go-convey-是什么？一般用来做什么？"><a href="#1-41-简述go-convey-是什么？一般用来做什么？" class="headerlink" title="1.41 简述go convey 是什么？一般用来做什么？"></a>1.41 简述go convey 是什么？一般用来做什么？</h3><p>GoConvey 是 Go 语言中的一个用于编写和执行单元测试的测试框架。与标准的 Go 测试库相比，GoConvey 提供了一种更直观和简洁的方式来编写测试，并支持行为驱动开发（BDD）的风格。它提供了用于组织和描述测试的工具，以及内置的测试服务器来展示测试结果。</p>
 <h3 id="1-42-闭包"><a href="#1-42-闭包" class="headerlink" title="1.42 闭包"></a>1.42 闭包</h3><p>在 Go 中，闭包主要体现在匿名函数中。匿名函数可以捕获其外部作用域中的变量，并在不同的上下文中保留这些变量的状态。</p>
+<p>感觉像强化版的静态变量</p>
+<p>作用域：局部静态变量通常是函数级的，并且在函数外部无法访问。而闭包可以在其定义的外部环境中保存状态，并可以返回给其他代码部分。<br>灵活性：闭包比局部静态变量更灵活，可以在多种环境中使用，并可以作为返回值传递到不同的作用域。<br>共享状态：闭包可以在多个实例之间共享状态，而局部静态变量通常在单个函数内使用。</p>
 <p>示例：简单闭包</p>
 <pre><code class="go">func main() &#123;
     // 定义一个变量
@@ -1155,20 +1198,22 @@ func main() &#123;
 </ul>
 <h3 id="2-5-Golang字符串转成byte数组，会发生内存拷贝吗？"><a href="#2-5-Golang字符串转成byte数组，会发生内存拷贝吗？" class="headerlink" title="2.5 Golang字符串转成byte数组，会发生内存拷贝吗？"></a>2.5 Golang字符串转成byte数组，会发生内存拷贝吗？</h3><p>在 Go 语言中，将字符串转换为字节数组（[]byte）<strong>会发生内存拷贝</strong>。这意味着一个新的字节数组会被创建，其中包含与原始字符串相同的数据。这种内存拷贝在转换过程中是必然的，<strong>因为字符串在 Go 中是不可变的，而字节数组是可变的</strong>。</p>
 <h3 id="2-6-对已经关闭的的chan进行读写，会怎么样？为什么？"><a href="#2-6-对已经关闭的的chan进行读写，会怎么样？为什么？" class="headerlink" title="2.6 对已经关闭的的chan进行读写，会怎么样？为什么？"></a>2.6 对已经关闭的的chan进行读写，会怎么样？为什么？</h3><ul>
-<li>读取一个已经关闭的通道：  <ul>
+<li><p>读取一个已经关闭的通道：  </p>
+<ul>
 <li>当你从一个关闭的通道中读取数据时，如果通道里有剩余的数据，你会读取到这些数据。</li>
 <li>如果通道已经没有数据了，读取操作会立即返回零值，并且通道的第二个返回值将是 false，表示通道已关闭。例如，读取一个 chan int 类型的通道，如果通道为空且已关闭，你会得到 0 和 false。</li>
 </ul>
 </li>
-</ul>
-<p><strong>读取一个关闭的通道是安全的，也不会引发 panic。</strong></p>
+<li><p>写入一个已经关闭的通道:</p>
 <ul>
-<li>写入一个已经关闭的通道:<ul>
 <li>当你尝试写入一个已经关闭的通道时，会引发 panic。这是因为在关闭后，通道不再接受任何新的数据。</li>
 <li>因此，在写入通道之前，务必确认通道没有被关闭。这可以通过同步机制来确保，或者通过捕获 panic 进行错误处理。</li>
 </ul>
 </li>
 </ul>
+<blockquote>
+<p><strong>读取一个关闭的通道是安全的，也不会引发 panic。</strong></p>
+</blockquote>
 <h3 id="2-7-Golang的内存模型中为什么⼩对象多了会造成GC压⼒？如何解决？"><a href="#2-7-Golang的内存模型中为什么⼩对象多了会造成GC压⼒？如何解决？" class="headerlink" title="2.7 Golang的内存模型中为什么⼩对象多了会造成GC压⼒？如何解决？"></a>2.7 Golang的内存模型中为什么⼩对象多了会造成GC压⼒？如何解决？</h3><p>在 Golang 中，小对象的数量增多会导致垃圾回收（GC）压力增加。主要原因包括以下几点：</p>
 <ol>
 <li><p>对象的创建与销毁<br>每个对象的创建和销毁都会产生管理成本。当大量小对象被创建和销毁时，垃圾回收器需要处理更多的对象，这意味着更频繁的垃圾回收过程。</p>
@@ -1380,6 +1425,9 @@ func main() &#123;
 </li>
 </ul>
 <h3 id="2-13-简述Go中CAS算法？"><a href="#2-13-简述Go中CAS算法？" class="headerlink" title="2.13 简述Go中CAS算法？"></a>2.13 简述Go中CAS算法？</h3><p>CAS（Compare and Swap）算法是一种常用的原子操作算法，通常用于在多线程或并发环境中实现无锁操作。CAS 算法提供了一种确保原子性的方法，可以用于避免竞争条件和数据不一致的问题。Go 语言通过 sync&#x2F;atomic 包提供了对 CAS 操作的支持。</p>
+<blockquote>
+<p>原子操作用于简单的增减、读取&#x2F;写入等，而 CAS 可用于更复杂的比较和更新操作。</p>
+</blockquote>
 <ol>
 <li><p>CAS 算法的概念<br>CAS 是一种原子性操作，其核心思想是“比较并交换”。在 CAS 操作中，会对某个共享变量执行以下步骤：</p>
 <ul>
@@ -1605,10 +1653,10 @@ func main() &#123;
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>Golang八股文</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">13.3k</span></p>
+    <p><span class="copy-title">字数:</span><span class="post-count">13.6k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
     <p><span class="copy-title">发布时间:</span>2024-05-04, 15:55:19</p>
-    <p><span class="copy-title">最后更新:</span>2024-05-06, 09:57:14</p>
+    <p><span class="copy-title">最后更新:</span>2024-05-08, 14:44:53</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/05/04/Golang%E5%85%AB%E8%82%A1%E6%96%87/" title="Golang八股文">https://hualog.dns.navy/2024/05/04/Golang%E5%85%AB%E8%82%A1%E6%96%87/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
