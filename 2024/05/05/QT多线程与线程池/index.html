@@ -6,32 +6,20 @@
   <meta name="keywords" content="">
   <meta name="description" content="QT多线程与线程池 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="GMP调度模型GMP调度模型的设计思想传统多线程的问题在现代的操作系统中，为了提高并发处理任务的能力，一个 CPU 核上通常会运行多个线程，多个线程的创建、切换使用、销毁开销通常较大：  一个内核线程的大小通常达到1M，因为需要分配内存来存放用户栈和内核栈的数据；  在一个线程执行系统调用（发生 IO 事件如网络请求或读写文件）不占用 CPU 时，需要及时让出 CPU，交给其他线程执行，这时会发生">
+<meta name="description" content="Makefile语法程序编译过程编译是将源代码转换为计算机可执行的指令集的过程。这个过程可以分为多个阶段，通常包括以下步骤：  预处理（Preprocessing） -&gt; .i文件 ：在这一阶段，预处理器会处理源代码，执行诸如宏替换、头文件包含等操作。预处理器会根据预处理指令（以#开头）来修改源代码。例如，#include指令用于包含头文件，#define用于定义宏等。  编译（Compil">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Golang-GMP调度模型">
-<meta property="og:url" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:title" content="Makefile语法">
+<meta property="og:url" content="https://hualog.dns.navy/2024/05/11/Makefile%E8%AF%AD%E6%B3%95/index.html">
 <meta property="og:site_name" content="花落阁">
-<meta property="og:description" content="GMP调度模型GMP调度模型的设计思想传统多线程的问题在现代的操作系统中，为了提高并发处理任务的能力，一个 CPU 核上通常会运行多个线程，多个线程的创建、切换使用、销毁开销通常较大：  一个内核线程的大小通常达到1M，因为需要分配内存来存放用户栈和内核栈的数据；  在一个线程执行系统调用（发生 IO 事件如网络请求或读写文件）不占用 CPU 时，需要及时让出 CPU，交给其他线程执行，这时会发生">
+<meta property="og:description" content="Makefile语法程序编译过程编译是将源代码转换为计算机可执行的指令集的过程。这个过程可以分为多个阶段，通常包括以下步骤：  预处理（Preprocessing） -&gt; .i文件 ：在这一阶段，预处理器会处理源代码，执行诸如宏替换、头文件包含等操作。预处理器会根据预处理指令（以#开头）来修改源代码。例如，#include指令用于包含头文件，#define用于定义宏等。  编译（Compil">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/001.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/002.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/003.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/004.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/005.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/006.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/007.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/008.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/009.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/010.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/011.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/012.png">
-<meta property="article:published_time" content="2024-05-07T09:53:36.000Z">
-<meta property="article:modified_time" content="2024-05-08T02:23:38.414Z">
+<meta property="article:published_time" content="2024-05-11T02:51:48.000Z">
+<meta property="article:modified_time" content="2024-05-11T07:27:41.581Z">
 <meta property="article:author" content="花落阁">
-<meta property="article:tag" content="编程语言">
-<meta property="article:tag" content="golang">
+<meta property="article:tag" content="cmake">
+<meta property="article:tag" content="make">
+<meta property="article:tag" content="程序构建">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/001.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -168,7 +156,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(23)</small>
+                <small>(24)</small>
             
         </div>
     </li>
@@ -180,7 +168,7 @@
         <div data-rel="工具">
             <i class="fold iconfont icon-right"></i>
             工具
-            <small>(7)</small>
+            <small>(8)</small>
         </div>
         
             <ul class="sub hide">
@@ -190,7 +178,7 @@
         <div data-rel="工具&lt;---&gt;tools">
             
             tools
-            <small>(6)</small>
+            <small>(7)</small>
         </div>
         
     </li>
@@ -291,8 +279,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="23">
-<input type="hidden" id="yelog_site_word_count" value="115.8k">
+<input type="hidden" id="yelog_site_posts_number" value="24">
+<input type="hidden" id="yelog_site_word_count" value="118.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -411,6 +399,15 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2024/05/11/Makefile%E8%AF%AD%E6%B3%95/"
+           data-tag="cmake,make,程序构建"
+           data-author="" >
+            <span class="post-title" title="Makefile语法">Makefile语法</span>
+            <span class="post-date" title="2024-05-11 10:51:48">2024/05/11</span>
+        </a>
         
         
         <a  class="全部文章 编程语言 Golang "
@@ -649,12 +646,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-06 09:54:14'>2024-05-05 23:13</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-09 18:51:19'>2024-05-05 23:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:8</span>
+        <span>字数:856</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -684,7 +681,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#QT%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-text">QT多线程与线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-QThread"><span class="toc-text">1. QThread</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-QRunnable-%E5%92%8C-QThreadPool"><span class="toc-text">2. QRunnable 和 QThreadPool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-QtConcurrent"><span class="toc-text">3. QtConcurrent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8QObject%E5%86%99%E4%B8%80%E4%B8%AA%E7%B1%BB-%E5%B9%B6move%E5%88%B0%E6%96%B0%E7%9A%84thread%E5%AF%B9%E8%B1%A1"><span class="toc-text">4. 使用QObject写一个类  并move到新的thread对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E9%80%82%E5%BD%93%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%96%B9%E5%BC%8F"><span class="toc-text">如何选择适当的多线程方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -700,7 +697,92 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wanghongyang/p/14902679.html">https://www.cnblogs.com/wanghongyang/p/14902679.html</a></p>
+        <h1 id="QT多线程与线程池"><a href="#QT多线程与线程池" class="headerlink" title="QT多线程与线程池"></a>QT多线程与线程池</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wanghongyang/p/14902679.html">https://www.cnblogs.com/wanghongyang/p/14902679.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lcgbk/p/13967448.html#34-qtconcurrentrunqthreadpool">https://www.cnblogs.com/lcgbk/p/13967448.html#34-qtconcurrentrunqthreadpool</a></p>
+<p>面试题： <a target="_blank" rel="noopener" href="https://juejin.cn/post/7338269539539648539">https://juejin.cn/post/7338269539539648539</a></p>
+<p>Qt 提供了多种多线程编程方式，以适应不同的应用场景和需求。从低级线程管理到高级的并行处理，Qt 的多线程机制涵盖了各种用例。以下是 Qt 中常用的多线程方式及其应用场景：</p>
+<h2 id="1-QThread"><a href="#1-QThread" class="headerlink" title="1. QThread"></a>1. QThread</h2><p>QThread 是 Qt 中最基础的线程类，用于创建和管理独立的线程。QThread 允许你在独立的线程中运行代码，这适用于需要创建独立线程的任务。</p>
+<p>使用方式<br>继承 QThread：创建一个子类继承 QThread，并重载 run() 方法。在 run() 中实现线程任务。<br>使用信号与槽：通过信号与槽机制实现线程之间的通信。<br>启动和停止：通过 start() 启动线程，使用 quit() 或 terminate() 停止线程。<br>示例</p>
+<pre><code class="cpp">#include &lt;QThread&gt;
+#include &lt;QDebug&gt;
+
+class WorkerThread : public QThread &#123;
+public:
+    void run() override &#123;
+        qDebug() &lt;&lt; &quot;Thread started&quot;;
+        QThread::sleep(2);
+        qDebug() &lt;&lt; &quot;Thread finished&quot;;
+    &#125;
+&#125;;
+
+int main() &#123;
+    WorkerThread thread;
+    thread.start();
+    thread.wait();  // 等待线程完成
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="2-QRunnable-和-QThreadPool"><a href="#2-QRunnable-和-QThreadPool" class="headerlink" title="2. QRunnable 和 QThreadPool"></a>2. QRunnable 和 QThreadPool</h2><p>QRunnable 用于定义可运行的任务，而 QThreadPool 用于管理线程池。这种方式适用于需要高性能并行处理的场景，避免频繁创建和销毁线程。</p>
+<p>使用方式<br>继承 QRunnable：创建一个子类继承 QRunnable，并实现 run() 方法。<br>将任务添加到线程池：使用 QThreadPool::globalInstance() 获取全局线程池，然后通过 start() 添加任务。<br>示例</p>
+<pre><code class="cpp">#include &lt;QRunnable&gt;
+#include &lt;QThreadPool&gt;
+#include &lt;QDebug&gt;
+
+class Worker : public QRunnable &#123;
+public:
+    void run() override &#123;
+        qDebug() &lt;&lt; &quot;Runnable executed&quot;;
+    &#125;
+&#125;;
+
+int main() &#123;
+    Worker *worker = new Worker();
+    QThreadPool::globalInstance()-&gt;start(worker);
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="3-QtConcurrent"><a href="#3-QtConcurrent" class="headerlink" title="3. QtConcurrent"></a>3. QtConcurrent</h2><p>QtConcurrent 提供了一组高级工具，用于异步和并行处理。适用于数据并行、异步操作、任务队列等场景。</p>
+<p>使用方式<br>异步任务：使用 QtConcurrent::run() 在后台线程中运行任务。<br>并行数据处理：使用 QtConcurrent::map()、QtConcurrent::filter() 等实现数据并行处理。<br>任务跟踪：使用 QFuture 和 QFutureWatcher 跟踪任务状态。<br>示例</p>
+<pre><code class="cpp">#include &lt;QtConcurrent&gt;
+#include &lt;QFuture&gt;
+#include &lt;QDebug&gt;
+
+int longTask() &#123;
+    QThread::sleep(3);
+    return 42;
+&#125;
+
+int main() &#123;
+    QFuture&lt;int&gt; future = QtConcurrent::run(longTask);
+
+    qDebug() &lt;&lt; &quot;Main thread continues while task runs in background&quot;;
+
+    future.waitForFinished();  // 等待任务完成
+    qDebug() &lt;&lt; &quot;Task result:&quot; &lt;&lt; future.result();
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="4-使用QObject写一个类-并move到新的thread对象"><a href="#4-使用QObject写一个类-并move到新的thread对象" class="headerlink" title="4. 使用QObject写一个类  并move到新的thread对象"></a>4. 使用QObject写一个类  并move到新的thread对象</h2><h2 id="如何选择适当的多线程方式"><a href="#如何选择适当的多线程方式" class="headerlink" title="如何选择适当的多线程方式"></a>如何选择适当的多线程方式</h2><ul>
+<li><p>独立线程：如果需要独立的线程来处理任务，使用 QThread。适用于复杂的后台任务、长时间运行的任务等。</p>
+</li>
+<li><p>线程池：如果需要高性能并行处理，使用 QRunnable 和 QThreadPool。适用于需要重用线程的场景，避免频繁创建和销毁线程。</p>
+</li>
+<li><p>异步和并行处理：如果需要高级的异步和并行处理，使用 QtConcurrent。适用于异步任务、数据并行等。</p>
+</li>
+<li><p>对象业务逻辑复杂使用4去创建对象</p>
+</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><p>线程安全：确保共享数据的访问是线程安全的，避免数据竞争和死锁。</p>
+</li>
+<li><p>信号与槽：在多线程环境中，信号与槽机制可以用于线程之间的通信。</p>
+</li>
+<li><p>资源管理：确保线程和任务正确管理生命周期，避免资源泄漏。</p>
+</li>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
@@ -711,10 +793,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>QT多线程与线程池</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">8</span></p>
+    <p><span class="copy-title">字数:</span><span class="post-count">856</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
     <p><span class="copy-title">发布时间:</span>2024-05-05, 23:13:13</p>
-    <p><span class="copy-title">最后更新:</span>2024-05-06, 09:54:14</p>
+    <p><span class="copy-title">最后更新:</span>2024-05-09, 18:51:19</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/05/05/QT%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="QT多线程与线程池">https://hualog.dns.navy/2024/05/05/QT%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。

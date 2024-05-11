@@ -6,32 +6,20 @@
   <meta name="keywords" content=" 传输协议 ">
   <meta name="description" content="WebRTC | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="GMP调度模型GMP调度模型的设计思想传统多线程的问题在现代的操作系统中，为了提高并发处理任务的能力，一个 CPU 核上通常会运行多个线程，多个线程的创建、切换使用、销毁开销通常较大：  一个内核线程的大小通常达到1M，因为需要分配内存来存放用户栈和内核栈的数据；  在一个线程执行系统调用（发生 IO 事件如网络请求或读写文件）不占用 CPU 时，需要及时让出 CPU，交给其他线程执行，这时会发生">
+<meta name="description" content="Makefile语法程序编译过程编译是将源代码转换为计算机可执行的指令集的过程。这个过程可以分为多个阶段，通常包括以下步骤：  预处理（Preprocessing） -&gt; .i文件 ：在这一阶段，预处理器会处理源代码，执行诸如宏替换、头文件包含等操作。预处理器会根据预处理指令（以#开头）来修改源代码。例如，#include指令用于包含头文件，#define用于定义宏等。  编译（Compil">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Golang-GMP调度模型">
-<meta property="og:url" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:title" content="Makefile语法">
+<meta property="og:url" content="https://hualog.dns.navy/2024/05/11/Makefile%E8%AF%AD%E6%B3%95/index.html">
 <meta property="og:site_name" content="花落阁">
-<meta property="og:description" content="GMP调度模型GMP调度模型的设计思想传统多线程的问题在现代的操作系统中，为了提高并发处理任务的能力，一个 CPU 核上通常会运行多个线程，多个线程的创建、切换使用、销毁开销通常较大：  一个内核线程的大小通常达到1M，因为需要分配内存来存放用户栈和内核栈的数据；  在一个线程执行系统调用（发生 IO 事件如网络请求或读写文件）不占用 CPU 时，需要及时让出 CPU，交给其他线程执行，这时会发生">
+<meta property="og:description" content="Makefile语法程序编译过程编译是将源代码转换为计算机可执行的指令集的过程。这个过程可以分为多个阶段，通常包括以下步骤：  预处理（Preprocessing） -&gt; .i文件 ：在这一阶段，预处理器会处理源代码，执行诸如宏替换、头文件包含等操作。预处理器会根据预处理指令（以#开头）来修改源代码。例如，#include指令用于包含头文件，#define用于定义宏等。  编译（Compil">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/001.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/002.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/003.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/004.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/005.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/006.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/007.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/008.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/009.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/010.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/011.png">
-<meta property="og:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/012.png">
-<meta property="article:published_time" content="2024-05-07T09:53:36.000Z">
-<meta property="article:modified_time" content="2024-05-08T02:23:38.414Z">
+<meta property="article:published_time" content="2024-05-11T02:51:48.000Z">
+<meta property="article:modified_time" content="2024-05-11T07:27:41.581Z">
 <meta property="article:author" content="花落阁">
-<meta property="article:tag" content="编程语言">
-<meta property="article:tag" content="golang">
+<meta property="article:tag" content="cmake">
+<meta property="article:tag" content="make">
+<meta property="article:tag" content="程序构建">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hualog.dns.navy/2024/05/07/Golang-GMP%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9E%8B/001.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -168,7 +156,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(23)</small>
+                <small>(24)</small>
             
         </div>
     </li>
@@ -180,7 +168,7 @@
         <div data-rel="工具">
             <i class="fold iconfont icon-right"></i>
             工具
-            <small>(7)</small>
+            <small>(8)</small>
         </div>
         
             <ul class="sub hide">
@@ -190,7 +178,7 @@
         <div data-rel="工具&lt;---&gt;tools">
             
             tools
-            <small>(6)</small>
+            <small>(7)</small>
         </div>
         
     </li>
@@ -291,8 +279,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="23">
-<input type="hidden" id="yelog_site_word_count" value="115.8k">
+<input type="hidden" id="yelog_site_posts_number" value="24">
+<input type="hidden" id="yelog_site_word_count" value="118.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -411,6 +399,15 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 工具 tools "
+           href="/2024/05/11/Makefile%E8%AF%AD%E6%B3%95/"
+           data-tag="cmake,make,程序构建"
+           data-author="" >
+            <span class="post-title" title="Makefile语法">Makefile语法</span>
+            <span class="post-date" title="2024-05-11 10:51:48">2024/05/11</span>
+        </a>
         
         
         <a  class="全部文章 编程语言 Golang "
