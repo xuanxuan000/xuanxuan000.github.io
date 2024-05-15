@@ -280,7 +280,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="24">
-<input type="hidden" id="yelog_site_word_count" value="118.9k">
+<input type="hidden" id="yelog_site_word_count" value="119.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -654,12 +654,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-17 18:29:44'>2024-04-17 18:00</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-15 15:35:21'>2024-04-17 18:00</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:119</span>
+        <span>字数:338</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -689,7 +689,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87"><span class="toc-text">我遇到过的疑难杂症</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8A%E8%B7%91%E7%9A%84udp%E7%A8%8B%E5%BA%8F%E7%AA%81%E7%84%B6%E5%B4%A9%E6%BA%83"><span class="toc-text">单片机上跑的udp程序突然崩溃</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87"><span class="toc-text">我遇到过的疑难杂症</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8A%E8%B7%91%E7%9A%84udp%E7%A8%8B%E5%BA%8F%E7%AA%81%E7%84%B6%E5%B4%A9%E6%BA%83"><span class="toc-text">单片机上跑的udp程序突然崩溃</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E4%B8%AD%EF%BC%8C%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A0%87%E5%BF%97%EF%BC%88flags%EF%BC%89%E5%86%B2%E7%AA%81"><span class="toc-text">Go语言中，命令行标志（flags）冲突</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -706,6 +706,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="我遇到过的疑难杂症"><a href="#我遇到过的疑难杂症" class="headerlink" title="我遇到过的疑难杂症"></a>我遇到过的疑难杂症</h1><h2 id="单片机上跑的udp程序突然崩溃"><a href="#单片机上跑的udp程序突然崩溃" class="headerlink" title="单片机上跑的udp程序突然崩溃"></a>单片机上跑的udp程序突然崩溃</h2><p>同事使用C语言写了个udp程序，与我的服务通信，逻辑是他起一个socket，向我发送数据，我回复OK。<br>一开始工作正常，但是一段时间后他的程序崩溃。<br>经排查，是因为他没有写<code>recv()</code>函数，且一直<code>复用的同一个socket</code>。数据到达后，没处理，堆积在缓冲区导致错误。</p>
+<h2 id="Go语言中，命令行标志（flags）冲突"><a href="#Go语言中，命令行标志（flags）冲突" class="headerlink" title="Go语言中，命令行标志（flags）冲突"></a>Go语言中，命令行标志（flags）冲突</h2><p>我在某个程序中使用了flag包，设置了-c参数，与我引用的filebrowser包中的-c冲突，导致我在自己的配置文件中的参数被设置到了filebrowser中。</p>
+<p>在Go语言中，命令行标志（flags）是通过flag包来解析和管理的。每个包可以有自己的标志集，但在同一个程序中，如果多个包使用了相同的标志名称（例如 -c），这可能会导致冲突。</p>
+<p>具体来说，当你在两个不同的包中都定义了相同的标志时，这些标志是共享的。也就是说，如果你的程序中有多个包都使用了同一个标志（如 -c），解析命令行参数时，这个标志的值会对所有使用该标志的包都生效。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
@@ -716,10 +719,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>我遇到过的疑难杂症</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">119</span></p>
+    <p><span class="copy-title">字数:</span><span class="post-count">338</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
     <p><span class="copy-title">发布时间:</span>2024-04-17, 18:00:55</p>
-    <p><span class="copy-title">最后更新:</span>2024-04-17, 18:29:44</p>
+    <p><span class="copy-title">最后更新:</span>2024-05-15, 15:35:21</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" title="我遇到过的疑难杂症">https://hualog.dns.navy/2024/04/17/%E6%88%91%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
