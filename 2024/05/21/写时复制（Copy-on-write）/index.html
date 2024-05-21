@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>WebRTC-一对一通话 | 花落阁</title>
-  <meta name="keywords" content=" 传输协议 ">
-  <meta name="description" content="WebRTC-一对一通话 | 花落阁">
+  <title>写时复制（Copy-on-write） | 花落阁</title>
+  <meta name="keywords" content=" 编程语言 ">
+  <meta name="description" content="写时复制（Copy-on-write） | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="最近面试被问到了写时复制（cow）的概念，顺便在这里整理一下，简单说说写时复制的设计理念和使用场景，暂时不会太深入技术实现，技术部分的介绍有机会再去单开一章。 需求和目标本质上写时复制是一个针对内存资源管理的技术，用以提高内存的使用效率和响应速度。当一个或多个程序单元使用另一个程序单元进行初始化时，一个简单的方式就是对每个单元都做一份完全拷贝，保证内存的互相独立，使用起来互不干扰。但是某些情况下，">
 <meta property="og:type" content="article">
@@ -641,9 +641,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-WebRTC-一对一通话" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-写时复制（Copy-on-write）" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">WebRTC-一对一通话</h1>
+        <h1 class="article-title">写时复制（Copy-on-write）</h1>
     
     <div class="article-meta">
         
@@ -653,7 +653,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="音视频">音视频</a>
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;常识类">常识类</a>
             
         </span>
         
@@ -661,19 +663,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">传输协议</a>
+            <a class="color5">编程语言</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-06 09:54:14'>2024-05-02 10:04</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-21 14:26:45'>2024-05-21 14:20</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:519</span>
+        <span>字数:1.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -703,7 +705,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebRTC-%E4%B8%80%E5%AF%B9%E4%B8%80%E9%80%9A%E8%AF%9D"><span class="toc-text">WebRTC-一对一通话</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%AF%9D%E8%BF%87%E7%A8%8B"><span class="toc-text">通话过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3%EF%BC%9A"><span class="toc-text">图解：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebRTC-%E8%BF%9B%E8%A1%8C%E9%80%9A%E8%AF%9D%E7%9A%84%E5%A4%A7%E4%BD%93%E8%BF%87%E7%A8%8B"><span class="toc-text">WebRTC 进行通话的大体过程</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="toc-text">需求和目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">几个应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="toc-text">进程和虚拟内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-98%E7%9A%84string%E7%B1%BB"><span class="toc-text">c++98的string类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt%E9%9A%90%E5%BC%8F%E5%85%B1%E4%BA%AB"><span class="toc-text">Qt隐式共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AF%B9%E5%8F%AA%E8%AF%BB%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BF%E9%97%AE"><span class="toc-text">多线程对只读对象的访问</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -719,41 +721,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="WebRTC-一对一通话"><a href="#WebRTC-一对一通话" class="headerlink" title="WebRTC-一对一通话"></a>WebRTC-一对一通话</h1><h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="/2024/05/02/WebRTC-%E4%B8%80%E5%AF%B9%E4%B8%80%E9%80%9A%E8%AF%9D/logic.png"></p>
-<h2 id="通话过程"><a href="#通话过程" class="headerlink" title="通话过程"></a>通话过程</h2><p><img src="/2024/05/02/WebRTC-%E4%B8%80%E5%AF%B9%E4%B8%80%E9%80%9A%E8%AF%9D/logic2.png"></p>
-<h3 id="图解："><a href="#图解：" class="headerlink" title="图解："></a>图解：</h3><ul>
-<li>WebRTC 终端：负责音视频<code>采集</code>、<code>编解码</code>、<code>NAT穿越</code>、音视频<code>数据传输</code></li>
-<li>Signal 信令服务器：负责<code>信令处理</code>、如加入房间、离开房间、媒体协商消息的传递</li>
-<li>STUN&#x2F;TURN服务器：负责获取WebRTC终端在<code>公网</code>的IP地址，以及NAT穿越失败后的<code>数据中转</code></li>
-</ul>
-<h3 id="WebRTC-进行通话的大体过程"><a href="#WebRTC-进行通话的大体过程" class="headerlink" title="WebRTC 进行通话的大体过程"></a>WebRTC 进行通话的大体过程</h3><ol>
-<li><p>音视频采集</p>
+        <p>最近面试被问到了写时复制（cow）的概念，顺便在这里整理一下，简单说说写时复制的设计理念和使用场景，暂时不会太深入技术实现，技术部分的介绍有机会再去单开一章。</p>
+<h2 id="需求和目标"><a href="#需求和目标" class="headerlink" title="需求和目标"></a>需求和目标</h2><p>本质上写时复制是一个针对内存资源管理的技术，用以提高内存的使用效率和响应速度。当一个或多个程序单元使用另一个程序单元进行初始化时，一个简单的方式就是对每个单元都做一份完全拷贝，保证内存的互相独立，使用起来互不干扰。但是某些情况下，新的单元可能不会对内存进行修改，又或者需要重新分配，这时这种完全的拷贝策略就展现出弊端了：针对第一种情况，当数据规模变大时，内存中会存在大量的重复的数据，造成内存资源的浪费；而第二种情况，则使得最初的分配资源和拷贝操作完全没有意义，还拖慢了初始化速度。</p>
+<p>写时复制策略的出现刚好解决了上面的问题：初始化时可以简单的让他们共享同一个内存资源，只有当其中一个单元对内容进行修改时，才会触发对内容的复制。优势也是显而易见的：</p>
 <ul>
-<li>进入房间前，先进行检测设备可用性，当可用时则进行音视频数据的采集</li>
+<li>有效避免内存资源的浪费，减少了一部分复制的时间开销</li>
+<li>提高初始化速度</li>
 </ul>
-</li>
-<li><p>采集后的处理</p>
+<h2 id="几个应用场景"><a href="#几个应用场景" class="headerlink" title="几个应用场景"></a>几个应用场景</h2><h3 id="进程和虚拟内存"><a href="#进程和虚拟内存" class="headerlink" title="进程和虚拟内存"></a>进程和虚拟内存</h3><p>在linux系统中，fork（以及一些它的变体）是创建新进程的唯一方式。当父进程调用fork()创建子进程时会默认创建当前进程的副本，此时子进程可以选择与父进程执行同样的程序，也可以选择调用exec()去执行其他的程序。</p>
+<p>在这个场景中，写时复制是应用在创建进程副本的阶段，新创建的子进程最初会共享父进程的所有内存，直到两者之一想要修改部分内存页，则这块内存页就会被复制并重新映射给当前的修改进程，以确保修改的内存不会互相影响。</p>
+<p>在这里应用写时复制主要是有两个方面的考虑：</p>
 <ul>
-<li>一方面：采集的数据会进行用作预览，即自己可以看到画面</li>
-<li>另一方面：可以将其录制下来保存为文件、等视频通话结束后，上传到服务器后可以让用户回看之前的内容</li>
-</ul>
+<li><p>当子进程选择执行与父进程相同的程序时，内存中有很多数据是可以共享的，部分内存可能整个程序周期中都不会被修改，这部分内存的共享可以提高内存资源的利用率。而针对可能被修改的内存，将复制的操作移动到对内存修改时进行，也可以有效的加快创建子进程的速度。</p>
 </li>
-<li><p>获取数据就绪后 - 房间的创建和加入</p>
+<li><p>当子进程选择执行新的程序时，对父进程的复制那就是妥妥的浪费了，既浪费了时间又浪费了空间。<br>所以写时复制带来的好处就是：</p>
+</li>
+<li><p>加快了子进程的创建。</p>
+</li>
+<li><p>减少进程对物理内存的使用。</p>
+</li>
+</ul>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>我们知道进程利用页表记录虚拟内存与物理内存的映射，同时页表中还记录了物理内存页的被进程映射的次数，以及访问标志。当创建新的进程时，子进程使用与父进程一样的映射，但是同时会将可修改的内存页标记为只读。当任一进程尝试修改这部分内存时，操作系统会重新分配一个新的物理内存页，拷贝后将其映射到当前进程的虚拟内存页上，将原物理内存页的引用计数减一（如果只有一个引用的话就不需要重新分配内存页和更新计数），页面标记为可修改，并继续执行写入操作。</p>
+<p>根据写时复制的原理可以看到，并不一定是子进程得到复制的内存页，也有可能是父进程。<br>只有可修改的数据段会用到写时复制，代码段和只读数据段不存在修改的可能。</p>
+<h3 id="c-98的string类"><a href="#c-98的string类" class="headerlink" title="c++98的string类"></a>c++98的string类</h3><p>一个c++标准库中被遗弃了的实现，但是依然可以拿出来分析一下。</p>
+<p>早期的c++ string的初始化使用的就是写时复制的设计，内部维护一个指针和引用计数，引用计数为零时表示只有当前变量引用了这部分内存。在进行string初始化操作时，只是复制了指向原字符串内存的指针，并增加引用计数，只有当调用可能修改字符串的操作时（如[]操作）才会复制。</p>
+<p>对于const变量，通过[]进行数据读取是不会触发内存分配和复制的。而对于非const变量，[]操作就会触发内存分配和复制，编译器无法判断这种情况下[]是准备读还是写，只能同等处理。</p>
+<p>cow实现的string可以解决的一个问题就是局部变量返回值传递，即对资源进行了转移，避免了内存的分配、复制和销毁操作。但是在c++11推出右值引用和移动语义后，这个问题就不再是问题了。</p>
+<h3 id="Qt隐式共享"><a href="#Qt隐式共享" class="headerlink" title="Qt隐式共享"></a>Qt隐式共享</h3><p>​Qt中的许多C++类使用隐式数据共享来提高资源使用并减少数据复制。当这些类作为参数传递时，因为只传递一个指向数据的指针，并且只有当函数写入数据时数据才会被复制，即copy -on-write，隐式共享类是安全、高效的。</p>
 <ul>
-<li>WebRTC终端向信令服务器发送「加入」的信令，Signal服务器收到消息后会进行创建房间的操作 - 推流端</li>
-<li>另一端也会做差不多一样的事，不同点在于不是创建房间，而是加入房间 - 观看端</li>
-<li>第二个终端(观看端)成功加入房间后，第一个用户(推流端)会收到「另一个用户已成功加入」的消息</li>
-</ul>
+<li><p>共享类由一个指向包含引用计数和数据的共享数据块的指针组成。</p>
 </li>
-<li><p>获取数据就绪后 - 音视频数据传递</p>
-<ul>
-<li>第一个终端(推流端)会创建“媒体连接”对象，即RTCPeerConnection，然后将采集到的音视频数据通过RTCPeerConnection对象进行编码，最终通过P2P传送给对方；</li>
-<li>P2P穿越失败后：为保障音视频数据正常，需要通过TURN服务器进行音视频数据中转</li>
-<li>第二端(观看端)接收到数据后，会先将收到的数据进行解码，最后将其展示出来，这样就实现了一对一的单通</li>
-<li>实现互通的方式：双方都需要通过RTCPeerConnection对象传输自己端的数据，然后另一端进行接收</li>
-</ul>
+<li><p>当创建共享对象时，它将引用计数设置为1。每当有新对象引用共享数据时，引用计数就递增，当对象解引用共享数据时，引用计数就递减，当引用计数变为零时，将删除共享数据。</p>
 </li>
-</ol>
+</ul>
+<p>​ 在处理共享对象时，有两种方法复制对象。也就是经常谈到的：深度拷贝和浅拷贝。深度拷贝意味着复制一个对象，浅拷贝是一个引用拷贝，也就是一个指向共享数据块的指针。站在内存和CPU角度，执行一个深度拷贝可能是昂贵的操作，执行浅拷贝则非常快，因为浅拷贝只涉及设置指针和增加引用计数。</p>
+<blockquote>
+<p>注意：隐式共享对象的对象赋值(operator&#x3D;())是使用浅拷贝实现的。</p>
+</blockquote>
+<h3 id="多线程对只读对象的访问"><a href="#多线程对只读对象的访问" class="headerlink" title="多线程对只读对象的访问"></a>多线程对只读对象的访问</h3><p>另一个合适的场景就是多线程对只读对象的访问，多个线程共享，且单个线程中销毁对象并不会对其他线程产生影响。当然在c++11中也有更好用的工具，shared_ptr。</p>
+<p>对于其他的使用场景，cow基本上就没有优势了。在常规的初始化+修改的场景中，将复制操作移动到修改时刻进行并没有带来多少性能和内存效率上的提升，同时引用计数的存在也增加了一些开销。而对于一些只读的场景，比如在函数中对参数进行const访问，使用const引用的效率更高。</p>
+<p>所以总结下来，cow的实现在现代c++中已经无法提供效率上的提升，自然而然被新的标准遗弃了。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1430797759@qq.com </span>
@@ -763,12 +770,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>WebRTC-一对一通话</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">519</span></p>
+    <p><span class="copy-title">文章标题:</span>写时复制（Copy-on-write）</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">1.9k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="花落阁">花落阁</a></p>
-    <p><span class="copy-title">发布时间:</span>2024-05-02, 10:04:15</p>
-    <p><span class="copy-title">最后更新:</span>2024-05-06, 09:54:14</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/05/02/WebRTC-%E4%B8%80%E5%AF%B9%E4%B8%80%E9%80%9A%E8%AF%9D/" title="WebRTC-一对一通话">https://hualog.dns.navy/2024/05/02/WebRTC-%E4%B8%80%E5%AF%B9%E4%B8%80%E9%80%9A%E8%AF%9D/</a>
+    <p><span class="copy-title">发布时间:</span>2024-05-21, 14:20:06</p>
+    <p><span class="copy-title">最后更新:</span>2024-05-21, 14:26:45</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2024/05/21/%E5%86%99%E6%97%B6%E5%A4%8D%E5%88%B6%EF%BC%88Copy-on-write%EF%BC%89/" title="写时复制（Copy-on-write）">https://hualog.dns.navy/2024/05/21/%E5%86%99%E6%97%B6%E5%A4%8D%E5%88%B6%EF%BC%88Copy-on-write%EF%BC%89/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>

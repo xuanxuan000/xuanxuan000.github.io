@@ -6,19 +6,17 @@
   <meta name="keywords" content=" zlmediakit ">
   <meta name="description" content="ZLMediaKit使用说明 | 花落阁">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Makefile语法程序编译过程编译是将源代码转换为计算机可执行的指令集的过程。这个过程可以分为多个阶段，通常包括以下步骤：  预处理（Preprocessing） -&gt; .i文件 ：在这一阶段，预处理器会处理源代码，执行诸如宏替换、头文件包含等操作。预处理器会根据预处理指令（以#开头）来修改源代码。例如，#include指令用于包含头文件，#define用于定义宏等。  编译（Compil">
+<meta name="description" content="最近面试被问到了写时复制（cow）的概念，顺便在这里整理一下，简单说说写时复制的设计理念和使用场景，暂时不会太深入技术实现，技术部分的介绍有机会再去单开一章。 需求和目标本质上写时复制是一个针对内存资源管理的技术，用以提高内存的使用效率和响应速度。当一个或多个程序单元使用另一个程序单元进行初始化时，一个简单的方式就是对每个单元都做一份完全拷贝，保证内存的互相独立，使用起来互不干扰。但是某些情况下，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Makefile语法">
-<meta property="og:url" content="https://hualog.dns.navy/2024/05/11/Makefile%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:title" content="写时复制（Copy-on-write）">
+<meta property="og:url" content="https://hualog.dns.navy/2024/05/21/%E5%86%99%E6%97%B6%E5%A4%8D%E5%88%B6%EF%BC%88Copy-on-write%EF%BC%89/index.html">
 <meta property="og:site_name" content="花落阁">
-<meta property="og:description" content="Makefile语法程序编译过程编译是将源代码转换为计算机可执行的指令集的过程。这个过程可以分为多个阶段，通常包括以下步骤：  预处理（Preprocessing） -&gt; .i文件 ：在这一阶段，预处理器会处理源代码，执行诸如宏替换、头文件包含等操作。预处理器会根据预处理指令（以#开头）来修改源代码。例如，#include指令用于包含头文件，#define用于定义宏等。  编译（Compil">
+<meta property="og:description" content="最近面试被问到了写时复制（cow）的概念，顺便在这里整理一下，简单说说写时复制的设计理念和使用场景，暂时不会太深入技术实现，技术部分的介绍有机会再去单开一章。 需求和目标本质上写时复制是一个针对内存资源管理的技术，用以提高内存的使用效率和响应速度。当一个或多个程序单元使用另一个程序单元进行初始化时，一个简单的方式就是对每个单元都做一份完全拷贝，保证内存的互相独立，使用起来互不干扰。但是某些情况下，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-11T02:51:48.000Z">
-<meta property="article:modified_time" content="2024-05-11T07:27:41.581Z">
+<meta property="article:published_time" content="2024-05-21T06:20:06.000Z">
+<meta property="article:modified_time" content="2024-05-21T06:26:45.265Z">
 <meta property="article:author" content="花落阁">
-<meta property="article:tag" content="cmake">
-<meta property="article:tag" content="make">
-<meta property="article:tag" content="程序构建">
+<meta property="article:tag" content="编程语言">
 <meta name="twitter:card" content="summary">
 
 
@@ -156,7 +154,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(24)</small>
+                <small>(25)</small>
             
         </div>
     </li>
@@ -198,7 +196,7 @@
         <div data-rel="编程语言">
             <i class="fold iconfont icon-right"></i>
             编程语言
-            <small>(7)</small>
+            <small>(8)</small>
         </div>
         
             <ul class="sub hide">
@@ -208,7 +206,7 @@
         <div data-rel="编程语言&lt;---&gt;常识类">
             
             常识类
-            <small>(5)</small>
+            <small>(6)</small>
         </div>
         
     </li>
@@ -279,8 +277,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="24">
-<input type="hidden" id="yelog_site_word_count" value="119.1k">
+<input type="hidden" id="yelog_site_posts_number" value="25">
+<input type="hidden" id="yelog_site_word_count" value="121.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -399,6 +397,15 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 编程语言 常识类 "
+           href="/2024/05/21/%E5%86%99%E6%97%B6%E5%A4%8D%E5%88%B6%EF%BC%88Copy-on-write%EF%BC%89/"
+           data-tag="编程语言"
+           data-author="" >
+            <span class="post-title" title="写时复制（Copy-on-write）">写时复制（Copy-on-write）</span>
+            <span class="post-date" title="2024-05-21 14:20:06">2024/05/21</span>
+        </a>
         
         
         <a  class="全部文章 工具 tools "
